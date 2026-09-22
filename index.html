@@ -6,8 +6,11 @@
 <title>KNM Prep App — Welkom in Nederland</title>
 
 <link rel="manifest" href="manifest.webmanifest">
-<meta name="theme-color" content="#201913">
-<meta name="description" content="Audioboek-app voor de KNM-samenvatting 'Welkom in Nederland' — English first, Dutch inserts in brackets.">
+<meta name="theme-color" content="#0A0A0C">
+<meta name="description" content="KNM Audio: English narration with Dutch key terms for Welkom in Nederland.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Onest:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <!-- iOS home screen / standalone app support -->
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -462,19 +465,53 @@
     margin: 0 auto;
   }
   a.src-link { color: var(--accent); text-decoration: none; }
+
+  /* KNM Trainer visual system */
+  :root { --font-display:'Onest',sans-serif; --font-body:'Onest',sans-serif; }
+  :root[data-theme="dark"] { --paper:#0A0A0C; --paper-2:#0A0A0C; --paper-3:rgba(255,255,255,.055); --ink:#F4F2EF; --ink-soft:#8D8881; --ink-faint:#5A5650; --rule:rgba(255,255,255,.075); --rule-strong:rgba(255,255,255,.14); --accent:#F08A4B; --accent-soft:#F7BC90; --track-hover:rgba(255,255,255,.055); --track-active:rgba(240,138,75,.14); --shadow:rgba(0,0,0,.8); --shadow-2:rgba(0,0,0,.8); }
+  :root[data-theme="light"] { --paper:#F6F4F1; --paper-2:#F6F4F1; --paper-3:rgba(20,15,10,.08); --ink:#17140F; --ink-soft:#7C766D; --ink-faint:#A9A298; --rule:rgba(20,15,10,.09); --rule-strong:rgba(20,15,10,.17); --accent:#D9711F; --accent-soft:#B9571A; --track-hover:rgba(20,15,10,.045); --track-active:rgba(217,113,31,.12); --shadow:rgba(60,40,20,.35); --shadow-2:rgba(60,40,20,.35); }
+  body { background:var(--paper); font-family:'Onest',sans-serif; }
+  body::before { background:radial-gradient(900px 560px at 78% -12%,rgba(240,138,75,.10),transparent 62%),radial-gradient(760px 500px at 6% 4%,rgba(120,90,200,.06),transparent 60%); opacity:1; mix-blend-mode:normal; }
+  .app-shell { position:relative;z-index:1;display:flex;min-height:100dvh; }
+  .rail { width:228px;flex:none;padding:22px 14px;display:flex;flex-direction:column;gap:3px;border-right:1px solid var(--rule);position:sticky;top:0;height:100dvh; }
+  .brand { display:flex;align-items:center;gap:10px;padding:6px 10px 23px;font-size:17px;font-weight:800;letter-spacing:-.02em; }
+  .brand-mark { width:26px;height:26px;border-radius:8px;background:linear-gradient(140deg,var(--accent-soft),var(--accent));display:grid;place-items:center;color:#1A1207;font:800 10px/1 'JetBrains Mono',monospace;letter-spacing:-.06em; }
+  .nav-link { display:flex;align-items:center;gap:11px;padding:9px 11px;border-radius:11px;color:var(--ink-soft);font-size:14px;font-weight:500;text-decoration:none;transition:.15s; }
+  .nav-link:hover,.nav-link.on { color:var(--ink);background:var(--track-hover); }.nav-link.on { color:var(--accent); }.nav-link svg,.rail-btn svg { width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round; }
+  .rail-foot { margin-top:auto;display:flex;gap:4px;padding:0 4px; }.rail-btn{width:36px;height:36px;border:0;border-radius:10px;background:transparent;color:var(--ink-soft);display:grid;place-items:center}.rail-btn:hover{color:var(--ink);background:var(--track-hover)}
+  main { max-width:1120px;width:100%;margin:0;padding:34px 40px 138px; }.titlepage { max-width:none;margin:0 0 16px;padding:0;border:0;border-radius:0;background:none;box-shadow:none;backdrop-filter:none;text-align:left;overflow:visible; }.titlepage::before{display:none}.titlepage .kicker{font:500 10.5px/1.2 'JetBrains Mono',monospace;letter-spacing:.13em;color:var(--ink-faint);padding:0;border:0;background:none;margin:0 0 13px}.titlepage .kicker::after{content:'';display:inline-block;width:150px;height:1px;background:var(--rule);vertical-align:middle;margin-left:10px}.titlepage .flag{display:none}.titlepage h1{font-family:'Onest',sans-serif;font-size:30px;line-height:1.12;letter-spacing:-.04em;margin:0 0 6px}.titlepage .subtitle{margin:0;color:var(--ink-soft);font-size:14.5px}.titlepage .meta{font:500 10.5px/1 'JetBrains Mono',monospace;letter-spacing:0;color:var(--accent);background:var(--track-active);padding:5px 7px;border-radius:6px;display:inline-block;margin-top:16px}.theme-toggle,.refresh-toggle{display:none}
+  .study-hero{display:grid;grid-template-columns:auto minmax(0,1fr);gap:26px;align-items:center;padding:25px 28px;margin:0 0 20px;background:rgba(255,255,255,.028);border:1px solid var(--rule);border-radius:18px;backdrop-filter:blur(14px)}.study-ring{width:126px;height:126px;border-radius:50%;display:grid;place-items:center;position:relative;background:conic-gradient(var(--accent) 0deg 36deg,var(--paper-3) 36deg 360deg)}.study-ring:before{content:'';position:absolute;inset:10px;border-radius:50%;background:var(--paper)}.study-ring b,.study-ring span{position:relative;z-index:1;display:block;text-align:center}.study-ring b{font:700 29px/1 'JetBrains Mono',monospace;letter-spacing:-.07em}.study-ring span{font-size:10px;color:var(--ink-soft);letter-spacing:.05em}.study-copy h2{font-size:20px;letter-spacing:-.03em;margin:0 0 6px}.study-copy p{margin:0;color:var(--ink-soft);font-size:14px;max-width:570px}.start-btn{display:inline-flex;margin-top:15px;padding:11px 16px;border-radius:12px;background:linear-gradient(135deg,var(--accent-soft),var(--accent));color:#1A1207;text-decoration:none;font-size:14px;font-weight:700}.resume-note{margin:14px 0 0;padding:9px 11px;border-left:2px solid var(--accent);background:var(--track-active);border-radius:0 8px 8px 0;font-size:13px;color:var(--ink-soft);max-width:700px}
+  .toc-controls{justify-content:space-between;margin:0 0 10px;padding:0;color:var(--ink-soft);font-size:12.5px}.toc-controls::before{content:'BIBLIOTHEEK';font-size:16px;letter-spacing:-.02em;color:var(--ink);font-weight:600}.chapter{border:1px solid var(--rule);border-radius:16px;background:rgba(255,255,255,.028);backdrop-filter:blur(14px);overflow:hidden;margin-bottom:10px}.chapter-head{padding:16px 18px}.chapter-head h2{font-family:'Onest',sans-serif;font-size:15px}.chapter-head .ch-en{font-family:'Onest',sans-serif;font-size:12px;font-style:normal;color:var(--ink-soft)}.chapter-head .num{font:500 10px/1 'JetBrains Mono',monospace;color:var(--accent);background:var(--track-active);padding:5px 6px;border-radius:5px}.tracklist{padding:0 8px 8px}.track{grid-template-columns:27px minmax(0,1fr) auto auto;gap:12px;padding:10px;border-radius:11px}.track:hover{background:var(--track-hover)}.track.active{background:var(--track-active)}.track .marker{width:27px;height:27px;border-radius:8px;background:var(--track-hover);font:500 11px/1 'JetBrains Mono',monospace}.track.active .marker{background:var(--accent);color:#1A1207;border-color:var(--accent)}.track .ttitle{font-size:14px}.track .tsub{font-size:11.5px}.track .dur{font:500 11px/1 'JetBrains Mono',monospace;color:var(--ink-faint);min-width:35px}
+  .player{left:228px;background:rgba(10,10,12,.82);border-color:var(--rule);box-shadow:none;padding:12px 40px max(12px,env(safe-area-inset-bottom));backdrop-filter:blur(18px)}:root[data-theme="light"] .player{background:rgba(246,244,241,.86)}.player-inner{max-width:1080px}.player .now{font-size:12px;margin-bottom:7px}.player .now .now-en{display:inline;margin-left:5px;font-size:11px}.seekrow{margin-bottom:7px}.seekrow .time,.speedbtn{font-family:'JetBrains Mono',monospace;font-size:10px}.controlsrow{min-height:31px}.ctrlbtn{border-radius:8px;font-size:16px}.ctrlbtn:hover{background:var(--track-hover)}.ctrlbtn.small{font-size:12px}.speedbtn{border-radius:7px;background:transparent}.install-hint{bottom:112px}
+  @media(max-width:760px){.app-shell{display:block}.rail{position:fixed;z-index:5;top:auto;bottom:0;left:0;right:0;width:100%;height:auto;padding:8px 8px calc(8px + env(safe-area-inset-bottom));flex-direction:row;border-right:0;border-top:1px solid var(--rule);background:rgba(10,10,12,.86);backdrop-filter:blur(18px)}:root[data-theme="light"] .rail{background:rgba(246,244,241,.86)}.brand,.rail-foot,.nav-link:nth-of-type(n+4){display:none}.nav-link{flex:1;justify-content:center;padding:8px;font-size:0}.nav-link svg{width:19px;height:19px}.player{left:0;bottom:57px;padding:8px 12px}.player .now{font-size:11px}main{padding:22px 12px 166px}.titlepage h1{font-size:25px}.titlepage .subtitle{font-size:13px}.titlepage .meta{margin-top:12px}.study-hero{grid-template-columns:74px minmax(0,1fr);gap:14px;padding:14px;border-radius:15px;margin-bottom:14px}.study-ring{width:74px;height:74px}.study-ring:before{inset:7px}.study-ring b{font-size:20px}.study-ring span{font-size:8px}.study-copy h2{font-size:15px;margin-bottom:3px}.study-copy p{font-size:11.5px;line-height:1.35}.start-btn{font-size:12px;padding:8px 10px;border-radius:9px;margin-top:9px}.toc-controls{margin-bottom:8px}.toc-controls::before{font-size:14px}.toc-controls label{font-size:11px}.chapter{border-radius:13px;margin-bottom:7px}.chapter-head{padding:12px 13px;gap:9px}.chapter-head h2{font-size:13px}.chapter-head .ch-en{font-size:10.5px}.tracklist{padding:0 5px 5px}.track{grid-template-columns:24px minmax(0,1fr) auto auto;gap:8px;padding:9px 7px}.track .marker{width:24px;height:24px;border-radius:7px;font-size:10px}.track .ttitle{font-size:12.5px}.track .tsub{font-size:10px}.track .dur{font-size:9.5px;min-width:30px}.chapter-head .num{font-size:8.5px;padding:4px}}
 </style>
 </head>
 <body>
-
-<div class="titlepage">
-  <button class="refresh-toggle" id="hardRefreshBtn" title="Hard refresh" aria-label="Wis cache en herlaad de app">↻</button>
-  <button class="theme-toggle" id="themeToggle" title="Wissel thema" aria-label="Wissel tussen licht en donker thema"></button>
-  <div class="kicker">KNM Prep App</div>
-  <div class="flag">🇳🇱</div>
-  <h1>Welkom in Nederland</h1>
-  <div class="subtitle">Audioboek — English first, Dutch inserts in brackets</div>
-  <div class="meta">7 chapters · 36 tracks</div>
-  <div class="resume-note" id="resumeNote" style="display:none"></div>
+<div class="app-shell">
+  <nav class="rail" aria-label="Navigatie">
+    <div class="brand"><span class="brand-mark">KNM</span><span>KNM Audio</span></div>
+    <a class="nav-link on" href="#library"><svg viewBox="0 0 24 24"><path d="M5 4.5h10a4 4 0 0 1 4 4V20H9a4 4 0 0 0-4 0V4.5Z"/><path d="M9 20V4.5"/></svg><span>Bibliotheek</span></a>
+    <a class="nav-link" href="#chapter-1"><svg viewBox="0 0 24 24"><path d="M12 3v18M3 12h18"/></svg><span>Hoofdstukken</span></a>
+    <a class="nav-link" href="#player"><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6v12Z"/></svg><span>Luisteren</span></a>
+    <div class="rail-foot"><button class="rail-btn" id="hardRefreshBtn" title="Hard refresh"></button><button class="rail-btn" id="themeToggle" title="Wissel thema"></button></div>
+  </nav>
+  <main id="library">
+    <div class="titlepage">
+      <div class="kicker">KNM PREP · AUDIOBOOK</div>
+      <div class="flag">🇳🇱</div>
+      <h1>Welkom in Nederland</h1>
+      <div class="subtitle">English narration. Dutch key terms spoken separately.</div>
+      <div class="meta">7 HOOFDSTUKKEN · 36 TRACKS</div>
+    </div>
+    <section class="study-hero">
+      <div class="study-ring"><div><b>36</b><span>tracks</span></div></div>
+      <div class="study-copy"><h2>Leer met je oren</h2><p>Een compacte luisterbibliotheek voor je KNM-voorbereiding. Elke Nederlandse term krijgt zijn eigen stem.</p><a class="start-btn" href="#chapter-1">Start luisteren →</a><div class="resume-note" id="resumeNote" style="display:none"></div></div>
+    </section>
+    <div class="toc-controls">
+      <label><input type="checkbox" id="autoplayToggle" checked> Volgende taak automatisch</label>
+    </div>
+    <div id="chapters"></div>
+  </main>
 </div>
 
 <div class="install-hint" id="installHint">
@@ -484,14 +521,7 @@
   </div>
 </div>
 
-<main>
-  <div class="toc-controls">
-    <label><input type="checkbox" id="autoplayToggle" checked> Doorspelen naar volgende taak</label>
-  </div>
-  <div id="chapters"></div>
-</main>
-
-<div class="player">
+<div class="player" id="player">
   <div class="player-inner">
     <div class="now" id="nowPlaying">Kies een hoofdstuk om te beginnen</div>
     <div class="seekrow">
@@ -741,6 +771,7 @@ function renderChapters() {
   BOOK.forEach(chapter => {
     const chapterEl = document.createElement('div');
     chapterEl.className = 'chapter';
+    chapterEl.id = `chapter-${chapter.ch}`;
     chapterEl.dataset.ch = chapter.ch;
 
     const head = document.createElement('div');
