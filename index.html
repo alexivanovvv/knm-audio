@@ -103,6 +103,7 @@
   }
   .topbar-menu button:hover { background: var(--surface-hover); }
   .topbar-menu button svg { width: 1.05rem; height: 1.05rem; flex-shrink: 0; color: var(--ink-soft); }
+  .menu-divider { height: 1px; background: var(--rule); margin: 4px 6px; }
 
   main { max-width: 720px; margin: 0 auto; padding: 14px 20px 0; }
 
@@ -132,11 +133,6 @@
   .overview-progress .bar { max-width: 180px; }
   .overview-label { font-size: .8rem; color: var(--ink-soft); white-space: nowrap; }
   .overview-label b { color: var(--ink); font-weight: 700; }
-  .autoplay-toggle {
-    display: flex; align-items: center; gap: 8px; font-size: .8rem; color: var(--ink-soft);
-    cursor: pointer; user-select: none; white-space: nowrap;
-  }
-  .autoplay-toggle input { accent-color: var(--accent); }
 
   /* ---------- chapters ---------- */
   .chapters { display: flex; flex-direction: column; gap: 10px; }
@@ -194,14 +190,14 @@
 
   /* ---------- bottom player ---------- */
   .player {
-    position: fixed; left: 0; right: 0; bottom: 0; border-top: 1px solid var(--rule);
+    position: fixed; left: 0; right: 0; bottom: 0; border-top: 1px solid var(--rule); z-index: 16;
     background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(14px);
     padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
   }
   .player-inner { max-width: 720px; margin: 0 auto; }
   .player-main { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
   .player-cover { flex-shrink: 0; line-height: 0; display: none; }
-  .player-cover svg { display: block; width: 40px; height: 40px; border-radius: 9px; }
+  .player-cover svg { display: block; width: 52px; height: 52px; border-radius: 10px; box-shadow: 0 3px 10px var(--shadow); }
   .player .now { min-width: 0; flex: 1; }
   .player .now-placeholder { font-size: .82rem; color: var(--ink-soft); }
   .player .now .now-kicker { display: block; font: 600 .656rem/1 'JetBrains Mono', monospace; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin-bottom: 3px; }
@@ -213,26 +209,35 @@
   .seekrow .time.end { text-align: right; }
   input[type="range"] {
     --seek-progress: 0%;
-    -webkit-appearance: none; appearance: none; flex: 1; height: 8px; border-radius: 999px;
+    -webkit-appearance: none; appearance: none; flex: 1; height: 5px; border-radius: 999px;
     background: linear-gradient(to right, var(--accent) 0 var(--seek-progress), var(--rule-strong) var(--seek-progress) 100%);
     box-shadow: inset 0 0 0 1px var(--rule); outline: none; cursor: pointer;
   }
   input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none; width: 16px; height: 16px; border: 2px solid var(--bg-2); border-radius: 50%; background: var(--accent);
+    -webkit-appearance: none; width: 13px; height: 13px; border: 2px solid var(--bg-2); border-radius: 50%; background: var(--accent);
     box-shadow: 0 1px 5px var(--shadow); cursor: pointer; margin-top: -4px;
   }
-  input[type="range"]::-moz-range-thumb { width: 12px; height: 12px; border: 2px solid var(--bg-2); border-radius: 50%; background: var(--accent); box-shadow: 0 1px 5px var(--shadow); cursor: pointer; }
-  input[type="range"]::-moz-range-progress { height: 8px; border-radius: 999px; background: var(--accent); }
-  .controlsrow { display: flex; align-items: center; justify-content: center; gap: 16px; position: relative; min-height: 2.6rem; }
+  input[type="range"]::-moz-range-thumb { width: 10px; height: 10px; border: 2px solid var(--bg-2); border-radius: 50%; background: var(--accent); box-shadow: 0 1px 5px var(--shadow); cursor: pointer; }
+  input[type="range"]::-moz-range-progress { height: 5px; border-radius: 999px; background: var(--accent); }
+  .controlsrow { display: flex; align-items: center; justify-content: center; gap: 16px; position: relative; min-height: 2.9rem; }
   .ctrlbtn {
     background: none; border: none; color: var(--ink); cursor: pointer; font-family: inherit;
     font-size: 1.2rem; line-height: 1; padding: .3rem; display: flex; align-items: center; justify-content: center;
   }
   .ctrlbtn:hover { color: var(--accent); }
+  .ctrlbtn svg { width: 1.15rem; height: 1.15rem; display: block; }
   .ctrlbtn.small { font-size: .95rem; color: var(--ink-soft); }
-  #playBtn {
-    width: 2.6rem; height: 2.6rem; border-radius: 50%; background: var(--accent); color: var(--accent-ink); font-size: 1.05rem;
+  .ctrlbtn.small svg { width: 1.1rem; height: 1.1rem; }
+  .ctrlbtn.skipbtn { position: relative; }
+  .ctrlbtn.skipbtn .skip-n {
+    position: absolute; top: 54%; left: 50%; transform: translate(-50%,-50%);
+    font: 700 .5rem 'JetBrains Mono', monospace; pointer-events: none;
   }
+  #playBtn {
+    width: 2.9rem; height: 2.9rem; border-radius: 50%; background: var(--accent); color: var(--accent-ink);
+    box-shadow: 0 4px 14px var(--shadow);
+  }
+  #playBtn svg { width: 1.3rem; height: 1.3rem; }
   .speedbtn {
     position: absolute; right: 0; background: var(--surface); border: 1px solid var(--rule); color: var(--ink-soft);
     font: 500 .72rem 'JetBrains Mono', monospace; border-radius: 999px; padding: 4px 9px; cursor: pointer;
@@ -260,7 +265,7 @@
   .captions-head h2 { margin: 0; font-size: .95rem; font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1; }
   .captions-close { flex-shrink: 0; }
   .captions-scroll {
-    flex: 1; overflow-y: auto; padding: 6px 20px 12px;
+    flex: 1; overflow-y: auto; padding: 6px 20px calc(170px + env(safe-area-inset-bottom));
     max-width: 720px; margin: 0 auto; width: 100%; box-sizing: border-box;
     mask-image: linear-gradient(to bottom, transparent 0, black 16px, black calc(100% - 8px), transparent 100%);
   }
@@ -311,15 +316,19 @@
     <div>
       <span class="brand-kicker">KNM Audioboek</span>
       <h1>Welkom in Nederland</h1>
-      <p class="brand-sub">English narration, met Nederlandse kernbegrippen apart uitgesproken.</p>
+      <p class="brand-sub" id="brandSub">English narration, met Nederlandse kernbegrippen apart uitgesproken.</p>
     </div>
     <div class="topbar-actions">
       <button class="icon-btn" id="menuBtn" title="Meer opties" aria-haspopup="true" aria-expanded="false">
         <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="12" cy="19" r="1.8"/></svg>
       </button>
       <div class="topbar-menu" id="topbarMenu">
+        <button type="button" id="langToggle"><span class="menu-icon" id="langToggleIcon"></span><span id="langToggleLabel">Nederlands</span></button>
         <button type="button" id="themeToggle"><span class="menu-icon" id="themeToggleIcon"></span><span id="themeToggleLabel">Donker thema</span></button>
-        <button type="button" id="hardRefreshBtn"><span class="menu-icon" id="refreshIcon"></span>Alles vernieuwen</button>
+        <button type="button" id="autoplayToggleBtn"><span class="menu-icon" id="autoplayToggleIcon"></span><span id="autoplayToggleLabel"></span></button>
+        <button type="button" id="announceToggleBtn"><span class="menu-icon" id="announceToggleIcon"></span><span id="announceToggleLabel"></span></button>
+        <button type="button" id="chapterBreakBtn"><span class="menu-icon" id="chapterBreakIcon"></span><span id="chapterBreakLabel"></span></button>
+        <button type="button" id="hardRefreshBtn"><span class="menu-icon" id="refreshIcon"></span><span id="refreshLabel">Alles vernieuwen</span></button>
       </div>
     </div>
   </div>
@@ -329,7 +338,7 @@
   <section class="continue-card" id="continueCard" style="display:none">
     <div class="continue-cover" id="continueCover"></div>
     <div class="continue-body">
-      <span class="continue-label">Verder luisteren</span>
+      <span class="continue-label" id="continueLabelText">Verder luisteren</span>
       <h2 id="continueTitle"></h2>
       <div class="continue-progress">
         <div class="bar"><span id="continueBarFill" style="width:0%"></span></div>
@@ -342,9 +351,8 @@
   <section class="overview">
     <div class="overview-progress">
       <div class="bar"><span id="overallBarFill" style="width:0%"></span></div>
-      <span class="overview-label"><b id="listenedCount">0</b>/36 taken afgerond</span>
+      <span class="overview-label"><b id="listenedCount">0</b>/<span id="overviewTotal">36</span> <span id="overviewSuffix">taken afgerond</span></span>
     </div>
-    <label class="autoplay-toggle"><input type="checkbox" id="autoplayToggle" checked> Automatisch doorspelen</label>
   </section>
 
   <section class="chapters" id="chapters" aria-label="Hoofdstukken"></section>
@@ -352,7 +360,7 @@
 
 <div class="install-hint" id="installHint">
   <div class="install-card">
-    <span>Zet dit op je beginscherm: Deel-knop → "Zet op beginscherm".</span>
+    <span id="installHintText">Zet dit op je beginscherm: Deel-knop → "Zet op beginscherm".</span>
     <button id="dismissInstall">OK</button>
   </div>
 </div>
@@ -362,7 +370,7 @@
     <div class="player-main">
       <span class="player-cover" id="playerCover"></span>
       <div class="now" id="nowPlaying"><span class="now-placeholder">Kies een hoofdstuk om te beginnen</span></div>
-      <button class="ctrlbtn" id="playBtn" title="Afspelen/Pauzeren">▶</button>
+      <button class="ctrlbtn" id="playBtn" title="Afspelen/Pauzeren"></button>
     </div>
     <div class="seekrow">
       <span class="time" id="curTime">0:00</span>
@@ -371,10 +379,10 @@
     </div>
     <div class="transition-notice" id="transitionNotice" role="status" hidden></div>
     <div class="controlsrow">
-      <button class="ctrlbtn small" id="prevBtn" title="Vorige taak">⏮</button>
-      <button class="ctrlbtn small" id="back15" title="15s terug">⟲15</button>
-      <button class="ctrlbtn small" id="fwd15" title="15s vooruit">15⟳</button>
-      <button class="ctrlbtn small" id="nextBtn" title="Volgende taak">⏭</button>
+      <button class="ctrlbtn small" id="prevBtn" title="Vorige taak"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="5" y="5" width="2.6" height="14" rx="1"/><path d="M18 5 8 12l10 7z"/></svg></button>
+      <button class="ctrlbtn small skipbtn" id="back15" title="15s terug"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 12a8.5 8.5 0 1 0 2.3-5.8"/><path d="M3.5 3v5.2h5.2"/></svg><span class="skip-n">15</span></button>
+      <button class="ctrlbtn small skipbtn" id="fwd15" title="15s vooruit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 12a8.5 8.5 0 1 1-2.3-5.8"/><path d="M20.5 3v5.2h-5.2"/></svg><span class="skip-n">15</span></button>
+      <button class="ctrlbtn small" id="nextBtn" title="Volgende taak"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 5l10 7-10 7z"/><rect x="16.4" y="5" width="2.6" height="14" rx="1"/></svg></button>
       <button class="ctrlbtn small ccbtn" id="ccBtn" title="Ondertitels" disabled>CC</button>
       <button class="speedbtn" id="speedBtn">1×</button>
     </div>
@@ -391,7 +399,7 @@
   <div class="captions-scroll" id="captionsScroll"></div>
 </div>
 
-<footer>Gegenereerd uit "Welkom in Nederland — Voiceover Script (EN-NL)" · AI-stemmen (ElevenLabs Flash / edge-tts)</footer>
+<footer><span id="footerText">Gegenereerd uit "Welkom in Nederland — Voiceover Script (EN-NL)" · AI-stemmen (ElevenLabs Flash / edge-tts)</span></footer>
 
 <audio id="audio" preload="none"></audio>
 
@@ -508,16 +516,36 @@ const playBtn = document.getElementById('playBtn');
 const prevBtn = document.getElementById('prevBtn');
 const nextBtn = document.getElementById('nextBtn');
 const speedBtn = document.getElementById('speedBtn');
-const autoplayToggle = document.getElementById('autoplayToggle');
+const back15Btn = document.getElementById('back15');
+const fwd15Btn = document.getElementById('fwd15');
 const installHint = document.getElementById('installHint');
 const dismissInstall = document.getElementById('dismissInstall');
 const themeToggle = document.getElementById('themeToggle');
 const themeToggleIcon = document.getElementById('themeToggleIcon');
 const themeToggleLabel = document.getElementById('themeToggleLabel');
+const langToggle = document.getElementById('langToggle');
+const langToggleIcon = document.getElementById('langToggleIcon');
+const langToggleLabel = document.getElementById('langToggleLabel');
+const autoplayToggleBtn = document.getElementById('autoplayToggleBtn');
+const autoplayToggleIcon = document.getElementById('autoplayToggleIcon');
+const autoplayToggleLabel = document.getElementById('autoplayToggleLabel');
+const announceToggleBtn = document.getElementById('announceToggleBtn');
+const announceToggleIcon = document.getElementById('announceToggleIcon');
+const announceToggleLabel = document.getElementById('announceToggleLabel');
+const chapterBreakBtn = document.getElementById('chapterBreakBtn');
+const chapterBreakIcon = document.getElementById('chapterBreakIcon');
+const chapterBreakLabel = document.getElementById('chapterBreakLabel');
 const refreshIcon = document.getElementById('refreshIcon');
+const refreshLabelEl = document.getElementById('refreshLabel');
 const hardRefreshBtn = document.getElementById('hardRefreshBtn');
 const menuBtn = document.getElementById('menuBtn');
 const topbarMenu = document.getElementById('topbarMenu');
+const brandSubEl = document.getElementById('brandSub');
+const continueLabelEl = document.getElementById('continueLabelText');
+const footerTextEl = document.getElementById('footerText');
+const installHintTextEl = document.getElementById('installHintText');
+const overviewSuffixEl = document.getElementById('overviewSuffix');
+const overviewTotalEl = document.getElementById('overviewTotal');
 const listenedCountEl = document.getElementById('listenedCount');
 const overallBarFill = document.getElementById('overallBarFill');
 const continueCard = document.getElementById('continueCard');
@@ -534,16 +562,22 @@ const captionsCloseBtn = document.getElementById('captionsCloseBtn');
 const captionsHeadTitle = document.getElementById('captionsHeadTitle');
 
 const SPEEDS = [0.8, 1, 1.1, 1.2, 1.5, 2];
-const CHAPTER_BREAK_MS = 3000;
+const CHAPTER_BREAK_OPTIONS = [0, 2000, 5000];
 let speedIdx = 1; // 1x
 let currentIndex = -1;
 let isSeeking = false;
 let chapterBreakTimer = null;
+let deployBtnEl = null;
+let deployLabelEl = null;
 
 const STORAGE_KEY = 'welkomAudiobookProgress';
 const INSTALL_DISMISS_KEY = 'welkomInstallHintDismissed';
 const THEME_KEY = 'welkomTheme';
 const LISTENED_KEY = 'welkomListened';
+const LANG_KEY = 'welkomLang';
+const AUTOPLAY_KEY = 'welkomAutoplay';
+const ANNOUNCE_KEY = 'welkomAnnounce';
+const CHAPTER_BREAK_KEY = 'welkomChapterBreak';
 
 function trackId(track) { return `H${track.ch}T${track.t}`; }
 function fileUrl(file) { return 'Audio/' + encodeURIComponent(file); }
@@ -554,22 +588,71 @@ function fmtTime(sec) {
   return `${m}:${s.toString().padStart(2, '0')}`;
 }
 
+// ---------- i18n ----------
+const STRINGS = {
+  menuTitle: { en: 'More options', nl: 'Meer opties' },
+  brandSub: { en: 'English narration, with Dutch key terms spoken separately.', nl: 'English narration, met Nederlandse kernbegrippen apart uitgesproken.' },
+  themeDark: { en: 'Dark theme', nl: 'Donker thema' },
+  themeLight: { en: 'Light theme', nl: 'Licht thema' },
+  autoplayLabel: { en: 'Auto-continue', nl: 'Automatisch doorspelen' },
+  announceLabel: { en: 'Announce chapter & task', nl: 'Hoofdstuk & taak aankondigen' },
+  chapterPauseLabel: { en: 'Pause between chapters', nl: 'Pauze tussen hoofdstukken' },
+  chapterPauseOff: { en: 'Off', nl: 'Uit' },
+  refreshLabel: { en: 'Refresh everything', nl: 'Alles vernieuwen' },
+  refreshConfirm: { en: 'Fully reload the cache, service worker and app shell?', nl: 'Cache, service worker en de app-shell volledig opnieuw laden?' },
+  continueLabel: { en: 'Continue listening', nl: 'Verder luisteren' },
+  playTitle: { en: 'Play', nl: 'Afspelen' },
+  chaptersLabel: { en: 'Chapters', nl: 'Hoofdstukken' },
+  nowPlaceholder: { en: 'Choose a chapter to start', nl: 'Kies een hoofdstuk om te beginnen' },
+  playPauseTitle: { en: 'Play/Pause', nl: 'Afspelen/Pauzeren' },
+  prevTitle: { en: 'Previous task', nl: 'Vorige taak' },
+  back15Title: { en: 'Back 15s', nl: '15s terug' },
+  fwd15Title: { en: 'Forward 15s', nl: '15s vooruit' },
+  nextTitle: { en: 'Next task', nl: 'Volgende taak' },
+  ccTitle: { en: 'Subtitles', nl: 'Ondertitels' },
+  captionsCloseTitle: { en: 'Close', nl: 'Sluiten' },
+  captionsEmpty: { en: 'No subtitles available for this task.', nl: 'Geen ondertitels beschikbaar voor deze taak.' },
+  captionsEstimatedNote: { en: 'Approximately synced — may differ slightly from the audio.', nl: 'Bij benadering gesynchroniseerd — kan iets afwijken van de audio.' },
+  footerText: { en: 'Generated from "Welkom in Nederland — Voiceover Script (EN-NL)" · AI voices (ElevenLabs Flash / edge-tts)', nl: 'Gegenereerd uit "Welkom in Nederland — Voiceover Script (EN-NL)" · AI-stemmen (ElevenLabs Flash / edge-tts)' },
+  installHint: { en: 'Add this to your home screen: Share button → "Add to Home Screen".', nl: 'Zet dit op je beginscherm: Deel-knop → "Zet op beginscherm".' },
+  tasksCompleted: { en: 'tasks completed', nl: 'taken afgerond' },
+  chapterWord: { en: 'Chapter', nl: 'Hoofdstuk' },
+  taskWord: { en: 'Task', nl: 'Taak' },
+  nextChapterIn: { en: 'Next chapter in', nl: 'Volgend hoofdstuk over' },
+  deployLabel: { en: 'Deploy to Netlify', nl: 'Deploy naar Netlify' },
+  deployConfirm: { en: 'Deploy to Netlify production now? This costs account credits.', nl: 'Nu deployen naar Netlify productie? Dit kost account-credits.' },
+  deployingLabel: { en: 'Deploying…', nl: 'Bezig met deployen…' },
+  deployedLabel: { en: 'Deployed ✔', nl: 'Gedeployed ✔' },
+  deployFailedLabel: { en: 'Deploy failed — see console', nl: 'Deploy mislukt — zie console' },
+  deployErrorLabel: { en: 'Deploy failed — is dev-server.py running?', nl: 'Deploy mislukt — draait dev-server.py?' },
+};
+function currentLang() { return localStorage.getItem(LANG_KEY) || 'en'; }
+function t(key) {
+  const entry = STRINGS[key];
+  return (entry && (entry[currentLang()] || entry.en)) || key;
+}
+
 // ---------- theme ----------
 const SUN_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.22 4.22l1.7 1.7M18.08 18.08l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.22 19.78l1.7-1.7M18.08 5.92l1.7-1.7"/></svg>';
 const MOON_ICON = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.6 15.06A9 9 0 1 1 8.94 3.4a7.2 7.2 0 0 0 11.66 11.66Z"/></svg>';
 const REFRESH_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.34-5.66"/><path d="M20 4v6h-6"/></svg>';
+const GLOBE_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>';
+const CHECK_ON_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M7 12l3 3 7-7"/></svg>';
+const CHECK_OFF_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/></svg>';
+const CLOCK_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l3 2"/><path d="M9 2h6"/></svg>';
+const PLAY_ICON = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
+const PAUSE_ICON = '<svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
 
 function applyTheme(theme) {
   document.documentElement.dataset.theme = theme;
   themeToggleIcon.innerHTML = theme === 'dark' ? SUN_ICON : MOON_ICON;
-  themeToggleLabel.textContent = theme === 'dark' ? 'Licht thema' : 'Donker thema';
+  themeToggleLabel.textContent = theme === 'dark' ? t('themeLight') : t('themeDark');
 }
 function currentEffectiveTheme() {
   const stored = localStorage.getItem(THEME_KEY);
   if (stored) return stored;
   return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 }
-applyTheme(currentEffectiveTheme());
 themeToggle.addEventListener('click', () => {
   const next = currentEffectiveTheme() === 'dark' ? 'light' : 'dark';
   localStorage.setItem(THEME_KEY, next);
@@ -577,6 +660,107 @@ themeToggle.addEventListener('click', () => {
   closeMenu();
 });
 refreshIcon.innerHTML = REFRESH_ICON;
+continuePlayBtn.innerHTML = PLAY_ICON;
+
+// ---------- language ----------
+langToggleIcon.innerHTML = GLOBE_ICON;
+langToggle.addEventListener('click', () => {
+  applyLanguage(currentLang() === 'en' ? 'nl' : 'en');
+  closeMenu();
+});
+
+// ---------- autoplay ----------
+function autoplayEnabled() {
+  const v = localStorage.getItem(AUTOPLAY_KEY);
+  return v === null ? true : v === '1';
+}
+function applyAutoplayUI() {
+  const on = autoplayEnabled();
+  autoplayToggleIcon.innerHTML = on ? CHECK_ON_ICON : CHECK_OFF_ICON;
+  autoplayToggleLabel.textContent = t('autoplayLabel');
+}
+autoplayToggleBtn.addEventListener('click', () => {
+  localStorage.setItem(AUTOPLAY_KEY, autoplayEnabled() ? '0' : '1');
+  applyAutoplayUI();
+  closeMenu();
+});
+
+// ---------- chapter/task announcement (chime + spoken number & title) ----------
+function announceEnabled() {
+  return localStorage.getItem(ANNOUNCE_KEY) === '1';
+}
+function applyAnnounceUI() {
+  const on = announceEnabled();
+  announceToggleIcon.innerHTML = on ? CHECK_ON_ICON : CHECK_OFF_ICON;
+  announceToggleLabel.textContent = t('announceLabel');
+}
+announceToggleBtn.addEventListener('click', () => {
+  localStorage.setItem(ANNOUNCE_KEY, announceEnabled() ? '0' : '1');
+  applyAnnounceUI();
+  closeMenu();
+});
+function playChime() {
+  return new Promise((resolve) => {
+    try {
+      const Ctx = window.AudioContext || window.webkitAudioContext;
+      const ctx = new Ctx();
+      const now = ctx.currentTime;
+      [880, 1320].forEach((freq, i) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.value = freq;
+        gain.gain.setValueAtTime(0, now + i * 0.12);
+        gain.gain.linearRampToValueAtTime(0.16, now + i * 0.12 + 0.02);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + i * 0.12 + 0.35);
+        osc.connect(gain).connect(ctx.destination);
+        osc.start(now + i * 0.12);
+        osc.stop(now + i * 0.12 + 0.4);
+      });
+      setTimeout(() => { ctx.close(); resolve(); }, 550);
+    } catch { resolve(); }
+  });
+}
+function speakText(text) {
+  return new Promise((resolve) => {
+    if (!('speechSynthesis' in window)) { resolve(); return; }
+    try {
+      speechSynthesis.cancel();
+      const utter = new SpeechSynthesisUtterance(text);
+      utter.lang = 'en-US';
+      utter.rate = 0.95;
+      utter.onend = resolve;
+      utter.onerror = resolve;
+      speechSynthesis.speak(utter);
+    } catch { resolve(); }
+  });
+}
+function wait(ms) { return new Promise((resolve) => setTimeout(resolve, ms)); }
+async function announceTrack(track) {
+  await playChime();
+  await speakText(`${track.ch}.${track.t}. ${englishTitle(track)}`);
+  await wait(500);
+}
+
+// ---------- pause between chapters ----------
+function currentChapterBreakMs() {
+  const v = localStorage.getItem(CHAPTER_BREAK_KEY);
+  const n = v === null ? 2000 : Number(v);
+  return CHAPTER_BREAK_OPTIONS.includes(n) ? n : 2000;
+}
+function applyChapterBreakUI() {
+  chapterBreakIcon.innerHTML = CLOCK_ICON;
+  const ms = currentChapterBreakMs();
+  const value = ms === 0 ? t('chapterPauseOff') : `${ms / 1000}s`;
+  chapterBreakLabel.textContent = `${t('chapterPauseLabel')}: ${value}`;
+}
+chapterBreakBtn.addEventListener('click', () => {
+  const idx = CHAPTER_BREAK_OPTIONS.indexOf(currentChapterBreakMs());
+  const next = CHAPTER_BREAK_OPTIONS[(idx + 1) % CHAPTER_BREAK_OPTIONS.length];
+  localStorage.setItem(CHAPTER_BREAK_KEY, String(next));
+  applyChapterBreakUI();
+  closeMenu();
+});
 
 // ---------- header menu ----------
 function closeMenu() {
@@ -592,46 +776,92 @@ document.addEventListener('click', (e) => {
   if (!topbarMenu.contains(e.target) && e.target !== menuBtn) closeMenu();
 });
 
-// ---------- local deploy button (alleen op localhost) ----------
+// ---------- apply language across the whole UI ----------
+function applyLanguage(lang) {
+  localStorage.setItem(LANG_KEY, lang);
+  document.documentElement.lang = lang;
+  menuBtn.title = t('menuTitle');
+  brandSubEl.textContent = t('brandSub');
+  refreshLabelEl.textContent = t('refreshLabel');
+  continueLabelEl.textContent = t('continueLabel');
+  continuePlayBtn.title = t('playTitle');
+  chaptersEl.setAttribute('aria-label', t('chaptersLabel'));
+  playBtn.title = t('playPauseTitle');
+  prevBtn.title = t('prevTitle');
+  back15Btn.title = t('back15Title');
+  fwd15Btn.title = t('fwd15Title');
+  nextBtn.title = t('nextTitle');
+  ccBtn.title = t('ccTitle');
+  captionsCloseBtn.title = t('captionsCloseTitle');
+  footerTextEl.textContent = t('footerText');
+  installHintTextEl.textContent = t('installHint');
+  overviewSuffixEl.textContent = t('tasksCompleted');
+  overviewTotalEl.textContent = PLAYLIST.length;
+  langToggleLabel.textContent = lang === 'en' ? 'Nederlands' : 'English';
+  applyAutoplayUI();
+  applyAnnounceUI();
+  applyChapterBreakUI();
+  applyTheme(currentEffectiveTheme());
+  if (deployBtnEl) { deployBtnEl.title = t('deployLabel'); deployLabelEl.textContent = t('deployLabel'); }
+  renderChapters();
+  if (currentIndex >= 0) {
+    renderNowPlaying(PLAYLIST[currentIndex]);
+    highlightActiveTrack();
+    updateActiveRowProgress();
+    if (currentCues !== null || captionsDrawer.classList.contains('open')) renderCaptions(PLAYLIST[currentIndex]);
+  } else {
+    nowPlayingEl.innerHTML = `<span class="now-placeholder">${t('nowPlaceholder')}</span>`;
+  }
+}
+
+// ---------- local deploy button (alleen op localhost, nooit op productie) ----------
 if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
-  const deployBtn = document.createElement('button');
-  deployBtn.type = 'button';
-  deployBtn.className = 'icon-btn';
-  deployBtn.title = 'Deploy naar Netlify (productie)';
-  deployBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg>';
-  deployBtn.addEventListener('click', async () => {
-    if (deployBtn.disabled) return;
-    if (!window.confirm('Nu deployen naar Netlify productie? Dit kost account-credits.')) return;
-    deployBtn.disabled = true;
-    const prevTitle = deployBtn.title;
-    deployBtn.style.opacity = '.5';
-    deployBtn.title = 'Bezig met deployen…';
+  const divider = document.createElement('div');
+  divider.className = 'menu-divider';
+  topbarMenu.appendChild(divider);
+
+  deployBtnEl = document.createElement('button');
+  deployBtnEl.type = 'button';
+  const deployIcon = document.createElement('span');
+  deployIcon.className = 'menu-icon';
+  deployIcon.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg>';
+  deployLabelEl = document.createElement('span');
+  deployBtnEl.append(deployIcon, deployLabelEl);
+  deployBtnEl.title = t('deployLabel');
+  deployLabelEl.textContent = t('deployLabel');
+  deployBtnEl.addEventListener('click', async () => {
+    if (deployBtnEl.disabled) return;
+    if (!window.confirm(t('deployConfirm'))) return;
+    closeMenu();
+    deployBtnEl.disabled = true;
+    deployBtnEl.style.opacity = '.5';
+    deployLabelEl.textContent = t('deployingLabel');
     try {
       const res = await fetch('/__deploy', { method: 'POST' });
       const data = await res.json();
       if (data.ok) {
-        deployBtn.title = 'Gedeployed ✔';
+        deployLabelEl.textContent = t('deployedLabel');
         console.log('[deploy] ok\n' + data.stdout);
       } else {
-        deployBtn.title = 'Deploy mislukt — zie console';
+        deployLabelEl.textContent = t('deployFailedLabel');
         console.error('[deploy] failed\n' + data.stderr);
       }
     } catch (err) {
-      deployBtn.title = 'Deploy mislukt — draait dev-server.py?';
+      deployLabelEl.textContent = t('deployErrorLabel');
       console.error('[deploy] error', err);
     } finally {
       setTimeout(() => {
-        deployBtn.disabled = false;
-        deployBtn.style.opacity = '';
-        deployBtn.title = prevTitle;
+        deployBtnEl.disabled = false;
+        deployBtnEl.style.opacity = '';
+        deployLabelEl.textContent = t('deployLabel');
       }, 4000);
     }
   });
-  document.querySelector('.topbar-actions').prepend(deployBtn);
+  topbarMenu.appendChild(deployBtnEl);
 }
 
 async function hardRefresh() {
-  const ok = window.confirm('Cache, service worker en de app-shell volledig opnieuw laden?');
+  const ok = window.confirm(t('refreshConfirm'));
   if (!ok) return;
   try {
     if ('serviceWorker' in navigator) {
@@ -748,7 +978,7 @@ function renderChapters() {
     const head = document.createElement('button');
     head.className = 'chapter-head';
     head.type = 'button';
-    head.innerHTML = `<span class="chapter-cover">${chapterArtwork(chapter.ch, 48)}</span><span class="chapter-titles"><span class="chapter-num">Hoofdstuk ${chapter.ch}</span><h2>${chapter.chTitleEn}<span class="ch-sub">${chapter.chTitle}</span></h2></span><span class="chapter-meta"><span class="chapter-count mono">0/${chapter.tasks.length}</span><span class="chev">▾</span></span>`;
+    head.innerHTML = `<span class="chapter-cover">${chapterArtwork(chapter.ch, 48)}</span><span class="chapter-titles"><span class="chapter-num">${t('chapterWord')} ${chapter.ch}</span><h2>${chapter.chTitleEn}<span class="ch-sub">${chapter.chTitle}</span></h2></span><span class="chapter-meta"><span class="chapter-count mono">0/${chapter.tasks.length}</span><span class="chev">▾</span></span>`;
     head.addEventListener('click', () => chapterEl.classList.toggle('collapsed'));
     chapterEl.appendChild(head);
 
@@ -783,9 +1013,9 @@ function loadDurations() {
 }
 
 function renderNowPlaying(track) {
-  playerCover.innerHTML = chapterArtwork(track.ch, 40);
+  playerCover.innerHTML = chapterArtwork(track.ch, 52);
   playerCover.style.display = 'block';
-  nowPlayingEl.innerHTML = `<span class="now-kicker">Hoofdstuk ${track.ch} · Taak ${track.t}</span><span class="now-title">${englishTitle(track)}</span><span class="now-sub">${track.title}</span>`;
+  nowPlayingEl.innerHTML = `<span class="now-kicker">${t('chapterWord')} ${track.ch} · ${t('taskWord')} ${track.t}</span><span class="now-title">${englishTitle(track)}</span><span class="now-sub">${track.title}</span>`;
 }
 
 function highlightActiveTrack() {
@@ -816,7 +1046,7 @@ function clearChapterBreak() {
   transitionNotice.textContent = '';
 }
 
-function loadTrack(index, autoplay, startAt) {
+async function loadTrack(index, autoplay, startAt) {
   if (index < 0 || index >= PLAYLIST.length) return;
   clearChapterBreak();
   currentIndex = index;
@@ -831,11 +1061,15 @@ function loadTrack(index, autoplay, startAt) {
       audio.removeEventListener('loadedmetadata', once);
     });
   }
-  if (autoplay) {
-    audio.play().catch(() => {});
-  }
   saveProgress();
   loadCaptions(track);
+  if (autoplay) {
+    if (announceEnabled() && !startAt) {
+      await announceTrack(track);
+      if (currentIndex !== index) return; // user moved on while announcing
+    }
+    audio.play().catch(() => {});
+  }
 }
 
 // ---------- captions / lyrics mode ----------
@@ -880,11 +1114,11 @@ function formatCaptionLine(text) {
 function renderCaptions(track) {
   captionsHeadTitle.textContent = track ? `${englishTitle(track)} — ${track.title}` : '';
   if (!currentCues) {
-    captionsScroll.innerHTML = '<div class="captions-empty">Geen ondertitels beschikbaar voor deze taak.</div>';
+    captionsScroll.innerHTML = `<div class="captions-empty">${t('captionsEmpty')}</div>`;
     return;
   }
   const note = currentCuesEstimated
-    ? '<div class="captions-note">Bij benadering gesynchroniseerd — kan iets afwijken van de audio.</div>'
+    ? `<div class="captions-note">${t('captionsEstimatedNote')}</div>`
     : '';
   captionsScroll.innerHTML = note + currentCues.map((c, i) =>
     `<p class="caption-line" data-index="${i}" data-start="${c.start}">${formatCaptionLine(c.text)}</p>`
@@ -900,11 +1134,11 @@ captionsScroll.addEventListener('click', (e) => {
   if (audio.paused) audio.play().catch(() => {});
 });
 
-function findCueIndex(cues, t) {
+function findCueIndex(cues, time) {
   let lo = 0, hi = cues.length - 1, ans = -1;
   while (lo <= hi) {
     const mid = (lo + hi) >> 1;
-    if (cues[mid].start <= t) { ans = mid; lo = mid + 1; } else { hi = mid - 1; }
+    if (cues[mid].start <= time) { ans = mid; lo = mid + 1; } else { hi = mid - 1; }
   }
   return ans;
 }
@@ -948,8 +1182,9 @@ ccBtn.addEventListener('click', () => {
 captionsCloseBtn.addEventListener('click', closeCaptions);
 
 function updatePlayIcon() {
-  playBtn.textContent = audio.paused ? '▶' : '❚❚';
+  playBtn.innerHTML = audio.paused ? PLAY_ICON : PAUSE_ICON;
 }
+updatePlayIcon();
 
 playBtn.addEventListener('click', () => {
   if (currentIndex < 0) { loadTrack(0, true); return; }
@@ -961,8 +1196,8 @@ prevBtn.addEventListener('click', () => {
   loadTrack(Math.max(0, currentIndex - 1), true);
 });
 nextBtn.addEventListener('click', () => loadTrack(Math.min(PLAYLIST.length - 1, currentIndex + 1), true));
-document.getElementById('back15').addEventListener('click', () => audio.currentTime = Math.max(0, audio.currentTime - 15));
-document.getElementById('fwd15').addEventListener('click', () => audio.currentTime = Math.min(audio.duration || Infinity, audio.currentTime + 15));
+back15Btn.addEventListener('click', () => audio.currentTime = Math.max(0, audio.currentTime - 15));
+fwd15Btn.addEventListener('click', () => audio.currentTime = Math.min(audio.duration || Infinity, audio.currentTime + 15));
 
 speedBtn.addEventListener('click', () => {
   speedIdx = (speedIdx + 1) % SPEEDS.length;
@@ -989,17 +1224,18 @@ audio.addEventListener('timeupdate', () => {
 });
 audio.addEventListener('ended', () => {
   markListened(currentIndex);
-  if (autoplayToggle.checked && currentIndex < PLAYLIST.length - 1) {
+  if (autoplayEnabled() && currentIndex < PLAYLIST.length - 1) {
     const nextIndex = currentIndex + 1;
     const nextTrack = PLAYLIST[nextIndex];
     const isChapterBreak = nextTrack.ch !== PLAYLIST[currentIndex].ch;
-    if (!isChapterBreak) {
+    const breakMs = currentChapterBreakMs();
+    if (!isChapterBreak || breakMs <= 0) {
       loadTrack(nextIndex, true);
       return;
     }
-    transitionNotice.textContent = `Volgend hoofdstuk over ${CHAPTER_BREAK_MS / 1000} s`;
+    transitionNotice.textContent = `${t('nextChapterIn')} ${breakMs / 1000} s`;
     transitionNotice.hidden = false;
-    chapterBreakTimer = window.setTimeout(() => loadTrack(nextIndex, true), CHAPTER_BREAK_MS);
+    chapterBreakTimer = window.setTimeout(() => loadTrack(nextIndex, true), breakMs);
   }
 });
 setInterval(saveProgress, 4000);
@@ -1021,7 +1257,7 @@ document.addEventListener('keydown', (e) => {
   if (e.code === 'ArrowLeft') audio.currentTime -= 15;
 });
 
-renderChapters();
+applyLanguage(currentLang());
 loadDurations();
 speedBtn.textContent = SPEEDS[speedIdx] + '×';
 
