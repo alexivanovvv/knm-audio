@@ -17,7 +17,11 @@ README и коммиты показывают: только главы 1-2 + H5T
 (Microsoft neural, `nl-NL-MaartenNeural`/`en-US-GuyNeural`). Нет
 ElevenLabs API-ключа в системе → перегенерация остальных 25 треков требует
 ключа и стоит денег (ElevenLabs тарифицирует по символам).
-Status: **investigated, blocked on decision** — см. отчёт в сессии.
+Status: **done** — все 36 треков теперь на ElevenLabs Flash (`eleven_flash_v2_5`,
+voice George `JBFqnCBsd6RMkjVDRZzb`, те же voice_settings, что и у первых 11
+треков). Оставшиеся 25 (H3-H7) сгенерированы по сегментам EN/NL (границы
+`[Dutch term]`) и склеены через ffmpeg. Потрачено ~67 300 символов, квота
+ElevenLabs осталась в пределах лимита (без овербиллинга).
 
 ## T-03 — Перенести деплой с GitHub Pages на Netlify
 По аналогии с hdash.netlify.app / knm-quiz.netlify.app: отдельный Netlify-сайт,
