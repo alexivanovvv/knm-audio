@@ -249,51 +249,58 @@
     padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
   }
   .player-inner { max-width: 720px; margin: 0 auto; }
-  .player-main { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+  .player-main { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
   .player-cover { flex-shrink: 0; line-height: 0; display: none; }
-  .player-cover svg { display: block; width: 52px; height: 52px; border-radius: 10px; box-shadow: 0 3px 10px var(--shadow); }
+  .player-cover svg { display: block; width: 60px; height: 60px; border-radius: 13px; box-shadow: 0 5px 16px var(--shadow); }
   .player .now { min-width: 0; flex: 1; }
   .player .now-placeholder { font-size: .82rem; color: var(--ink-soft); }
-  .player .now .now-kicker { display: block; font: 600 .656rem/1 'JetBrains Mono', monospace; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin-bottom: 3px; }
-  .player .now .now-title { display: block; font-size: 1.02rem; font-weight: 700; color: var(--ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .player .now .now-sub { display: block; font-size: .76rem; color: var(--ink-soft); margin-top: 1px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-family: var(--font-accent); font-style: var(--font-accent-style); }
-  .player-main #playBtn { flex-shrink: 0; }
-  .seekrow { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .player .now .now-kicker { display: block; font: 600 .656rem/1 'JetBrains Mono', monospace; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: 4px; }
+  .player .now .now-title { display: block; font-size: 1.14rem; font-weight: 800; letter-spacing: -.01em; color: var(--ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .player .now .now-sub { display: block; font-size: .78rem; color: var(--ink-soft); margin-top: 2px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-family: var(--font-accent); font-style: var(--font-accent-style); }
+  .seekrow { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
   .seekrow .time { font: 500 .72rem 'JetBrains Mono', monospace; color: var(--ink-faint); width: 2.4rem; flex-shrink: 0; }
   .seekrow .time.end { text-align: right; }
   input[type="range"] {
     --seek-progress: 0%;
-    -webkit-appearance: none; appearance: none; flex: 1; height: 5px; border-radius: 999px;
+    -webkit-appearance: none; appearance: none; flex: 1; height: 4px; border-radius: 999px;
     background: linear-gradient(to right, var(--accent) 0 var(--seek-progress), var(--rule-strong) var(--seek-progress) 100%);
-    box-shadow: inset 0 0 0 1px var(--rule); outline: none; cursor: pointer;
+    outline: none; cursor: pointer; transition: height .12s ease;
   }
+  input[type="range"]:hover, input[type="range"]:active { height: 6px; }
   input[type="range"]::-webkit-slider-thumb {
     -webkit-appearance: none; width: 13px; height: 13px; border: 2px solid var(--bg-2); border-radius: 50%; background: var(--accent);
-    box-shadow: 0 1px 5px var(--shadow); cursor: pointer; margin-top: -4px;
+    box-shadow: 0 1px 5px var(--shadow); cursor: pointer; margin-top: -5px; transition: transform .12s ease;
   }
+  input[type="range"]:hover::-webkit-slider-thumb, input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.2); }
   input[type="range"]::-moz-range-thumb { width: 10px; height: 10px; border: 2px solid var(--bg-2); border-radius: 50%; background: var(--accent); box-shadow: 0 1px 5px var(--shadow); cursor: pointer; }
-  input[type="range"]::-moz-range-progress { height: 5px; border-radius: 999px; background: var(--accent); }
-  .controlsrow { display: flex; align-items: center; justify-content: center; gap: 16px; position: relative; min-height: 2.9rem; }
+  input[type="range"]::-moz-range-progress { height: 4px; border-radius: 999px; background: var(--accent); }
+  .controlsrow { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 3.2rem; }
+  .controlsrow-side { display: flex; align-items: center; flex: 0 0 auto; min-width: 2.6rem; }
+  .controlsrow-side.right { justify-content: flex-end; }
+  .controlsrow-main { display: flex; align-items: center; justify-content: center; gap: 18px; flex: 1; }
   .ctrlbtn {
     background: none; border: none; color: var(--ink); cursor: pointer; font-family: inherit;
     font-size: 1.2rem; line-height: 1; padding: .3rem; display: flex; align-items: center; justify-content: center;
+    transition: color .12s ease, transform .12s ease;
   }
   .ctrlbtn:hover { color: var(--accent); }
+  .ctrlbtn:active { transform: scale(.92); }
   .ctrlbtn svg { width: 1.15rem; height: 1.15rem; display: block; }
   .ctrlbtn.small { font-size: .95rem; color: var(--ink-soft); }
-  .ctrlbtn.small svg { width: 1.1rem; height: 1.1rem; }
+  .ctrlbtn.small svg { width: 1.25rem; height: 1.25rem; }
   .ctrlbtn.skipbtn { position: relative; }
   .ctrlbtn.skipbtn .skip-n {
     position: absolute; top: 54%; left: 50%; transform: translate(-50%,-50%);
     font: 700 .5rem 'JetBrains Mono', monospace; pointer-events: none;
   }
   #playBtn {
-    width: 2.9rem; height: 2.9rem; border-radius: 50%; background: var(--accent); color: var(--accent-ink);
-    box-shadow: 0 4px 14px var(--shadow);
+    width: 3.3rem; height: 3.3rem; border-radius: 50%; background: var(--accent); color: var(--accent-ink);
+    box-shadow: 0 6px 18px var(--shadow);
   }
-  #playBtn svg { width: 1.3rem; height: 1.3rem; }
+  #playBtn:active { transform: scale(.94); }
+  #playBtn svg { width: 1.4rem; height: 1.4rem; }
   .speedbtn {
-    position: absolute; right: 0; background: var(--surface); border: 1px solid var(--rule); color: var(--ink-soft);
+    background: var(--surface); border: 1px solid var(--rule); color: var(--ink-soft);
     font: 500 .72rem 'JetBrains Mono', monospace; border-radius: 999px; padding: 4px 9px; cursor: pointer;
   }
   .speedbtn:hover { border-color: var(--rule-strong); color: var(--ink); }
@@ -356,6 +363,8 @@
     .chapter-cover svg { width: 40px; height: 40px; }
     .overview { gap: 10px; }
     .player { padding: 9px 12px calc(9px + env(safe-area-inset-bottom)); }
+    .controlsrow-main { gap: 10px; }
+    .player-cover svg { width: 48px; height: 48px; }
   }
 
   /* tablet and up: a bit more breathing room, same single-column layout */
@@ -439,7 +448,6 @@
     <div class="player-main">
       <span class="player-cover" id="playerCover"></span>
       <div class="now" id="nowPlaying"><span class="now-placeholder">Kies een hoofdstuk om te beginnen</span></div>
-      <button class="ctrlbtn" id="playBtn" title="Afspelen/Pauzeren"></button>
     </div>
     <div class="captions-micro" id="captionsMicro" hidden></div>
     <div class="seekrow">
@@ -449,12 +457,19 @@
     </div>
     <div class="transition-notice" id="transitionNotice" role="status" hidden></div>
     <div class="controlsrow">
-      <button class="ctrlbtn small" id="prevBtn" title="Vorige taak"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="5" y="5" width="2.6" height="14" rx="1"/><path d="M18 5 8 12l10 7z"/></svg></button>
-      <button class="ctrlbtn small skipbtn" id="back15" title="15s terug"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 12a8.5 8.5 0 1 0 2.3-5.8"/><path d="M3.5 3v5.2h5.2"/></svg><span class="skip-n">15</span></button>
-      <button class="ctrlbtn small skipbtn" id="fwd15" title="15s vooruit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 12a8.5 8.5 0 1 1-2.3-5.8"/><path d="M20.5 3v5.2h-5.2"/></svg><span class="skip-n">15</span></button>
-      <button class="ctrlbtn small" id="nextBtn" title="Volgende taak"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 5l10 7-10 7z"/><rect x="16.4" y="5" width="2.6" height="14" rx="1"/></svg></button>
-      <button class="ctrlbtn small ccbtn" id="ccBtn" title="Ondertitels" disabled>CC</button>
-      <button class="speedbtn" id="speedBtn">1×</button>
+      <div class="controlsrow-side left">
+        <button class="ctrlbtn small ccbtn" id="ccBtn" title="Ondertitels" disabled>CC</button>
+      </div>
+      <div class="controlsrow-main">
+        <button class="ctrlbtn small" id="prevBtn" title="Vorige taak"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="5" y="5" width="2.6" height="14" rx="1"/><path d="M18 5 8 12l10 7z"/></svg></button>
+        <button class="ctrlbtn small skipbtn" id="back15" title="15s terug"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 12a8.5 8.5 0 1 0 2.3-5.8"/><path d="M3.5 3v5.2h5.2"/></svg><span class="skip-n">15</span></button>
+        <button class="ctrlbtn" id="playBtn" title="Afspelen/Pauzeren"></button>
+        <button class="ctrlbtn small skipbtn" id="fwd15" title="15s vooruit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 12a8.5 8.5 0 1 1-2.3-5.8"/><path d="M20.5 3v5.2h-5.2"/></svg><span class="skip-n">15</span></button>
+        <button class="ctrlbtn small" id="nextBtn" title="Volgende taak"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 5l10 7-10 7z"/><rect x="16.4" y="5" width="2.6" height="14" rx="1"/></svg></button>
+      </div>
+      <div class="controlsrow-side right">
+        <button class="speedbtn" id="speedBtn">1×</button>
+      </div>
     </div>
   </div>
 </div>
