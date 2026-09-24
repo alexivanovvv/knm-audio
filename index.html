@@ -39,19 +39,47 @@
 <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
 
 <style>
-  :root[data-theme="dark"] {
+  :root[data-theme="dark-amber"] {
     --bg: #0B0A09; --bg-2: #131110; --surface: rgba(255,255,255,.045); --surface-hover: rgba(255,255,255,.075);
     --ink: #F3F0EB; --ink-soft: #9A948A; --ink-faint: #615C54;
     --rule: rgba(255,255,255,.09); --rule-strong: rgba(255,255,255,.16);
     --accent: #F0894B; --accent-ink: #241005; --accent-tint: rgba(240,137,75,.14);
     --shadow: rgba(0,0,0,.5);
   }
-  :root[data-theme="light"] {
+  :root[data-theme="dark-teal"] {
+    --bg: #0A1213; --bg-2: #111C1E; --surface: rgba(255,255,255,.045); --surface-hover: rgba(255,255,255,.075);
+    --ink: #EAF4F3; --ink-soft: #8FA8A6; --ink-faint: #576C6B;
+    --rule: rgba(255,255,255,.09); --rule-strong: rgba(255,255,255,.16);
+    --accent: #3FBFC4; --accent-ink: #052224; --accent-tint: rgba(63,191,196,.14);
+    --shadow: rgba(0,0,0,.5);
+  }
+  :root[data-theme="dark-violet"] {
+    --bg: #100B17; --bg-2: #181022; --surface: rgba(255,255,255,.045); --surface-hover: rgba(255,255,255,.075);
+    --ink: #EFEAF7; --ink-soft: #9C93B0; --ink-faint: #635A79;
+    --rule: rgba(255,255,255,.09); --rule-strong: rgba(255,255,255,.16);
+    --accent: #9C7EE0; --accent-ink: #1B1030; --accent-tint: rgba(156,126,224,.16);
+    --shadow: rgba(0,0,0,.5);
+  }
+  :root[data-theme="light-paper"] {
     --bg: #F1E9D8; --bg-2: #FAF3E6; --surface: rgba(90,60,25,.05); --surface-hover: rgba(90,60,25,.085);
     --ink: #26200F; --ink-soft: #6E6350; --ink-faint: #A0937B;
     --rule: rgba(90,60,25,.14); --rule-strong: rgba(90,60,25,.24);
     --accent: #B3530F; --accent-ink: #FFF8F1; --accent-tint: rgba(179,83,15,.13);
     --shadow: rgba(60,40,20,.16);
+  }
+  :root[data-theme="light-sky"] {
+    --bg: #EAF1F7; --bg-2: #F6FAFD; --surface: rgba(20,55,90,.05); --surface-hover: rgba(20,55,90,.085);
+    --ink: #17232F; --ink-soft: #516073; --ink-faint: #8A97A6;
+    --rule: rgba(20,55,90,.13); --rule-strong: rgba(20,55,90,.22);
+    --accent: #2E7DBE; --accent-ink: #F5FAFF; --accent-tint: rgba(46,125,190,.14);
+    --shadow: rgba(20,40,60,.14);
+  }
+  :root[data-theme="light-mint"] {
+    --bg: #EAF3EA; --bg-2: #F6FBF5; --surface: rgba(20,70,40,.05); --surface-hover: rgba(20,70,40,.085);
+    --ink: #152A1B; --ink-soft: #4F6B55; --ink-faint: #8CA491;
+    --rule: rgba(20,70,40,.13); --rule-strong: rgba(20,70,40,.22);
+    --accent: #3F8F5C; --accent-ink: #F3FBF5; --accent-tint: rgba(63,143,92,.14);
+    --shadow: rgba(20,45,30,.14);
   }
 
   :root {
@@ -625,8 +653,13 @@ function fmtTime(sec) {
 const STRINGS = {
   menuTitle: { en: 'More options', nl: 'Meer opties' },
   brandSub: { en: 'English narration, with Dutch key terms spoken separately.', nl: 'English narration, met Nederlandse kernbegrippen apart uitgesproken.' },
-  themeDark: { en: 'Dark theme', nl: 'Donker thema' },
-  themeLight: { en: 'Light theme', nl: 'Licht thema' },
+  themeLabel: { en: 'Theme', nl: 'Thema' },
+  themeAmber: { en: 'Dark — Amber', nl: 'Donker — Amber' },
+  themeTeal: { en: 'Dark — Teal', nl: 'Donker — Teal' },
+  themeViolet: { en: 'Dark — Violet', nl: 'Donker — Violet' },
+  themePaper: { en: 'Light — Paper', nl: 'Licht — Paper' },
+  themeSky: { en: 'Light — Sky', nl: 'Licht — Sky' },
+  themeMint: { en: 'Light — Mint', nl: 'Licht — Mint' },
   autoplayLabel: { en: 'Auto-continue', nl: 'Automatisch doorspelen' },
   announceLabel: { en: 'Announce chapter & task', nl: 'Hoofdstuk & taak aankondigen' },
   chapterPauseLabel: { en: 'Pause between chapters', nl: 'Pauze tussen hoofdstukken' },
@@ -678,21 +711,35 @@ const CLOCK_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" s
 const PLAY_ICON = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
 const PAUSE_ICON = '<svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
 
+const THEME_OPTIONS = ['dark-amber', 'dark-teal', 'dark-violet', 'light-paper', 'light-sky', 'light-mint'];
+const THEME_LABEL_KEYS = {
+  'dark-amber': 'themeAmber', 'dark-teal': 'themeTeal', 'dark-violet': 'themeViolet',
+  'light-paper': 'themePaper', 'light-sky': 'themeSky', 'light-mint': 'themeMint',
+};
+const THEME_BG = { 'dark-amber': '#0B0A09', 'dark-teal': '#0A1213', 'dark-violet': '#100B17', 'light-paper': '#F1E9D8', 'light-sky': '#EAF1F7', 'light-mint': '#EAF3EA' };
+function isDarkTheme(theme) { return theme.startsWith('dark-'); }
+function migrateThemeName(v) {
+  if (v === 'dark') return 'dark-amber';
+  if (v === 'light') return 'light-paper';
+  return THEME_OPTIONS.includes(v) ? v : null;
+}
 function applyTheme(theme) {
   document.documentElement.dataset.theme = theme;
-  themeToggleIcon.innerHTML = theme === 'dark' ? SUN_ICON : MOON_ICON;
-  themeToggleLabel.textContent = theme === 'dark' ? t('themeLight') : t('themeDark');
+  themeToggleIcon.innerHTML = isDarkTheme(theme) ? MOON_ICON : SUN_ICON;
+  themeToggleLabel.textContent = `${t('themeLabel')}: ${t(THEME_LABEL_KEYS[theme])}`;
+  const meta = document.querySelector('meta[name="theme-color"]');
+  if (meta) meta.setAttribute('content', THEME_BG[theme]);
 }
 function currentEffectiveTheme() {
-  const stored = localStorage.getItem(THEME_KEY);
+  const stored = migrateThemeName(localStorage.getItem(THEME_KEY));
   if (stored) return stored;
-  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark-amber' : 'light-paper';
 }
 themeToggle.addEventListener('click', () => {
-  const next = currentEffectiveTheme() === 'dark' ? 'light' : 'dark';
+  const idx = THEME_OPTIONS.indexOf(currentEffectiveTheme());
+  const next = THEME_OPTIONS[(idx + 1) % THEME_OPTIONS.length];
   localStorage.setItem(THEME_KEY, next);
   applyTheme(next);
-  closeMenu();
 });
 refreshIcon.innerHTML = REFRESH_ICON;
 continuePlayBtn.innerHTML = PLAY_ICON;
