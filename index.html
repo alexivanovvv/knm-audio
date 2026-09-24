@@ -296,6 +296,12 @@
   .transition-notice { min-height: 1.15rem; margin: -2px 0 7px; color: var(--ink-soft); font: 500 .68rem/1.2 'JetBrains Mono', monospace; text-align: center; }
   .transition-notice[hidden] { display: none; }
 
+  .captions-micro {
+    padding: 0 2px 7px; font-size: .88rem; line-height: 1.35; color: var(--ink);
+    text-align: center; min-height: 1.2em;
+  }
+  .captions-micro:empty, .captions-micro[hidden] { display: none; }
+  .captions-micro .nl-term { color: var(--accent); font-weight: 600; }
   .ccbtn { position: relative; }
   .ccbtn.active { color: var(--accent); }
   .ccbtn[disabled] { opacity: .35; cursor: default; }
@@ -383,6 +389,7 @@
         <button type="button" id="autoplayToggleBtn" class="settings-toggle" role="switch"><span class="menu-icon" id="autoplayToggleIcon"></span><span class="menu-label" id="autoplayToggleLabel"></span><span class="ios-switch" id="autoplayToggleSwitch" aria-hidden="true"><span class="knob"></span></span></button>
         <button type="button" id="announceToggleBtn" class="settings-toggle" role="switch"><span class="menu-icon" id="announceToggleIcon"></span><span class="menu-label" id="announceToggleLabel"></span><span class="ios-switch" id="announceToggleSwitch" aria-hidden="true"><span class="knob"></span></span></button>
         <button type="button" id="chapterBreakBtn"><span class="menu-icon" id="chapterBreakIcon"></span><span id="chapterBreakLabel"></span></button>
+        <button type="button" id="ccModeBtn"><span class="menu-icon" id="ccModeIcon"></span><span id="ccModeLabel"></span></button>
         <button type="button" id="hardRefreshBtn"><span class="menu-icon" id="refreshIcon"></span><span id="refreshLabel">Alles vernieuwen</span></button>
       </div>
     </div>
@@ -427,6 +434,7 @@
       <div class="now" id="nowPlaying"><span class="now-placeholder">Kies een hoofdstuk om te beginnen</span></div>
       <button class="ctrlbtn" id="playBtn" title="Afspelen/Pauzeren"></button>
     </div>
+    <div class="captions-micro" id="captionsMicro" hidden></div>
     <div class="seekrow">
       <span class="time" id="curTime">0:00</span>
       <input type="range" id="seek" min="0" max="100" value="0" step="0.1">
@@ -592,6 +600,10 @@ const announceToggleSwitch = document.getElementById('announceToggleSwitch');
 const chapterBreakBtn = document.getElementById('chapterBreakBtn');
 const chapterBreakIcon = document.getElementById('chapterBreakIcon');
 const chapterBreakLabel = document.getElementById('chapterBreakLabel');
+const ccModeBtn = document.getElementById('ccModeBtn');
+const ccModeIcon = document.getElementById('ccModeIcon');
+const ccModeLabel = document.getElementById('ccModeLabel');
+const captionsMicro = document.getElementById('captionsMicro');
 const refreshIcon = document.getElementById('refreshIcon');
 const refreshLabelEl = document.getElementById('refreshLabel');
 const hardRefreshBtn = document.getElementById('hardRefreshBtn');
@@ -639,6 +651,7 @@ const LANG_KEY = 'welkomLang';
 const AUTOPLAY_KEY = 'welkomAutoplay';
 const ANNOUNCE_KEY = 'welkomAnnounce';
 const CHAPTER_BREAK_KEY = 'welkomChapterBreak';
+const CAPTIONS_MODE_KEY = 'welkomCaptionsMode';
 
 function trackId(track) { return `H${track.ch}T${track.t}`; }
 function fileUrl(file) { return 'Audio/' + encodeURIComponent(file); }
@@ -664,6 +677,9 @@ const STRINGS = {
   announceLabel: { en: 'Announce chapter & task', nl: 'Hoofdstuk & taak aankondigen' },
   chapterPauseLabel: { en: 'Pause between chapters', nl: 'Pauze tussen hoofdstukken' },
   chapterPauseOff: { en: 'Off', nl: 'Uit' },
+  ccModeLabel: { en: 'Subtitles mode', nl: 'Ondertitelmodus' },
+  ccModeFull: { en: 'Full', nl: 'Volledig' },
+  ccModeMicro: { en: 'Micro', nl: 'Micro' },
   refreshLabel: { en: 'Refresh everything', nl: 'Alles vernieuwen' },
   refreshConfirm: { en: 'Fully reload the cache, service worker and app shell?', nl: 'Cache, service worker en de app-shell volledig opnieuw laden?' },
   continueLabel: { en: 'Continue listening', nl: 'Verder luisteren' },
@@ -708,6 +724,7 @@ const GLOBE_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" s
 const AUTOPLAY_ICON = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 5l8 7-8 7z"/><path d="M13 5l8 7-8 7z"/></svg>';
 const ANNOUNCE_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7"/></svg>';
 const CLOCK_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l3 2"/><path d="M9 2h6"/></svg>';
+const CC_MODE_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 10h4M7 14h7"/></svg>';
 const PLAY_ICON = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
 const PAUSE_ICON = '<svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
 
@@ -851,6 +868,23 @@ chapterBreakBtn.addEventListener('click', () => {
   closeMenu();
 });
 
+// ---------- subtitles mode (full drawer vs. micro inline strip) ----------
+function captionsMode() {
+  return localStorage.getItem(CAPTIONS_MODE_KEY) === 'micro' ? 'micro' : 'full';
+}
+function applyCcModeUI() {
+  ccModeIcon.innerHTML = CC_MODE_ICON;
+  const mode = captionsMode();
+  ccModeLabel.textContent = `${t('ccModeLabel')}: ${mode === 'micro' ? t('ccModeMicro') : t('ccModeFull')}`;
+}
+ccModeBtn.addEventListener('click', () => {
+  const wasOpen = ccBtn.classList.contains('active');
+  if (wasOpen) closeCaptions();
+  localStorage.setItem(CAPTIONS_MODE_KEY, captionsMode() === 'full' ? 'micro' : 'full');
+  applyCcModeUI();
+  if (wasOpen) openCaptions();
+});
+
 // ---------- header menu ----------
 function closeMenu() {
   topbarMenu.classList.remove('open');
@@ -890,6 +924,7 @@ function applyLanguage(lang) {
   applyAutoplayUI();
   applyAnnounceUI();
   applyChapterBreakUI();
+  applyCcModeUI();
   applyTheme(currentEffectiveTheme());
   if (deployBtnEl) { deployBtnEl.title = t('deployLabel'); deployLabelEl.textContent = t('deployLabel'); }
   if (IS_LOCALHOST) { localBannerTextEl.textContent = t('localBannerText'); localDeployBtnLabel.textContent = t('localBannerDeployBtn'); }
@@ -1229,6 +1264,7 @@ async function loadCaptions(track) {
   currentCuesEstimated = !!(data && data.estimated);
   ccBtn.disabled = !currentCues;
   if (captionsDrawer.classList.contains('open')) renderCaptions(track);
+  else if (!captionsMicro.hidden) syncCaptions();
   else if (currentCues && localStorage.getItem(CAPTIONS_OPEN_KEY)) openCaptions();
 }
 
@@ -1272,35 +1308,55 @@ function findCueIndex(cues, time) {
 }
 
 function syncCaptions() {
-  if (!captionsDrawer.classList.contains('open') || !currentCues) return;
+  if (!currentCues) return;
+  const openFull = captionsDrawer.classList.contains('open');
+  const openMicro = !captionsMicro.hidden;
+  if (!openFull && !openMicro) return;
   const idx = findCueIndex(currentCues, audio.currentTime);
   if (idx === activeLineIndex) return;
-  const prevEl = captionsScroll.querySelector('.caption-line.active');
-  if (prevEl) prevEl.classList.remove('active');
-  if (activeLineIndex >= 0) {
-    const pastEl = captionsScroll.querySelector(`.caption-line[data-index="${activeLineIndex}"]`);
-    if (pastEl) pastEl.classList.toggle('past', idx > activeLineIndex);
+  if (openFull) {
+    const prevEl = captionsScroll.querySelector('.caption-line.active');
+    if (prevEl) prevEl.classList.remove('active');
+    if (activeLineIndex >= 0) {
+      const pastEl = captionsScroll.querySelector(`.caption-line[data-index="${activeLineIndex}"]`);
+      if (pastEl) pastEl.classList.toggle('past', idx > activeLineIndex);
+    }
   }
   activeLineIndex = idx;
-  if (idx >= 0) {
-    const el = captionsScroll.querySelector(`.caption-line[data-index="${idx}"]`);
-    if (el) {
-      el.classList.add('active');
-      el.classList.remove('past');
-      el.scrollIntoView({ block: 'center', behavior: 'smooth' });
+  if (openFull) {
+    if (idx >= 0) {
+      const el = captionsScroll.querySelector(`.caption-line[data-index="${idx}"]`);
+      if (el) {
+        el.classList.add('active');
+        el.classList.remove('past');
+        el.scrollIntoView({ block: 'center', behavior: 'smooth' });
+      }
     }
+  }
+  if (openMicro) {
+    captionsMicro.innerHTML = idx >= 0 ? formatCaptionLine(currentCues[idx].text) : '';
   }
 }
 
 function openCaptions() {
   if (!currentCues) return;
-  captionsDrawer.classList.add('open');
   ccBtn.classList.add('active');
   localStorage.setItem(CAPTIONS_OPEN_KEY, '1');
-  renderCaptions(currentIndex >= 0 ? PLAYLIST[currentIndex] : null);
+  activeLineIndex = -1;
+  if (captionsMode() === 'micro') {
+    captionsDrawer.classList.remove('open');
+    captionsMicro.hidden = false;
+    syncCaptions();
+  } else {
+    captionsMicro.hidden = true;
+    captionsDrawer.classList.add('open');
+    renderCaptions(currentIndex >= 0 ? PLAYLIST[currentIndex] : null);
+  }
 }
 function closeCaptions() {
   captionsDrawer.classList.remove('open');
+  captionsMicro.hidden = true;
+  captionsMicro.innerHTML = '';
   ccBtn.classList.remove('active');
   localStorage.removeItem(CAPTIONS_OPEN_KEY);
 }
