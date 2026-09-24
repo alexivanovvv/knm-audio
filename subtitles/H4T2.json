@@ -1,0 +1,257 @@
+{
+ "lines": [
+  {
+   "start": 0.0,
+   "end": 0.68,
+   "text": "Childcare.",
+   "bulletStart": false
+  },
+  {
+   "start": 0.68,
+   "end": 2.32,
+   "text": "Often both parents work.",
+   "bulletStart": false
+  },
+  {
+   "start": 2.32,
+   "end": 16.8,
+   "text": "Childcare can be arranged in different ways: a babysitter [oppas] — for example grandpa or grandma, a host parent [gastouder] — someone at whose home several children are looked after, or a daycare centre [kinderdagverblijf].",
+   "bulletStart": false
+  },
+  {
+   "start": 16.8,
+   "end": 23.77,
+   "text": "From the age of four, a child can go after school hours to after-school care [buitenschoolse opvang, BSO].",
+   "bulletStart": false
+  },
+  {
+   "start": 23.77,
+   "end": 25.13,
+   "text": "School for toddlers.",
+   "bulletStart": false
+  },
+  {
+   "start": 25.13,
+   "end": 33.4,
+   "text": "When a child is two or two and a half years old, he may go to toddler care [peuteropvang], formerly known as peuterspeelzaal.",
+   "bulletStart": false
+  },
+  {
+   "start": 33.4,
+   "end": 39.75,
+   "text": "That is a school for children up to four years old, two or three times a week for a few hours.",
+   "bulletStart": false
+  },
+  {
+   "start": 39.75,
+   "end": 44.67,
+   "text": "Toddlers learn to speak Dutch better there, play together, and sing songs.",
+   "bulletStart": false
+  },
+  {
+   "start": 44.67,
+   "end": 54.02,
+   "text": "The pre-school [voorschool] is also a kind of toddler care; this is also called voorschoolse educatie or vve (voor- en vroegschoolse educatie).",
+   "bulletStart": false
+  },
+  {
+   "start": 54.02,
+   "end": 61.12,
+   "text": "The voorschool is for children with a developmental delay [achterstand], for example in the Dutch language.",
+   "bulletStart": false
+  },
+  {
+   "start": 61.12,
+   "end": 66.59,
+   "text": "Children from two to four years old go to the voorschool sixteen hours per week.",
+   "bulletStart": false
+  },
+  {
+   "start": 66.59,
+   "end": 67.61,
+   "text": "Primary school.",
+   "bulletStart": false
+  },
+  {
+   "start": 67.61,
+   "end": 72.94,
+   "text": "Children from four to about twelve years old go to primary school [basisschool].",
+   "bulletStart": false
+  },
+  {
+   "start": 72.94,
+   "end": 82.09,
+   "text": "Parents must register [aanmelden] their child; in most municipalities this can be done when a child is two and a half or three years old.",
+   "bulletStart": false
+  },
+  {
+   "start": 82.09,
+   "end": 86.94,
+   "text": "Parents can choose a school themselves, but there is not always a place.",
+   "bulletStart": false
+  },
+  {
+   "start": 86.94,
+   "end": 88.51,
+   "text": "There are eight groups.",
+   "bulletStart": false
+  },
+  {
+   "start": 88.51,
+   "end": 95.82,
+   "text": "Groups 1 and 2 contain young children of four and five years old [kleuters]; they are still allowed to play a lot.",
+   "bulletStart": false
+  },
+  {
+   "start": 95.82,
+   "end": 101.76,
+   "text": "In groups 3 through 8, the most important subjects [vakken] are Dutch language and arithmetic.",
+   "bulletStart": false
+  },
+  {
+   "start": 101.76,
+   "end": 110.16,
+   "text": "Secondary education [voortgezet onderwijs] (also called the middelbare school) begins when children are about twelve years old.",
+   "bulletStart": false
+  },
+  {
+   "start": 110.16,
+   "end": 111.73,
+   "text": "There are three levels:",
+   "bulletStart": false
+  },
+  {
+   "start": 111.73,
+   "end": 116.03,
+   "text": "The vwo lasts six years and is the most theory-focused [theorie].",
+   "bulletStart": true
+  },
+  {
+   "start": 116.03,
+   "end": 126.14,
+   "text": "After the vwo you can follow academic education [wo, wetenschappelijk onderwijs] at the universiteit — for professions such as doctor or lawyer [advocaat].",
+   "bulletStart": false
+  },
+  {
+   "start": 126.14,
+   "end": 127.92,
+   "text": "The havo lasts five years.",
+   "bulletStart": true
+  },
+  {
+   "start": 127.92,
+   "end": 137.0,
+   "text": "After that you can go to higher professional education [hbo, hoger beroepsonderwijs] — for professions such as teacher or physiotherapist.",
+   "bulletStart": false
+  },
+  {
+   "start": 137.0,
+   "end": 141.64,
+   "text": "The vmbo lasts four years and is the most practice-focused [praktijk].",
+   "bulletStart": true
+  },
+  {
+   "start": 141.64,
+   "end": 151.48,
+   "text": "After that you can go to secondary vocational education [mbo, middelbaar beroepsonderwijs] — for a practical profession, for example cook or mechanic.",
+   "bulletStart": false
+  },
+  {
+   "start": 151.48,
+   "end": 155.92,
+   "text": "Vmbo and mbo also have different levels of their own (mbo 1 through 4).",
+   "bulletStart": false
+  },
+  {
+   "start": 155.92,
+   "end": 157.83,
+   "text": "Which level suits the child?",
+   "bulletStart": false
+  },
+  {
+   "start": 157.83,
+   "end": 171.35,
+   "text": "The primary school teacher [leraar van de basisschool] gives a recommendation [advies] about the level — so parents may not choose the level themselves, but they may choose a school (that matches the level).",
+   "bulletStart": false
+  },
+  {
+   "start": 171.35,
+   "end": 177.64,
+   "text": "Children first enter the bridge class [brugklas]: the first year and sometimes also the second.",
+   "bulletStart": false
+  },
+  {
+   "start": 177.64,
+   "end": 180.5,
+   "text": "There they can usually still change level.",
+   "bulletStart": false
+  },
+  {
+   "start": 180.5,
+   "end": 182.01,
+   "text": "Moving up [Doorstromen].",
+   "bulletStart": false
+  },
+  {
+   "start": 182.01,
+   "end": 189.31,
+   "text": "With a diploma you can often continue studying at a higher level; sometimes your grades must be high enough.",
+   "bulletStart": false
+  },
+  {
+   "start": 189.31,
+   "end": 197.85,
+   "text": "For example: after mbo level 4 (the highest mbo level, such as teaching assistant) you can do an hbo programme to become a teacher.",
+   "bulletStart": false
+  },
+  {
+   "start": 197.85,
+   "end": 198.67,
+   "text": "Schakelklas.",
+   "bulletStart": false
+  },
+  {
+   "start": 198.67,
+   "end": 210.62,
+   "text": "Children who have not been in the Netherlands very long can go to a transition class [schakelklas]: children between four and twelve years old get extra language education there.",
+   "bulletStart": false
+  },
+  {
+   "start": 210.62,
+   "end": 218.34,
+   "text": "The ISK (internationale schakelklas) is for children from twelve years old; they attend the ISK for about two years.",
+   "bulletStart": false
+  },
+  {
+   "start": 218.34,
+   "end": 219.23,
+   "text": "Special care.",
+   "bulletStart": false
+  },
+  {
+   "start": 219.23,
+   "end": 227.97,
+   "text": "Children with behavioural problems [gedragsproblemen] or learning problems [leerproblemen] can get extra help at the regular school.",
+   "bulletStart": false
+  },
+  {
+   "start": 227.97,
+   "end": 235.21,
+   "text": "For children with more serious problems (a handicap or disorder), there are special schools [speciale scholen].",
+   "bulletStart": false
+  },
+  {
+   "start": 235.21,
+   "end": 237.33,
+   "text": "The school advises the parents.",
+   "bulletStart": false
+  },
+  {
+   "start": 237.33,
+   "end": 246.68,
+   "text": "Finding information: on the internet (every school has a website), asking people you know for advice, and visiting a school before you decide.",
+   "bulletStart": false
+  }
+ ],
+ "estimated": true
+}

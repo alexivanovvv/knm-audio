@@ -1,0 +1,233 @@
+{
+ "lines": [
+  {
+   "start": 0.0,
+   "end": 2.25,
+   "text": "Choosing insurance yourself.",
+   "bulletStart": false
+  },
+  {
+   "start": 2.25,
+   "end": 11.41,
+   "text": "Everyone in the Netherlands must have insurance for health care costs [zorgkosten]: health insurance [zorgverzekering].",
+   "bulletStart": false
+  },
+  {
+   "start": 11.41,
+   "end": 16.55,
+   "text": "A health insurer [zorgverzekeraar] pays your costs in health care.",
+   "bulletStart": false
+  },
+  {
+   "start": 16.55,
+   "end": 19.2,
+   "text": "Adults must pay a premium [premie].",
+   "bulletStart": false
+  },
+  {
+   "start": 19.2,
+   "end": 27.63,
+   "text": "You may choose your own health insurance and switch to another zorgverzekeraar every year before 1 January.",
+   "bulletStart": false
+  },
+  {
+   "start": 27.63,
+   "end": 33.09,
+   "text": "There are websites to compare [vergelijken] health insurance policies.",
+   "bulletStart": false
+  },
+  {
+   "start": 33.09,
+   "end": 35.5,
+   "text": "Choices with health insurance:",
+   "bulletStart": false
+  },
+  {
+   "start": 35.5,
+   "end": 40.56,
+   "text": "The basic insurance [basisverzekering] is mandatory for everyone.",
+   "bulletStart": true
+  },
+  {
+   "start": 40.56,
+   "end": 55.26,
+   "text": "It pays, for example, for the huisarts, the hospital, most medicines, care around pregnancy [zwangerschap] and birth, elderly care, district/home nursing [wijkverpleging] and mental health care.",
+   "bulletStart": false
+  },
+  {
+   "start": 55.26,
+   "end": 68.36,
+   "text": "Supplementary insurance [aanvullende verzekering] is not compulsory; you pay an extra premium and get back, for example, part of the physiotherapist's costs or glasses.",
+   "bulletStart": true
+  },
+  {
+   "start": 68.36,
+   "end": 73.82,
+   "text": "Dental insurance [tandartsverzekering] is separate and not compulsory.",
+   "bulletStart": true
+  },
+  {
+   "start": 73.82,
+   "end": 74.7,
+   "text": "Deductible.",
+   "bulletStart": false
+  },
+  {
+   "start": 74.7,
+   "end": 81.69,
+   "text": "You have a mandatory deductible/excess [eigen risico]: you pay part of the costs yourself.",
+   "bulletStart": false
+  },
+  {
+   "start": 81.69,
+   "end": 88.2,
+   "text": "If you choose a higher eigen risico, you pay less premium, but more costs yourself.",
+   "bulletStart": false
+  },
+  {
+   "start": 88.2,
+   "end": 95.35,
+   "text": "Example: Ricardo chose € 385 eigen risico, Merve chose € 885 and got a € 180 discount [korting] on her premium.",
+   "bulletStart": false
+  },
+  {
+   "start": 95.35,
+   "end": 101.85,
+   "text": "For an operation of € 3,000 Ricardo pays € 385 himself and Merve € 885 — in total Merve paid much more.",
+   "bulletStart": false
+  },
+  {
+   "start": 101.85,
+   "end": 106.99,
+   "text": "The eigen risico can be paid in instalments/spread out [gespreid].",
+   "bulletStart": false
+  },
+  {
+   "start": 106.99,
+   "end": 112.78,
+   "text": "For a visit to the huisarts you pay no eigen risico — that is always free.",
+   "bulletStart": false
+  },
+  {
+   "start": 112.78,
+   "end": 114.54,
+   "text": "Personal contribution.",
+   "bulletStart": false
+  },
+  {
+   "start": 114.54,
+   "end": 120.73,
+   "text": "The personal/own contribution [eigen bijdrage] is not the same as eigen risico.",
+   "bulletStart": false
+  },
+  {
+   "start": 120.73,
+   "end": 128.44,
+   "text": "For some medicines you pay an eigen bijdrage; you cannot choose this, the zorgverzekeraar decides.",
+   "bulletStart": false
+  },
+  {
+   "start": 128.44,
+   "end": 136.87,
+   "text": "Example: glasses cost € 260, the insurance pays € 150, you pay € 110 yourself — even if your eigen risico has already been paid.",
+   "bulletStart": false
+  },
+  {
+   "start": 136.87,
+   "end": 138.8,
+   "text": "Children up to eighteen.",
+   "bulletStart": false
+  },
+  {
+   "start": 138.8,
+   "end": 143.86,
+   "text": "For children up to eighteen years old, health insurance is free.",
+   "bulletStart": false
+  },
+  {
+   "start": 143.86,
+   "end": 150.29,
+   "text": "Dental insurance is also free, and you get the costs of physiotherapy reimbursed.",
+   "bulletStart": false
+  },
+  {
+   "start": 150.29,
+   "end": 151.25,
+   "text": "Zorgtoeslag.",
+   "bulletStart": false
+  },
+  {
+   "start": 151.25,
+   "end": 161.85,
+   "text": "Some people get part of the premium back from the Dutch tax authority [Belastingdienst] — the health care allowance/benefit [zorgtoeslag].",
+   "bulletStart": false
+  },
+  {
+   "start": 161.85,
+   "end": 167.08,
+   "text": "The less money you earn [verdient] per month, the more you get back.",
+   "bulletStart": false
+  },
+  {
+   "start": 167.08,
+   "end": 169.73,
+   "text": "Contact with the zorgverzekeraar.",
+   "bulletStart": false
+  },
+  {
+   "start": 169.73,
+   "end": 174.06,
+   "text": "Not sure whether the insurer will pay for a treatment?",
+   "bulletStart": false
+  },
+  {
+   "start": 174.06,
+   "end": 180.01,
+   "text": "Call or email before you start, otherwise you may get a high bill [rekening].",
+   "bulletStart": false
+  },
+  {
+   "start": 180.01,
+   "end": 186.76,
+   "text": "Most bills are sent by the huisarts or the hospital directly to the zorgverzekeraar.",
+   "bulletStart": false
+  },
+  {
+   "start": 186.76,
+   "end": 200.97,
+   "text": "Sometimes you pay yourself first, for example at the dentist; then you can claim/submit the costs for reimbursement [declareren] — online, via the app (logging in with DigiD) or by post.",
+   "bulletStart": false
+  },
+  {
+   "start": 200.97,
+   "end": 201.86,
+   "text": "Mantelzorg.",
+   "bulletStart": false
+  },
+  {
+   "start": 201.86,
+   "end": 213.34,
+   "text": "Do you care for someone for a longer period of time, for example an elderly parent or a partner or child with an illness or disability [handicap]?",
+   "bulletStart": false
+  },
+  {
+   "start": 213.34,
+   "end": 218.0,
+   "text": "That is called informal care by family/friends [mantelzorg].",
+   "bulletStart": false
+  },
+  {
+   "start": 218.0,
+   "end": 227.48,
+   "text": "Sometimes you can get compensation/reimbursement [vergoeding] for it: a personal care budget [persoonsgebonden budget, PGB].",
+   "bulletStart": false
+  },
+  {
+   "start": 227.48,
+   "end": 232.06,
+   "text": "You apply for it via the gemeente or the zorgverzekeraar.",
+   "bulletStart": false
+  }
+ ],
+ "estimated": true
+}

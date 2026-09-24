@@ -255,6 +255,10 @@
   .caption-line.active { color: var(--ink); font-weight: 700; }
   .caption-line .nl-term { color: var(--accent); font-weight: 600; }
   .captions-empty { padding: 30px 20px; text-align: center; color: var(--ink-soft); font-size: .85rem; }
+  .captions-note {
+    font-size: .74rem; color: var(--ink-faint); font-style: italic;
+    padding: 2px 4px 12px; border-bottom: 1px solid var(--rule); margin-bottom: 8px;
+  }
   @media (min-width: 640px) { .captions-scroll { max-width: 760px; } }
   @media (min-width: 900px) { .captions-scroll { max-width: 840px; } }
 
@@ -782,26 +786,29 @@ function loadTrack(index, autoplay, startAt) {
 const CAPTIONS_OPEN_KEY = 'welkomCaptionsOpen';
 const subtitlesCache = new Map();
 let currentCues = null;
+let currentCuesEstimated = false;
 let activeLineIndex = -1;
 
 function captionsUrl(track) { return `subtitles/${trackId(track)}.json`; }
 
 async function loadCaptions(track) {
   currentCues = null;
+  currentCuesEstimated = false;
   activeLineIndex = -1;
   ccBtn.disabled = true;
   const key = trackId(track);
-  let cues = subtitlesCache.get(key);
-  if (cues === undefined) {
+  let data = subtitlesCache.get(key);
+  if (data === undefined) {
     try {
       const res = await fetch(captionsUrl(track));
-      cues = res.ok ? (await res.json()).lines : null;
-    } catch { cues = null; }
-    subtitlesCache.set(key, cues);
+      data = res.ok ? await res.json() : null;
+    } catch { data = null; }
+    subtitlesCache.set(key, data);
   }
   // bail if the user already skipped to a different track while fetching
   if (currentIndex < 0 || trackId(PLAYLIST[currentIndex]) !== key) return;
-  currentCues = (cues && cues.length) ? cues : null;
+  currentCues = (data && data.lines && data.lines.length) ? data.lines : null;
+  currentCuesEstimated = !!(data && data.estimated);
   ccBtn.disabled = !currentCues;
   if (captionsDrawer.classList.contains('open')) renderCaptions(track);
   else if (currentCues && localStorage.getItem(CAPTIONS_OPEN_KEY)) openCaptions();
@@ -820,7 +827,10 @@ function renderCaptions(track) {
     captionsScroll.innerHTML = '<div class="captions-empty">Geen ondertitels beschikbaar voor deze taak.</div>';
     return;
   }
-  captionsScroll.innerHTML = currentCues.map((c, i) =>
+  const note = currentCuesEstimated
+    ? '<div class="captions-note">Bij benadering gesynchroniseerd — kan iets afwijken van de audio.</div>'
+    : '';
+  captionsScroll.innerHTML = note + currentCues.map((c, i) =>
     `<p class="caption-line" data-index="${i}" data-start="${c.start}">${formatCaptionLine(c.text)}</p>`
   ).join('');
   activeLineIndex = -1;
@@ -850,12 +860,12 @@ function syncCaptions() {
   const prevEl = captionsScroll.querySelector('.caption-line.active');
   if (prevEl) prevEl.classList.remove('active');
   if (activeLineIndex >= 0) {
-    const pastEl = captionsScroll.children[activeLineIndex];
+    const pastEl = captionsScroll.querySelector(`.caption-line[data-index="${activeLineIndex}"]`);
     if (pastEl) pastEl.classList.toggle('past', idx > activeLineIndex);
   }
   activeLineIndex = idx;
   if (idx >= 0) {
-    const el = captionsScroll.children[idx];
+    const el = captionsScroll.querySelector(`.caption-line[data-index="${idx}"]`);
     if (el) {
       el.classList.add('active');
       el.classList.remove('past');

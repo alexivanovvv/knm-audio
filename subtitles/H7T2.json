@@ -1,0 +1,419 @@
+{
+ "lines": [
+  {
+   "start": 0.0,
+   "end": 0.64,
+   "text": "The king.",
+   "bulletStart": false
+  },
+  {
+   "start": 0.64,
+   "end": 5.16,
+   "text": "The Netherlands is a kingdom [koninkrijk]: no president, but a king.",
+   "bulletStart": false
+  },
+  {
+   "start": 5.16,
+   "end": 7.77,
+   "text": "Willem-Alexander is the current king.",
+   "bulletStart": false
+  },
+  {
+   "start": 7.77,
+   "end": 11.45,
+   "text": "His immediate family is the royal house [koningshuis].",
+   "bulletStart": false
+  },
+  {
+   "start": 11.45,
+   "end": 15.41,
+   "text": "He is married to Queen Máxima; they have three daughters.",
+   "bulletStart": false
+  },
+  {
+   "start": 15.41,
+   "end": 19.01,
+   "text": "The eldest, Princess Amalia, will become queen later.",
+   "bulletStart": false
+  },
+  {
+   "start": 19.01,
+   "end": 27.07,
+   "text": "The king has little power [weinig macht], but he is 'the face' of the Netherlands: he goes on state visits [staatsbezoek].",
+   "bulletStart": false
+  },
+  {
+   "start": 27.07,
+   "end": 30.18,
+   "text": "That is the ceremonial [ceremoniële] function.",
+   "bulletStart": false
+  },
+  {
+   "start": 30.18,
+   "end": 36.54,
+   "text": "Once a year, on Prinsjesdag (the third Tuesday of September), he presents the ministers' plans.",
+   "bulletStart": false
+  },
+  {
+   "start": 36.54,
+   "end": 46.79,
+   "text": "The government [De regering] is the administration of the country: the king [koning], the prime minister [minister-president] and the ministers together.",
+   "bulletStart": false
+  },
+  {
+   "start": 46.79,
+   "end": 50.32,
+   "text": "The prime minister is the leader of the ministers.",
+   "bulletStart": false
+  },
+  {
+   "start": 50.32,
+   "end": 55.34,
+   "text": "Each minister has their own portfolio (for example Education or Finance).",
+   "bulletStart": false
+  },
+  {
+   "start": 55.34,
+   "end": 60.36,
+   "text": "A state secretary [staatssecretaris] (junior minister) supports a minister.",
+   "bulletStart": false
+  },
+  {
+   "start": 60.36,
+   "end": 65.73,
+   "text": "All ministers and state secretaries together are called the cabinet [kabinet].",
+   "bulletStart": false
+  },
+  {
+   "start": 65.73,
+   "end": 66.79,
+   "text": "The parliament.",
+   "bulletStart": false
+  },
+  {
+   "start": 66.79,
+   "end": 72.44,
+   "text": "The Netherlands is a democracy [democratie]: the inhabitants choose the government.",
+   "bulletStart": false
+  },
+  {
+   "start": 72.44,
+   "end": 76.54,
+   "text": "The Tweede Kamer has 150 members, the Eerste Kamer has 75 members.",
+   "bulletStart": false
+  },
+  {
+   "start": 76.54,
+   "end": 79.58,
+   "text": "Together they are the parliament [parlement].",
+   "bulletStart": false
+  },
+  {
+   "start": 79.58,
+   "end": 86.23,
+   "text": "The parliament monitors/oversees [controleert] the government and can pass [aannemen] laws or not.",
+   "bulletStart": false
+  },
+  {
+   "start": 86.23,
+   "end": 90.4,
+   "text": "Laws first go to the Tweede Kamer, then to the Eerste Kamer.",
+   "bulletStart": false
+  },
+  {
+   "start": 90.4,
+   "end": 96.26,
+   "text": "Members of the Tweede Kamer may themselves make proposals [voorstellen] for new laws.",
+   "bulletStart": false
+  },
+  {
+   "start": 96.26,
+   "end": 100.36,
+   "text": "The parliament and the government are located in Den Haag.",
+   "bulletStart": false
+  },
+  {
+   "start": 100.36,
+   "end": 104.32,
+   "text": "Governing the country, the province and the municipality.",
+   "bulletStart": false
+  },
+  {
+   "start": 104.32,
+   "end": 110.75,
+   "text": "All organizations at these levels belong to the authorities/public administration [overheid]:",
+   "bulletStart": false
+  },
+  {
+   "start": 110.75,
+   "end": 128.84,
+   "text": "| Government of | Leader | Parliament |\n|---|---|---|\n| the Netherlands | the minister-president | Eerste and Tweede Kamer |\n| the province | the King's Commissioner [commissaris van de Koning] | the Provinciale Staten |\n| the municipality | the mayor [burgemeester] | the municipal council [gemeenteraad] |",
+   "bulletStart": false
+  },
+  {
+   "start": 128.84,
+   "end": 135.49,
+   "text": "The Tweede Kamer decides on matters for the whole country (defense, civic integration, education).",
+   "bulletStart": false
+  },
+  {
+   "start": 135.49,
+   "end": 141.14,
+   "text": "The Provinciale Staten decide on roads, housing and nature areas in the province.",
+   "bulletStart": false
+  },
+  {
+   "start": 141.14,
+   "end": 147.64,
+   "text": "The municipality takes care of, for example, enough social rental housing and help for people.",
+   "bulletStart": false
+  },
+  {
+   "start": 147.64,
+   "end": 148.85,
+   "text": "The three powers.",
+   "bulletStart": false
+  },
+  {
+   "start": 148.85,
+   "end": 151.04,
+   "text": "There are three kinds of power:",
+   "bulletStart": false
+  },
+  {
+   "start": 151.04,
+   "end": 157.61,
+   "text": "Legislative power [Wetgevende macht]: the government and parliament together — they make the laws.",
+   "bulletStart": true
+  },
+  {
+   "start": 157.61,
+   "end": 165.74,
+   "text": "Executive power [Uitvoerende macht]: the government; ministers direct civil servants [ambtenaren] who carry out the laws.",
+   "bulletStart": true
+  },
+  {
+   "start": 165.74,
+   "end": 169.55,
+   "text": "Judicial power [Rechterlijke macht]: the judges [rechters].",
+   "bulletStart": true
+  },
+  {
+   "start": 169.55,
+   "end": 175.35,
+   "text": "These powers operate separately: the separation of powers [scheiding van de machten].",
+   "bulletStart": false
+  },
+  {
+   "start": 175.35,
+   "end": 178.95,
+   "text": "The government may not tell a judge what to decide.",
+   "bulletStart": false
+  },
+  {
+   "start": 178.95,
+   "end": 182.49,
+   "text": "This way no single power can obtain all the power.",
+   "bulletStart": false
+  },
+  {
+   "start": 182.49,
+   "end": 185.39,
+   "text": "The powers also keep each other in check.",
+   "bulletStart": false
+  },
+  {
+   "start": 185.39,
+   "end": 186.66,
+   "text": "Political parties.",
+   "bulletStart": false
+  },
+  {
+   "start": 186.66,
+   "end": 193.66,
+   "text": "Members of the Tweede Kamer and the municipal council belong to a political party [politieke partij].",
+   "bulletStart": false
+  },
+  {
+   "start": 193.66,
+   "end": 197.19,
+   "text": "Within a party, people have roughly the same ideas.",
+   "bulletStart": false
+  },
+  {
+   "start": 197.19,
+   "end": 199.38,
+   "text": "Anyone can become a member [lid].",
+   "bulletStart": false
+  },
+  {
+   "start": 199.38,
+   "end": 200.58,
+   "text": "Types of parties:",
+   "bulletStart": false
+  },
+  {
+   "start": 200.58,
+   "end": 211.54,
+   "text": "Left-wing parties [Linkse partijen]: the gap between rich and poor should be smaller; the rich pay more tax [belasting]; benefits [uitkeringen] must be high enough.",
+   "bulletStart": true
+  },
+  {
+   "start": 211.54,
+   "end": 222.42,
+   "text": "Right-wing parties [Rechtse partijen]: people should take care of themselves as much as possible; good for big companies; the state should not borrow too much.",
+   "bulletStart": true
+  },
+  {
+   "start": 222.42,
+   "end": 236.7,
+   "text": "Progressive parties [Progressieve partijen] think it is good that society [maatschappij] changes; conservative parties [conservatieve partijen] prefer little change (for example regarding abortion or migration).",
+   "bulletStart": true
+  },
+  {
+   "start": 236.7,
+   "end": 242.07,
+   "text": "Left-wing parties are often progressive and right-wing parties conservative.",
+   "bulletStart": false
+  },
+  {
+   "start": 242.07,
+   "end": 246.31,
+   "text": "The voting compass [Kieskompas] shows where the parties stand.",
+   "bulletStart": false
+  },
+  {
+   "start": 246.31,
+   "end": 247.02,
+   "text": "Elections.",
+   "bulletStart": false
+  },
+  {
+   "start": 247.02,
+   "end": 252.6,
+   "text": "Before the elections, parties write election programs [programma's] and advertise.",
+   "bulletStart": false
+  },
+  {
+   "start": 252.6,
+   "end": 255.15,
+   "text": "People vote for a party or a person.",
+   "bulletStart": false
+  },
+  {
+   "start": 255.15,
+   "end": 257.97,
+   "text": "Voting is not compulsory [niet verplicht].",
+   "bulletStart": false
+  },
+  {
+   "start": 257.97,
+   "end": 262.35,
+   "text": "Elections for the Tweede Kamer are held once every four years.",
+   "bulletStart": false
+  },
+  {
+   "start": 262.35,
+   "end": 268.64,
+   "text": "Afterwards, parties form a coalition [coalitie] (usually the largest party with a few others).",
+   "bulletStart": false
+  },
+  {
+   "start": 268.64,
+   "end": 277.76,
+   "text": "The coalition looks for ministers and state secretaries: the new government is made up of the governing parties [regeringspartijen].",
+   "bulletStart": false
+  },
+  {
+   "start": 277.76,
+   "end": 285.39,
+   "text": "If the ministers stop working together, the cabinet has fallen [gevallen]; then there are usually new elections.",
+   "bulletStart": false
+  },
+  {
+   "start": 285.39,
+   "end": 287.23,
+   "text": "Which elections are there?",
+   "bulletStart": false
+  },
+  {
+   "start": 287.23,
+   "end": 316.07,
+   "text": "For: 1) the municipality [gemeente] (gemeenteraad, every 4 years), 2) the province [provincie] (Provinciale Staten, every 4 years — they elect the Eerste Kamer), 3) the water board [waterschap] (responsible for dikes, water levels and clean waste water; drinking water comes from the water company; every 4 years, at the same time as the Provinciale Staten), 4) the country [land] (Tweede Kamer, every 4 years), 5) Europe [Europa] (European Parliament, every 5 years).",
+   "bulletStart": false
+  },
+  {
+   "start": 316.07,
+   "end": 318.68,
+   "text": "The Netherlands has twelve provinces.",
+   "bulletStart": false
+  },
+  {
+   "start": 318.68,
+   "end": 319.6,
+   "text": "Who may vote?",
+   "bulletStart": false
+  },
+  {
+   "start": 319.6,
+   "end": 321.16,
+   "text": "Adults aged 18 and older.",
+   "bulletStart": false
+  },
+  {
+   "start": 321.16,
+   "end": 333.6,
+   "text": "For the gemeenteraad: residents with a passport of the Netherlands or the EU, or residents from outside the EU who have lived in the Netherlands legally for five years or longer.",
+   "bulletStart": false
+  },
+  {
+   "start": 333.6,
+   "end": 341.3,
+   "text": "For the Provinciale Staten and the Tweede Kamer: only people with Dutch nationality [Nederlandse nationaliteit].",
+   "bulletStart": false
+  },
+  {
+   "start": 341.3,
+   "end": 346.25,
+   "text": "For the waterschap: residents, sometimes also without Dutch nationality.",
+   "bulletStart": false
+  },
+  {
+   "start": 346.25,
+   "end": 351.27,
+   "text": "For the European Parliament: residents of the EU with an EU nationality.",
+   "bulletStart": false
+  },
+  {
+   "start": 351.27,
+   "end": 353.6,
+   "text": "Active and passive voting rights.",
+   "bulletStart": false
+  },
+  {
+   "start": 353.6,
+   "end": 357.49,
+   "text": "Active suffrage [Actief kiesrecht]: you may vote yourself.",
+   "bulletStart": false
+  },
+  {
+   "start": 357.49,
+   "end": 364.41,
+   "text": "Passive suffrage [Passief kiesrecht]: other people may vote for you; you are then on a candidate list.",
+   "bulletStart": false
+  },
+  {
+   "start": 364.41,
+   "end": 368.02,
+   "text": "In the Netherlands the rules for both are the same.",
+   "bulletStart": false
+  },
+  {
+   "start": 368.02,
+   "end": 375.23,
+   "text": "A referendum is a separate kind of election: you can only say 'yes' (in favor) or 'no' (against) to a proposal.",
+   "bulletStart": false
+  }
+ ],
+ "estimated": true
+}

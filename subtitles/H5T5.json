@@ -1,0 +1,35 @@
+{
+ "lines": [
+  {
+   "start": 0.0,
+   "end": 17.0,
+   "text": "Examples of discrimination: a man gets a higher salary than a woman for the same work and the same experience; colleagues make nasty jokes about a gay man; a Muslim is not allowed by his manager to pray during his break; a woman does not get the job because she is pregnant.",
+   "bulletStart": false
+  },
+  {
+   "start": 17.0,
+   "end": 19.33,
+   "text": "What can you do about discrimination?",
+   "bulletStart": false
+  },
+  {
+   "start": 19.33,
+   "end": 22.72,
+   "text": "Discrimination is forbidden by law in the Netherlands.",
+   "bulletStart": false
+  },
+  {
+   "start": 22.72,
+   "end": 25.93,
+   "text": "Everyone has the same rights in the same situation.",
+   "bulletStart": false
+  },
+  {
+   "start": 25.93,
+   "end": 51.62,
+   "text": "Steps: first talk to the person themselves; if that does not help, make an appointment with your manager/supervisor [leidinggevende]; if your manager is the one discriminating, talk to a confidential adviser [vertrouwenspersoon]; organisations such as a trade union [vakbond] can help you; and if that does not help, you can file a police report [aangifte doen] or report it to a reporting point [meldpunt] for discrimination.",
+   "bulletStart": false
+  }
+ ],
+ "estimated": true
+}

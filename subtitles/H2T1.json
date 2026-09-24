@@ -1,0 +1,329 @@
+{
+ "lines": [
+  {
+   "start": 0.0,
+   "end": 1.34,
+   "text": "Do you need care [zorg]?",
+   "bulletStart": false
+  },
+  {
+   "start": 1.34,
+   "end": 5.71,
+   "text": "In the Netherlands you always go first to the GP/family doctor [huisarts].",
+   "bulletStart": false
+  },
+  {
+   "start": 5.71,
+   "end": 10.39,
+   "text": "The huisarts can refer [doorverwijzen] you or knows where you can ask for help.",
+   "bulletStart": false
+  },
+  {
+   "start": 10.39,
+   "end": 16.16,
+   "text": "You can also get information about care from the gemeente and other organisations [organisaties].",
+   "bulletStart": false
+  },
+  {
+   "start": 16.16,
+   "end": 17.37,
+   "text": "Choosing a huisarts.",
+   "bulletStart": false
+  },
+  {
+   "start": 17.37,
+   "end": 21.75,
+   "text": "Have you just moved to the Netherlands, or have you recently moved house?",
+   "bulletStart": false
+  },
+  {
+   "start": 21.75,
+   "end": 25.45,
+   "text": "Then you first have to find a GP practice [huisartsenpraktijk].",
+   "bulletStart": false
+  },
+  {
+   "start": 25.45,
+   "end": 29.34,
+   "text": "You can find one on the internet, or ask other people for advice.",
+   "bulletStart": false
+  },
+  {
+   "start": 29.34,
+   "end": 30.19,
+   "text": "Not satisfied?",
+   "bulletStart": false
+  },
+  {
+   "start": 30.19,
+   "end": 33.17,
+   "text": "Then you can change to another practice [praktijk].",
+   "bulletStart": false
+  },
+  {
+   "start": 33.17,
+   "end": 37.6,
+   "text": "You ask whether the new practice will accept [accepteren] you as a patient.",
+   "bulletStart": false
+  },
+  {
+   "start": 37.6,
+   "end": 43.19,
+   "text": "Sometimes they don't accept you, for example if you live too far away or if there is no room.",
+   "bulletStart": false
+  },
+  {
+   "start": 43.19,
+   "end": 50.6,
+   "text": "You let the old practice know that you are leaving, and you ask them to send your medical file [dossier] to the new practice.",
+   "bulletStart": false
+  },
+  {
+   "start": 50.6,
+   "end": 51.57,
+   "text": "At the huisarts.",
+   "bulletStart": false
+  },
+  {
+   "start": 51.57,
+   "end": 59.65,
+   "text": "With physical complaints [lichamelijke klachten], but also with mental/psychological [psychische] complaints, you go first to the huisarts.",
+   "bulletStart": false
+  },
+  {
+   "start": 59.65,
+   "end": 62.75,
+   "text": "During an appointment you describe your complaints.",
+   "bulletStart": false
+  },
+  {
+   "start": 62.75,
+   "end": 65.79,
+   "text": "If necessary, the huisarts examines [onderzoekt] you.",
+   "bulletStart": false
+  },
+  {
+   "start": 65.79,
+   "end": 67.49,
+   "text": "Sometimes you get medicines.",
+   "bulletStart": false
+  },
+  {
+   "start": 67.49,
+   "end": 72.29,
+   "text": "Often the huisarts says: \"It will go away by itself and you can take paracetamol.\"",
+   "bulletStart": false
+  },
+  {
+   "start": 72.29,
+   "end": 73.8,
+   "text": "The team in the practice.",
+   "bulletStart": false
+  },
+  {
+   "start": 73.8,
+   "end": 75.57,
+   "text": "The huisarts works in a team:",
+   "bulletStart": false
+  },
+  {
+   "start": 75.57,
+   "end": 80.49,
+   "text": "The doctor's assistant [doktersassistent] is the first person you get on the phone.",
+   "bulletStart": true
+  },
+  {
+   "start": 80.49,
+   "end": 88.38,
+   "text": "The assistant also helps with small problems, for example testing your urine or doing a blood pressure measurement [bloeddruk meten].",
+   "bulletStart": false
+  },
+  {
+   "start": 88.38,
+   "end": 94.4,
+   "text": "The GP practice support worker [POH, praktijkondersteuner huisarts] helps with mild mental complaints.",
+   "bulletStart": true
+  },
+  {
+   "start": 94.4,
+   "end": 97.98,
+   "text": "There you can talk about your complaints five to ten times.",
+   "bulletStart": false
+  },
+  {
+   "start": 97.98,
+   "end": 103.69,
+   "text": "You can also go to the praktijkondersteuner for a chronic [chronische] illness such as diabetes.",
+   "bulletStart": false
+  },
+  {
+   "start": 103.69,
+   "end": 104.24,
+   "text": "Referral.",
+   "bulletStart": false
+  },
+  {
+   "start": 104.24,
+   "end": 107.82,
+   "text": "The huisarts can refer you to a specialist in the hospital.",
+   "bulletStart": false
+  },
+  {
+   "start": 107.82,
+   "end": 113.77,
+   "text": "Without a referral [verwijzing] you cannot make an appointment with a specialist in the Netherlands.",
+   "bulletStart": false
+  },
+  {
+   "start": 113.77,
+   "end": 124.71,
+   "text": "With mental complaints you first talk to a POH; if that does not help, you can get a referral to mental health care [geestelijke gezondheidszorg, GGZ], for example a therapist [therapeut].",
+   "bulletStart": false
+  },
+  {
+   "start": 124.71,
+   "end": 129.57,
+   "text": "You can go to the physiotherapist [fysiotherapeut] on your own, without a referral.",
+   "bulletStart": false
+  },
+  {
+   "start": 129.57,
+   "end": 133.94,
+   "text": "With a referral you sometimes first end up on a waiting list [wachtlijst].",
+   "bulletStart": false
+  },
+  {
+   "start": 133.94,
+   "end": 134.55,
+   "text": "Medicines.",
+   "bulletStart": false
+  },
+  {
+   "start": 134.55,
+   "end": 141.11,
+   "text": "The huisarts can prescribe [voorschrijven] medicines and sends a prescription [recept] to the pharmacy [apotheek].",
+   "bulletStart": false
+  },
+  {
+   "start": 141.11,
+   "end": 146.45,
+   "text": "Many medicines, for example antibiotics [antibiotica], you can only get with a prescription.",
+   "bulletStart": false
+  },
+  {
+   "start": 146.45,
+   "end": 153.5,
+   "text": "Paracetamol you can buy without a prescription: at the pharmacy, the drugstore [drogist] and often also the supermarket.",
+   "bulletStart": false
+  },
+  {
+   "start": 153.5,
+   "end": 155.87,
+   "text": "Professional confidentiality and files.",
+   "bulletStart": false
+  },
+  {
+   "start": 155.87,
+   "end": 161.27,
+   "text": "Everyone who works in health care has professional/medical confidentiality [beroepsgeheim].",
+   "bulletStart": false
+  },
+  {
+   "start": 161.27,
+   "end": 168.38,
+   "text": "No one may simply pass on [doorgeven] medical information to others — that is only allowed with your consent [toestemming].",
+   "bulletStart": false
+  },
+  {
+   "start": 168.38,
+   "end": 173.06,
+   "text": "You can view your own file online; for that you need a Dutch digital ID [DigiD].",
+   "bulletStart": false
+  },
+  {
+   "start": 173.06,
+   "end": 173.85,
+   "text": "The language.",
+   "bulletStart": false
+  },
+  {
+   "start": 173.85,
+   "end": 176.16,
+   "text": "Don't you speak Dutch or English well?",
+   "bulletStart": false
+  },
+  {
+   "start": 176.16,
+   "end": 178.89,
+   "text": "You can bring an adult who speaks Dutch well.",
+   "bulletStart": false
+  },
+  {
+   "start": 178.89,
+   "end": 188.61,
+   "text": "You also have the right [recht] to an interpreter [tolk]: together with the doctor you call the interpreter centre [tolkencentrum] and get an interpreter on the phone.",
+   "bulletStart": false
+  },
+  {
+   "start": 188.61,
+   "end": 191.89,
+   "text": "An interpreter is free for the doctor and the patient.",
+   "bulletStart": false
+  },
+  {
+   "start": 191.89,
+   "end": 192.62,
+   "text": "The dentist.",
+   "bulletStart": false
+  },
+  {
+   "start": 192.62,
+   "end": 197.84,
+   "text": "You can choose your own dental practice [tandartsenpraktijk] (there does have to be room).",
+   "bulletStart": false
+  },
+  {
+   "start": 197.84,
+   "end": 202.09,
+   "text": "On the phone you often first get a dental assistant [tandartsassistent].",
+   "bulletStart": false
+  },
+  {
+   "start": 202.09,
+   "end": 211.15,
+   "text": "Dental hygienists [Mondhygiënisten] also work in the practice: they thoroughly clean your teeth [gebit], which keeps your teeth and gums [tandvlees] healthy.",
+   "bulletStart": false
+  },
+  {
+   "start": 211.15,
+   "end": 214.79,
+   "text": "Usually you go to the dental hygienist once or twice a year.",
+   "bulletStart": false
+  },
+  {
+   "start": 214.79,
+   "end": 221.17,
+   "text": "Even without complaints you go to the dentist for a check-up [controle]: at least once a year, usually twice.",
+   "bulletStart": false
+  },
+  {
+   "start": 221.17,
+   "end": 224.14,
+   "text": "Sometimes the dentist takes X-rays [röntgenfoto's].",
+   "bulletStart": false
+  },
+  {
+   "start": 224.14,
+   "end": 225.42,
+   "text": "Do you have a cavity?",
+   "bulletStart": false
+  },
+  {
+   "start": 225.42,
+   "end": 227.79,
+   "text": "Then a treatment [behandeling] is needed.",
+   "bulletStart": false
+  }
+ ],
+ "estimated": true
+}

@@ -1,0 +1,143 @@
+{
+ "lines": [
+  {
+   "start": 0.0,
+   "end": 1.42,
+   "text": "The emergency number 112.",
+   "bulletStart": false
+  },
+  {
+   "start": 1.42,
+   "end": 5.61,
+   "text": "In case of danger to life [levensgevaar] you call 112, day and night.",
+   "bulletStart": false
+  },
+  {
+   "start": 5.61,
+   "end": 11.08,
+   "text": "For example: an accident [ongeluk] has happened and someone is no longer responding.",
+   "bulletStart": false
+  },
+  {
+   "start": 11.08,
+   "end": 15.87,
+   "text": "You say where an ambulance is needed; it arrives within fifteen minutes.",
+   "bulletStart": false
+  },
+  {
+   "start": 15.87,
+   "end": 20.06,
+   "text": "The operator tells you what to do until the ambulance arrives.",
+   "bulletStart": false
+  },
+  {
+   "start": 20.06,
+   "end": 24.05,
+   "text": "You also call 112 for the police or the fire brigade [brandweer].",
+   "bulletStart": false
+  },
+  {
+   "start": 24.05,
+   "end": 26.14,
+   "text": "Needing your huisarts urgently.",
+   "bulletStart": false
+  },
+  {
+   "start": 26.14,
+   "end": 33.37,
+   "text": "You call your own huisarts or dentist on working days between 8:00 and 17:00 — those are the office hours [kantoortijden].",
+   "bulletStart": false
+  },
+  {
+   "start": 33.37,
+   "end": 40.39,
+   "text": "Is help needed quickly but there is no danger to life (for example: your child has fallen down the stairs)?",
+   "bulletStart": false
+  },
+  {
+   "start": 40.39,
+   "end": 46.67,
+   "text": "You get a phone menu [keuzemenu] and can key in [intoetsen] a number for urgency/emergency [spoed].",
+   "bulletStart": false
+  },
+  {
+   "start": 46.67,
+   "end": 49.44,
+   "text": "The assistant can also call an ambulance.",
+   "bulletStart": false
+  },
+  {
+   "start": 49.44,
+   "end": 50.86,
+   "text": "Outside office hours.",
+   "bulletStart": false
+  },
+  {
+   "start": 50.86,
+   "end": 58.09,
+   "text": "Do you need a doctor outside office hours, for example if your child has a high fever [koorts] at the weekend?",
+   "bulletStart": false
+  },
+  {
+   "start": 58.09,
+   "end": 64.17,
+   "text": "Then you call the out-of-hours GP service [huisartsenpost, also called huisartsen-spoedpost].",
+   "bulletStart": false
+  },
+  {
+   "start": 64.17,
+   "end": 67.07,
+   "text": "Doctors work there, usually in the hospital.",
+   "bulletStart": false
+  },
+  {
+   "start": 67.07,
+   "end": 73.83,
+   "text": "You find the number on your huisarts's website or on Google with your place of residence [woonplaats].",
+   "bulletStart": false
+  },
+  {
+   "start": 73.83,
+   "end": 82.81,
+   "text": "If you call your own huisarts outside office hours, you get an answering machine [antwoordapparaat] with information and a phone number.",
+   "bulletStart": false
+  },
+  {
+   "start": 82.81,
+   "end": 86.19,
+   "text": "For the dentist there is also an emergency number.",
+   "bulletStart": false
+  },
+  {
+   "start": 86.19,
+   "end": 89.09,
+   "text": "Emergency department [Spoedeisende Hulp, SEH].",
+   "bulletStart": false
+  },
+  {
+   "start": 89.09,
+   "end": 97.94,
+   "text": "The huisarts or huisartsenpost sometimes sends you urgently to the hospital, to the emergency department [afdeling Spoedeisende Hulp].",
+   "bulletStart": false
+  },
+  {
+   "start": 97.94,
+   "end": 103.95,
+   "text": "In an emergency situation [noodsituatie] you can also go to the SEH without an appointment.",
+   "bulletStart": false
+  },
+  {
+   "start": 103.95,
+   "end": 108.95,
+   "text": "People who need help quickly are seen first; otherwise you may wait longer.",
+   "bulletStart": false
+  },
+  {
+   "start": 108.95,
+   "end": 120.77,
+   "text": "In summary: danger to life → 112; urgent help during office hours → huisarts, number for spoed; urgent help outside office hours → huisartsenpost; emergency situation → go to the SEH yourself.",
+   "bulletStart": false
+  }
+ ],
+ "estimated": true
+}

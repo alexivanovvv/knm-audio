@@ -28,8 +28,10 @@ app te installeren.
 - Afspeelsnelheid (0.75× tot 2×), ±15s spoelen, toetsenbord-shortcuts
   (spatie/pijltjes)
 - Ondertitels/lyrics-modus (CC-knop): meelezen met gesynchroniseerde
-  regels, tik op een regel om te spoelen. Beschikbaar voor 23/36 taken
-  (zie `BACKLOG.md`, T-05); op de rest is de knop uitgeschakeld.
+  regels, tik op een regel om te spoelen, `[NL termen]` gemarkeerd.
+  23/36 taken hebben woord-nauwkeurige forced-alignment timing; de
+  overige 13 gebruiken een schatting (proportioneel aan de tekstlengte)
+  met een duidelijke melding in de drawer — zie `BACKLOG.md`, T-05.
 - Service worker: audiofragmenten worden na eerste keer afspelen offline
   gecachet
 

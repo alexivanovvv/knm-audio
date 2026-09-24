@@ -1,0 +1,281 @@
+{
+ "lines": [
+  {
+   "start": 0.0,
+   "end": 4.95,
+   "text": "The Netherlands has many public holidays [feestdagen] and special days.",
+   "bulletStart": false
+  },
+  {
+   "start": 4.95,
+   "end": 8.53,
+   "text": "The most important ones, in order through the year:",
+   "bulletStart": false
+  },
+  {
+   "start": 8.53,
+   "end": 12.48,
+   "text": "Valentine's Day [Valentijnsdag], 14 February: the day of love.",
+   "bulletStart": true
+  },
+  {
+   "start": 12.48,
+   "end": 16.13,
+   "text": "People send each other a card or give a small gift.",
+   "bulletStart": false
+  },
+  {
+   "start": 16.13,
+   "end": 28.83,
+   "text": "Carnival [Carnaval] (three days, from Sunday through Tuesday in February or March, a different date each year): people put on funny costumes, go dancing and usually drink a lot of beer.",
+   "bulletStart": true
+  },
+  {
+   "start": 28.83,
+   "end": 32.12,
+   "text": "Mainly in the south [zuiden] of the Netherlands.",
+   "bulletStart": false
+  },
+  {
+   "start": 32.12,
+   "end": 36.93,
+   "text": "Around this date schools have their spring break [voorjaarsvakantie].",
+   "bulletStart": false
+  },
+  {
+   "start": 36.93,
+   "end": 43.74,
+   "text": "Easter [Pasen], a Sunday and Monday in March or April: Christians celebrate that Jesus lives again.",
+   "bulletStart": true
+  },
+  {
+   "start": 43.74,
+   "end": 46.61,
+   "text": "It is also a spring festival [lentefeest].",
+   "bulletStart": false
+  },
+  {
+   "start": 46.61,
+   "end": 50.62,
+   "text": "People eat lots of eggs [eieren], including chocolate ones.",
+   "bulletStart": false
+  },
+  {
+   "start": 50.62,
+   "end": 54.28,
+   "text": "Almost everyone has an extra day off on the Monday.",
+   "bulletStart": false
+  },
+  {
+   "start": 54.28,
+   "end": 62.6,
+   "text": "Eid al-Fitr, also known as \"Sugar Feast\" [Suikerfeest]: a celebration for Muslims after Ramadan, a month of fasting [vasten].",
+   "bulletStart": true
+  },
+  {
+   "start": 62.6,
+   "end": 64.53,
+   "text": "They eat many sweet things.",
+   "bulletStart": false
+  },
+  {
+   "start": 64.53,
+   "end": 69.12,
+   "text": "King's Day [Koningsdag], 27 April: the birthday [verjaardag] of the king.",
+   "bulletStart": true
+  },
+  {
+   "start": 69.12,
+   "end": 74.29,
+   "text": "There are markets where everyone may sell second-hand [tweedehands] items.",
+   "bulletStart": false
+  },
+  {
+   "start": 74.29,
+   "end": 79.95,
+   "text": "Everything on the streets is orange [oranje] and many people hang a flag outside.",
+   "bulletStart": false
+  },
+  {
+   "start": 79.95,
+   "end": 83.03,
+   "text": "For most Dutch people an important day off.",
+   "bulletStart": false
+  },
+  {
+   "start": 83.03,
+   "end": 90.42,
+   "text": "Remembrance of the Dead [Dodenherdenking], 4 May: at 8:00 pm everyone is silent for two minutes [twee minuten stil].",
+   "bulletStart": true
+  },
+  {
+   "start": 90.42,
+   "end": 94.79,
+   "text": "People remember all those who died [overleden] in a war [oorlog].",
+   "bulletStart": false
+  },
+  {
+   "start": 94.79,
+   "end": 99.38,
+   "text": "In the evening the flag hangs at half-mast [halfstok] — only on 4 May.",
+   "bulletStart": false
+  },
+  {
+   "start": 99.38,
+   "end": 108.06,
+   "text": "Liberation Day [Bevrijdingsdag], 5 May: we celebrate the end of the Second World War [Tweede Wereldoorlog] in the Netherlands in 1945.",
+   "bulletStart": true
+  },
+  {
+   "start": 108.06,
+   "end": 112.5,
+   "text": "5 May is a day off once every five years [één keer in de vijf jaar].",
+   "bulletStart": false
+  },
+  {
+   "start": 112.5,
+   "end": 116.02,
+   "text": "Around this date there is the May school holiday.",
+   "bulletStart": false
+  },
+  {
+   "start": 116.02,
+   "end": 119.39,
+   "text": "On 4 and 5 May we think about our freedom [vrijheid].",
+   "bulletStart": false
+  },
+  {
+   "start": 119.39,
+   "end": 128.78,
+   "text": "Mother's Day [Moederdag], second Sunday in May, and Father's Day [Vaderdag], third Sunday in June: mothers and fathers receive small gifts.",
+   "bulletStart": true
+  },
+  {
+   "start": 128.78,
+   "end": 135.66,
+   "text": "Ascension Day [Hemelvaart], a Thursday in May: Christians celebrate that Jesus went to heaven [hemel].",
+   "bulletStart": true
+  },
+  {
+   "start": 135.66,
+   "end": 137.74,
+   "text": "Most people have the day off.",
+   "bulletStart": false
+  },
+  {
+   "start": 137.74,
+   "end": 145.13,
+   "text": "Pentecost [Pinksteren], a Sunday and Monday in May or June: Christians celebrate that God came into people.",
+   "bulletStart": true
+  },
+  {
+   "start": 145.13,
+   "end": 147.14,
+   "text": "Extra day off on the Monday.",
+   "bulletStart": false
+  },
+  {
+   "start": 147.14,
+   "end": 152.01,
+   "text": "Keti Koti (1 July): day of freedom [vrijheid], the end of slavery [slavernij].",
+   "bulletStart": true
+  },
+  {
+   "start": 152.01,
+   "end": 156.75,
+   "text": "People wear traditional [traditionele] Surinamese clothes and dance.",
+   "bulletStart": false
+  },
+  {
+   "start": 156.75,
+   "end": 161.98,
+   "text": "It used to be only a Surinamese celebration; now more people celebrate it.",
+   "bulletStart": false
+  },
+  {
+   "start": 161.98,
+   "end": 168.79,
+   "text": "Sinterklaas (5 December, especially in the evening): the birthday of Sinterklaas (as children believe).",
+   "bulletStart": true
+  },
+  {
+   "start": 168.79,
+   "end": 171.95,
+   "text": "People give presents, especially to children.",
+   "bulletStart": false
+  },
+  {
+   "start": 171.95,
+   "end": 177.18,
+   "text": "Christmas [Kerstmis], 25 and 26 December: Christians celebrate that Jesus was born.",
+   "bulletStart": true
+  },
+  {
+   "start": 177.18,
+   "end": 184.35,
+   "text": "It is a winter celebration: many people put up a Christmas tree [kerstboom] at home and make nice food.",
+   "bulletStart": false
+  },
+  {
+   "start": 184.35,
+   "end": 188.3,
+   "text": "Around this date there is the Christmas school holiday.",
+   "bulletStart": false
+  },
+  {
+   "start": 188.3,
+   "end": 201.78,
+   "text": "New Year's Eve and New Year [Oud en nieuw] (oudjaar 31 December, nieuwjaar 1 January): 31 December is a cozy evening, there is sometimes fireworks [vuurwerk] and people eat Dutch doughnut balls [oliebollen].",
+   "bulletStart": true
+  },
+  {
+   "start": 201.78,
+   "end": 206.94,
+   "text": "The Dutch flag [vlag] has the colors red, white and blue [rood, wit en blauw].",
+   "bulletStart": false
+  },
+  {
+   "start": 206.94,
+   "end": 211.46,
+   "text": "On Koningsdag people often add an orange pennant [oranje wimpel].",
+   "bulletStart": false
+  },
+  {
+   "start": 211.46,
+   "end": 215.76,
+   "text": "The Dutch national anthem [volkslied] is called 'het Wilhelmus'.",
+   "bulletStart": false
+  },
+  {
+   "start": 215.76,
+   "end": 225.51,
+   "text": "People sing it on Koningsdag, on 4 and 5 May, and at sports matches, for example when the Dutch national football team [Nederlands elftal] plays.",
+   "bulletStart": false
+  },
+  {
+   "start": 225.51,
+   "end": 228.16,
+   "text": "Not everyone celebrates all holidays.",
+   "bulletStart": false
+  },
+  {
+   "start": 228.16,
+   "end": 233.04,
+   "text": "For people without religion, Christian holidays are not so important.",
+   "bulletStart": false
+  },
+  {
+   "start": 233.04,
+   "end": 238.85,
+   "text": "On Christian holidays almost everyone has the day off; sometimes shops are closed.",
+   "bulletStart": false
+  },
+  {
+   "start": 238.85,
+   "end": 256.56,
+   "text": "People usually celebrate holidays at home [thuis], with family and sometimes friends, but you notice [merkt] the holiday almost everywhere: in shops, on the street, at schools and at work (for example little lights [lichtjes] and Christmas music for Kerstmis).",
+   "bulletStart": false
+  }
+ ],
+ "estimated": true
+}

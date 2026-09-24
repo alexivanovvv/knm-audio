@@ -1,0 +1,77 @@
+{
+ "lines": [
+  {
+   "start": 0.0,
+   "end": 11.04,
+   "text": "In the Netherlands there are many organizations [organisaties] and associations/clubs [verenigingen] where you can be active in your free time:",
+   "bulletStart": false
+  },
+  {
+   "start": 11.04,
+   "end": 16.52,
+   "text": "Sports clubs [Sportverenigingen]: a football club, a swimming club, a gym.",
+   "bulletStart": true
+  },
+  {
+   "start": 16.52,
+   "end": 26.68,
+   "text": "Clubs for a hobby or cultural activity [culturele activiteit]: a dance school, photo club, hobby club, choir [koor], yoga school, theater.",
+   "bulletStart": true
+  },
+  {
+   "start": 26.68,
+   "end": 33.03,
+   "text": "Courses [Cursussen]: a language course, music course, cooking course, painting course.",
+   "bulletStart": true
+  },
+  {
+   "start": 33.03,
+   "end": 41.61,
+   "text": "Or a language café [taalcafé] in the library (usually free [gratis]), or an activity in a community center [buurthuis].",
+   "bulletStart": false
+  },
+  {
+   "start": 41.61,
+   "end": 50.5,
+   "text": "Places for your faith [geloof]: a church or mosque, where you can also meet [ontmoeten] people with the same religion.",
+   "bulletStart": true
+  },
+  {
+   "start": 50.5,
+   "end": 57.41,
+   "text": "You can become a member [lid], but you can also do volunteer work [vrijwilligerswerk] there.",
+   "bulletStart": false
+  },
+  {
+   "start": 57.41,
+   "end": 63.2,
+   "text": "Almost half of all people in the Netherlands do volunteer work somewhere.",
+   "bulletStart": false
+  },
+  {
+   "start": 63.2,
+   "end": 78.37,
+   "text": "Examples: trainer at a sports club, volunteer [vrijwilliger] at a church or mosque (visiting people), pouring/serving [schenken] coffee and tea in a community center, or helping at your child's school.",
+   "bulletStart": false
+  },
+  {
+   "start": 78.37,
+   "end": 79.72,
+   "text": "Why is this good?",
+   "bulletStart": false
+  },
+  {
+   "start": 79.72,
+   "end": 88.29,
+   "text": "You can meet other people, practice the Dutch language, do something for others — and you get a network [netwerk].",
+   "bulletStart": false
+  },
+  {
+   "start": 88.29,
+   "end": 94.49,
+   "text": "A network can help you, for example when you go to apply for jobs [solliciteren].",
+   "bulletStart": false
+  }
+ ],
+ "estimated": true
+}
