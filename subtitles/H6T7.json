@@ -1,0 +1,160 @@
+{
+ "lines": [
+  {
+   "start": 0.0,
+   "end": 2.73,
+   "text": "Organizations for your health [gezondheid]:",
+   "bulletStart": false
+  },
+  {
+   "start": 2.73,
+   "end": 11.69,
+   "text": "The Municipal Health Service [GGD, Gemeentelijke Gezondheidsdienst] protects people's health and belongs to the municipality.",
+   "bulletStart": true
+  },
+  {
+   "start": 11.69,
+   "end": 19.99,
+   "text": "You can get vaccinations [vaccinaties] there; the child health clinic [consultatiebureau] is also part of the GGD.",
+   "bulletStart": false
+  },
+  {
+   "start": 19.99,
+   "end": 28.35,
+   "text": "Social work [Maatschappelijk werk] helps with problems such as relationship problems, problems at work or loneliness [eenzaamheid].",
+   "bulletStart": true
+  },
+  {
+   "start": 28.35,
+   "end": 32.96,
+   "text": "You can contact them yourself or get a referral [verwijzing] from your GP.",
+   "bulletStart": false
+  },
+  {
+   "start": 32.96,
+   "end": 37.9,
+   "text": "Health insurers reimburse [vergoeden] sessions with social work.",
+   "bulletStart": false
+  },
+  {
+   "start": 37.9,
+   "end": 41.64,
+   "text": "Organizations for financial problems [financiële problemen]:",
+   "bulletStart": false
+  },
+  {
+   "start": 41.64,
+   "end": 51.31,
+   "text": "The National Institute for Budget Information [Nibud, Nationaal Instituut voor Budgetvoorlichting] helps with financial advice or financial problems.",
+   "bulletStart": true
+  },
+  {
+   "start": 51.31,
+   "end": 59.39,
+   "text": "With debts [schulden] the municipality can help; there are also organizations for debt assistance [schuldhulpverlening].",
+   "bulletStart": true
+  },
+  {
+   "start": 59.39,
+   "end": 67.92,
+   "text": "In every larger town there is a food bank [voedselbank] or clothing bank [kledingbank]: free food or clothing for people with a low income.",
+   "bulletStart": true
+  },
+  {
+   "start": 67.92,
+   "end": 83.27,
+   "text": "Legal help [Juridische hulp]: at the legal aid desk [Juridisch Loket] you can ask questions about your rights and duties, for example with problems with your residence permit, a complaint [klacht] against the government, a divorce, or punishment.",
+   "bulletStart": false
+  },
+  {
+   "start": 83.27,
+   "end": 85.87,
+   "text": "It is free if you have a low income.",
+   "bulletStart": false
+  },
+  {
+   "start": 85.87,
+   "end": 92.88,
+   "text": "For a court case with a lawyer [advocaat] you pay part of the costs yourself — with a low income that is not much.",
+   "bulletStart": false
+  },
+  {
+   "start": 92.88,
+   "end": 97.25,
+   "text": "For refugees there are organizations such as Vluchtelingenwerk.",
+   "bulletStart": false
+  },
+  {
+   "start": 97.25,
+   "end": 100.45,
+   "text": "People who work for the government must follow rules.",
+   "bulletStart": false
+  },
+  {
+   "start": 100.45,
+   "end": 110.18,
+   "text": "They may not ask for money or anything else in return when they do something for someone — that is called corruption [corruptie] and it is forbidden [verboden].",
+   "bulletStart": false
+  },
+  {
+   "start": 110.18,
+   "end": 120.35,
+   "text": "Discrimination is also forbidden, not only for the government but also for other institutions, such as your school, your landlord [huisbaas] or the hospital.",
+   "bulletStart": false
+  },
+  {
+   "start": 120.35,
+   "end": 130.24,
+   "text": "Complaints against the government or other institutions [Klachten tegen de overheid of andere instanties]: if you feel you have been badly treated [behandeld], you can object:",
+   "bulletStart": false
+  },
+  {
+   "start": 130.24,
+   "end": 133.58,
+   "text": "First submit [indienen] a complaint yourself.",
+   "bulletStart": true
+  },
+  {
+   "start": 133.58,
+   "end": 135.15,
+   "text": "Does that not help?",
+   "bulletStart": true
+  },
+  {
+   "start": 135.15,
+   "end": 147.84,
+   "text": "Then you can go to an ombudsman: the municipal ombudsman [gemeentelijke ombudsman] for complaints against the municipality, the Nationale ombudsman for other complaints, for example about the Belastingdienst.",
+   "bulletStart": false
+  },
+  {
+   "start": 147.84,
+   "end": 151.33,
+   "text": "The ombudsman can help you free of charge [gratis].",
+   "bulletStart": false
+  },
+  {
+   "start": 151.33,
+   "end": 154.32,
+   "text": "The Juridisch Loket can also help.",
+   "bulletStart": true
+  },
+  {
+   "start": 154.32,
+   "end": 161.38,
+   "text": "Organizations must have a complaints committee [klachtencommissie] and confidential advisers [vertrouwenspersonen].",
+   "bulletStart": true
+  },
+  {
+   "start": 161.38,
+   "end": 164.49,
+   "text": "If necessary, you can file a report with the police.",
+   "bulletStart": true
+  },
+  {
+   "start": 164.49,
+   "end": 168.51,
+   "text": "There are also reporting points [meldpunten] to report discrimination.",
+   "bulletStart": false
+  }
+ ]
+}

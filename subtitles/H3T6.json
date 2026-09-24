@@ -1,0 +1,118 @@
+{
+ "lines": [
+  {
+   "start": 0.0,
+   "end": 5.2,
+   "text": "Energy contracts: in your house you need electricity and usually gas.",
+   "bulletStart": false
+  },
+  {
+   "start": 5.2,
+   "end": 8.71,
+   "text": "You choose your own energy supplier [energieleverancier].",
+   "bulletStart": false
+  },
+  {
+   "start": 8.71,
+   "end": 24.08,
+   "text": "There are two kinds of contracts: a fixed [vast] contract (you pay the same amount for one or three years, even if prices fall [dalen] or rise [stijgen]) and a variable [variabel] contract (a different amount every month).",
+   "bulletStart": false
+  },
+  {
+   "start": 24.08,
+   "end": 27.24,
+   "text": "The energy bill: every month you pay an amount.",
+   "bulletStart": false
+  },
+  {
+   "start": 27.24,
+   "end": 36.45,
+   "text": "Once a year you get an annual statement [jaarrekening]: it shows how much energy you have used and how much you must pay extra or get back.",
+   "bulletStart": false
+  },
+  {
+   "start": 36.45,
+   "end": 46.0,
+   "text": "The meter reading: sometimes you must report the meter reading [meterstand] of your gas meter [gasmeter] and electricity meter [elektriciteitsmeter].",
+   "bulletStart": false
+  },
+  {
+   "start": 46.0,
+   "end": 49.14,
+   "text": "These are usually in the meter cupboard [meterkast].",
+   "bulletStart": false
+  },
+  {
+   "start": 49.14,
+   "end": 58.07,
+   "text": "You must do this when you move, when you switch to another supplier, and sometimes once a year — via the internet, by phone or on a card.",
+   "bulletStart": false
+  },
+  {
+   "start": 58.07,
+   "end": 68.8,
+   "text": "If you have a 'smart meter' ['slimme meter'], this is not necessary; you must first give permission [toestemming] to your supplier to read your energy consumption [energieverbruik].",
+   "bulletStart": false
+  },
+  {
+   "start": 68.8,
+   "end": 73.99,
+   "text": "Contact with the energy supplier: needed when moving or changing supplier.",
+   "bulletStart": false
+  },
+  {
+   "start": 73.99,
+   "end": 80.76,
+   "text": "In case of an outage/malfunction [storing] there is also a national outage number [nationaal storingsnummer].",
+   "bulletStart": false
+  },
+  {
+   "start": 80.76,
+   "end": 88.32,
+   "text": "First check what the problem is, but take no risk [risico]: a problem with gas or electricity can be dangerous.",
+   "bulletStart": false
+  },
+  {
+   "start": 88.32,
+   "end": 96.39,
+   "text": "Water: the water comes from a separate company [bedrijf] that serves your region [regio] — you cannot choose this yourself.",
+   "bulletStart": false
+  },
+  {
+   "start": 96.39,
+   "end": 103.43,
+   "text": "You have a separate water meter [watermeter] (usually in the meter cupboard) and report the meter reading once a year.",
+   "bulletStart": false
+  },
+  {
+   "start": 103.43,
+   "end": 133.83,
+   "text": "Saving water and energy [Water en energie besparen] is better for the environment and costs less: turn the heating off an hour earlier in the evening, set the heating one degree [graad] lower and wear warm clothes, turn lights off, shower shorter, turn the tap off while brushing your teeth, buy energy-efficient [energiezuinige] appliances (A-label; A+++ is the most efficient [zuinigst]), and wash at 40 degrees with a full washing machine.",
+   "bulletStart": false
+  },
+  {
+   "start": 133.83,
+   "end": 148.52,
+   "text": "Maintenance [Onderhoud]: in an owner-occupied home you pay the maintenance costs [onderhoudskosten] yourself, for example cleaning the heating boiler [verwarmingsketel] or hiring a plumber [loodgieter] or electrician [elektricien].",
+   "bulletStart": false
+  },
+  {
+   "start": 148.52,
+   "end": 155.68,
+   "text": "In a rental home the landlord does this; small problems (such as a new toilet seat) you solve yourself.",
+   "bulletStart": false
+  },
+  {
+   "start": 155.68,
+   "end": 164.39,
+   "text": "Internet, telephone and television: for this you choose a provider yourself; there are websites to compare [vergelijken] providers.",
+   "bulletStart": false
+  },
+  {
+   "start": 164.39,
+   "end": 173.11,
+   "text": "Insurance [Verzekeringen]: for living there are also insurance policies, for example home insurance [woonhuisverzekering] if you buy a house.",
+   "bulletStart": false
+  }
+ ]
+}

@@ -1,0 +1,208 @@
+{
+ "lines": [
+  {
+   "start": 0.0,
+   "end": 2.13,
+   "text": "The Netherlands lies in Europe.",
+   "bulletStart": false
+  },
+  {
+   "start": 2.13,
+   "end": 6.1,
+   "text": "The neighboring countries [buurlanden] are Germany and Belgium.",
+   "bulletStart": false
+  },
+  {
+   "start": 6.1,
+   "end": 11.16,
+   "text": "In the east the Netherlands borders [grenst] Germany, in the south Belgium.",
+   "bulletStart": false
+  },
+  {
+   "start": 11.16,
+   "end": 15.82,
+   "text": "The Netherlands has about 18 million inhabitants [18 miljoen inwoners].",
+   "bulletStart": false
+  },
+  {
+   "start": 15.82,
+   "end": 19.21,
+   "text": "The Netherlands has twelve provinces [twaalf provincies].",
+   "bulletStart": false
+  },
+  {
+   "start": 19.21,
+   "end": 21.62,
+   "text": "Each province has a capital:",
+   "bulletStart": false
+  },
+  {
+   "start": 21.62,
+   "end": 25.23,
+   "text": "The province of Groningen has Groningen as its capital.",
+   "bulletStart": true
+  },
+  {
+   "start": 25.23,
+   "end": 29.05,
+   "text": "The province of Friesland has Leeuwarden as its capital.",
+   "bulletStart": true
+  },
+  {
+   "start": 29.05,
+   "end": 32.65,
+   "text": "The province of Drenthe has Assen as its capital.",
+   "bulletStart": true
+  },
+  {
+   "start": 32.65,
+   "end": 36.41,
+   "text": "The province of Overijssel has Zwolle as its capital.",
+   "bulletStart": true
+  },
+  {
+   "start": 36.41,
+   "end": 40.09,
+   "text": "The province of Flevoland has Lelystad as its capital.",
+   "bulletStart": true
+  },
+  {
+   "start": 40.09,
+   "end": 43.55,
+   "text": "The province of Gelderland has Arnhem as its capital.",
+   "bulletStart": true
+  },
+  {
+   "start": 43.55,
+   "end": 46.89,
+   "text": "The province of Utrecht has Utrecht as its capital.",
+   "bulletStart": true
+  },
+  {
+   "start": 46.89,
+   "end": 50.72,
+   "text": "The province of Noord-Holland has Haarlem as its capital.",
+   "bulletStart": true
+  },
+  {
+   "start": 50.72,
+   "end": 54.9,
+   "text": "The province of Zuid-Holland has Den Haag as its capital.",
+   "bulletStart": true
+  },
+  {
+   "start": 54.9,
+   "end": 58.48,
+   "text": "The province of Zeeland has Middelburg as its capital.",
+   "bulletStart": true
+  },
+  {
+   "start": 58.48,
+   "end": 63.24,
+   "text": "The province of Noord-Brabant has 's-Hertogenbosch as its capital.",
+   "bulletStart": true
+  },
+  {
+   "start": 63.24,
+   "end": 66.52,
+   "text": "The province of Limburg has Maastricht as its capital.",
+   "bulletStart": true
+  },
+  {
+   "start": 66.52,
+   "end": 69.2,
+   "text": "The four largest cities lie in the west.",
+   "bulletStart": false
+  },
+  {
+   "start": 69.2,
+   "end": 71.81,
+   "text": "That area is called de Randstad.",
+   "bulletStart": false
+  },
+  {
+   "start": 71.81,
+   "end": 74.47,
+   "text": "It is busy there; many people live there.",
+   "bulletStart": false
+  },
+  {
+   "start": 74.47,
+   "end": 78.94,
+   "text": "Amsterdam is the capital [hoofdstad] and the largest city.",
+   "bulletStart": true
+  },
+  {
+   "start": 78.94,
+   "end": 83.27,
+   "text": "Rotterdam is the second city, with the largest port [haven] in Europe.",
+   "bulletStart": true
+  },
+  {
+   "start": 83.27,
+   "end": 84.96,
+   "text": "Den Haag is the third city.",
+   "bulletStart": true
+  },
+  {
+   "start": 84.96,
+   "end": 89.66,
+   "text": "The government [regering] is not in Amsterdam, but in Den Haag.",
+   "bulletStart": false
+  },
+  {
+   "start": 89.66,
+   "end": 93.55,
+   "text": "Utrecht is the fourth city and lies in the middle of the Netherlands.",
+   "bulletStart": true
+  },
+  {
+   "start": 93.55,
+   "end": 100.78,
+   "text": "The Netherlands belongs to the European Union [Europese Unie (EU)]: countries in Europe that work together.",
+   "bulletStart": false
+  },
+  {
+   "start": 100.78,
+   "end": 106.91,
+   "text": "Residents of the EU may live, work or study [studeren] in other EU countries.",
+   "bulletStart": false
+  },
+  {
+   "start": 106.91,
+   "end": 112.13,
+   "text": "They may travel freely, so they do not need a visa [visum] within the EU.",
+   "bulletStart": false
+  },
+  {
+   "start": 112.13,
+   "end": 116.25,
+   "text": "They may also buy goods in other countries and bring them to the Netherlands.",
+   "bulletStart": false
+  },
+  {
+   "start": 116.25,
+   "end": 124.4,
+   "text": "The EU countries make agreements, for example about money: since 2002 people in many countries pay with the euro.",
+   "bulletStart": false
+  },
+  {
+   "start": 124.4,
+   "end": 131.19,
+   "text": "There are also agreements about the environment [milieu] and about taking in [opvangen] refugees [vluchtelingen].",
+   "bulletStart": false
+  },
+  {
+   "start": 131.19,
+   "end": 137.28,
+   "text": "The European Parliament [Europees Parlement] decides on rules and agreements within the EU.",
+   "bulletStart": false
+  },
+  {
+   "start": 137.28,
+   "end": 143.53,
+   "text": "The Netherlands must keep to those agreements and cannot simply say: we no longer want to take in refugees.",
+   "bulletStart": false
+  }
+ ]
+}

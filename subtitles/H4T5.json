@@ -1,0 +1,148 @@
+{
+ "lines": [
+  {
+   "start": 0.0,
+   "end": 2.28,
+   "text": "What does going to school cost?",
+   "bulletStart": false
+  },
+  {
+   "start": 2.28,
+   "end": 6.01,
+   "text": "Education at the primary school and secondary school is free.",
+   "bulletStart": false
+  },
+  {
+   "start": 6.01,
+   "end": 7.59,
+   "text": "But there are costs:",
+   "bulletStart": false
+  },
+  {
+   "start": 7.59,
+   "end": 15.37,
+   "text": "Childcare under the age of four: the costs differ per municipality or daycare centre and are often dependent on your income.",
+   "bulletStart": true
+  },
+  {
+   "start": 15.37,
+   "end": 24.83,
+   "text": "After-school care [buitenschoolse opvang], from age four, you must pay for yourself; sometimes you also pay for care during the lunch break.",
+   "bulletStart": true
+  },
+  {
+   "start": 24.83,
+   "end": 33.59,
+   "text": "The parental contribution [ouderbijdrage]: the school asks parents to pay something for, for example, a school trip or celebrations.",
+   "bulletStart": true
+  },
+  {
+   "start": 33.59,
+   "end": 38.37,
+   "text": "The amount differs per school, but the ouderbijdrage is voluntary [vrijwillig].",
+   "bulletStart": false
+  },
+  {
+   "start": 38.37,
+   "end": 43.92,
+   "text": "Learning materials [lesmateriaal]: you do not have to pay for books.",
+   "bulletStart": true
+  },
+  {
+   "start": 43.92,
+   "end": 52.94,
+   "text": "In secondary education there are sometimes costs for extra materials, for example a laptop or gym clothes [gymkleding] — not mandatory.",
+   "bulletStart": false
+  },
+  {
+   "start": 52.94,
+   "end": 60.93,
+   "text": "Travel costs [reiskosten]: if the school is further away, you pay for public transport [openbaar vervoer, OV] yourself.",
+   "bulletStart": true
+  },
+  {
+   "start": 60.93,
+   "end": 67.09,
+   "text": "School fees [schoolgeld]: until age eighteen, education is free.",
+   "bulletStart": true
+  },
+  {
+   "start": 67.09,
+   "end": 69.21,
+   "text": "Are you older than eighteen?",
+   "bulletStart": false
+  },
+  {
+   "start": 69.21,
+   "end": 75.88,
+   "text": "Then you pay tuition at the mbo [lesgeld] or tuition at the hbo or wo [collegegeld].",
+   "bulletStart": false
+  },
+  {
+   "start": 75.88,
+   "end": 83.89,
+   "text": "Private education [particulier onderwijs]: private schools are usually expensive; parents pay the costs to the school.",
+   "bulletStart": true
+  },
+  {
+   "start": 83.89,
+   "end": 86.5,
+   "text": "Child benefit and childcare allowance.",
+   "bulletStart": false
+  },
+  {
+   "start": 86.5,
+   "end": 95.75,
+   "text": "For all children under eighteen, parents receive child benefit [kinderbijslag]: money from the government [overheid], not dependent on income.",
+   "bulletStart": false
+  },
+  {
+   "start": 95.75,
+   "end": 101.12,
+   "text": "You must apply for it yourself at the SVB (Sociale Verzekeringsbank).",
+   "bulletStart": false
+  },
+  {
+   "start": 101.12,
+   "end": 112.65,
+   "text": "In addition, you can get childcare allowance [kinderopvangtoeslag] for childcare: money you get back from the tax office [Belastingdienst] — this one is dependent on income.",
+   "bulletStart": false
+  },
+  {
+   "start": 112.65,
+   "end": 114.38,
+   "text": "If you cannot pay for school.",
+   "bulletStart": false
+  },
+  {
+   "start": 114.38,
+   "end": 121.64,
+   "text": "You can talk with the school: request to pay less or nothing — your child can then still take part in everything.",
+   "bulletStart": false
+  },
+  {
+   "start": 121.64,
+   "end": 132.49,
+   "text": "You can get money back or borrow [lenen] from DUO (Dienst Uitvoering Onderwijs), a government organisation; adults who continue studying can do this themselves.",
+   "bulletStart": false
+  },
+  {
+   "start": 132.49,
+   "end": 139.36,
+   "text": "The municipality can help, and so can Stichting Leergeld, for example with a bicycle or laptop for a child.",
+   "bulletStart": false
+  },
+  {
+   "start": 139.36,
+   "end": 153.82,
+   "text": "For refugees with an official residence permit, the civic integration course [inburgeringscursus] is free; others can borrow money for the inburgeringscursus from DUO (DUO determines whether your income is low enough).",
+   "bulletStart": false
+  },
+  {
+   "start": 153.82,
+   "end": 162.43,
+   "text": "The UAF helps refugees who want to study — including refugees who do not yet have an official residence permit — with information and sometimes with money.",
+   "bulletStart": false
+  }
+ ]
+}

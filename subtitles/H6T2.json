@@ -1,0 +1,184 @@
+{
+ "lines": [
+  {
+   "start": 0.0,
+   "end": 4.95,
+   "text": "Everyone must be registered [ingeschreven] in the municipality where they live.",
+   "bulletStart": false
+  },
+  {
+   "start": 4.95,
+   "end": 15.72,
+   "text": "The municipality has a lot of information about you digitally: your address, your nationality [nationaliteit], your bsn, the names of your children, your residence permit.",
+   "bulletStart": false
+  },
+  {
+   "start": 15.72,
+   "end": 21.82,
+   "text": "That is called the Personal Records Database [BRP: Basisregistratie Personen].",
+   "bulletStart": false
+  },
+  {
+   "start": 21.82,
+   "end": 28.39,
+   "text": "If something changes, you must report/declare it officially [aangifte doen] at the municipality.",
+   "bulletStart": false
+  },
+  {
+   "start": 28.39,
+   "end": 29.88,
+   "text": "You must do this if:",
+   "bulletStart": false
+  },
+  {
+   "start": 29.88,
+   "end": 33.67,
+   "text": "you get married or officially start to live together [samenwonen];",
+   "bulletStart": true
+  },
+  {
+   "start": 33.67,
+   "end": 36.01,
+   "text": "you are going to divorce [scheiden];",
+   "bulletStart": true
+  },
+  {
+   "start": 36.01,
+   "end": 39.05,
+   "text": "someone who lives with you has died [gestorven];",
+   "bulletStart": true
+  },
+  {
+   "start": 39.05,
+   "end": 40.09,
+   "text": "you move house;",
+   "bulletStart": true
+  },
+  {
+   "start": 40.09,
+   "end": 42.21,
+   "text": "you go to live outside the Netherlands;",
+   "bulletStart": true
+  },
+  {
+   "start": 42.21,
+   "end": 43.61,
+   "text": "you have had a child.",
+   "bulletStart": true
+  },
+  {
+   "start": 43.61,
+   "end": 49.25,
+   "text": "You make the declaration at the city hall [stadhuis] (in a village, the town hall [gemeentehuis]).",
+   "bulletStart": false
+  },
+  {
+   "start": 49.25,
+   "end": 53.91,
+   "text": "You must always show your proof of identity [identiteitsbewijs (ID)].",
+   "bulletStart": false
+  },
+  {
+   "start": 53.91,
+   "end": 59.16,
+   "text": "Sometimes it can be done digitally, for example when moving — then with your DigiD.",
+   "bulletStart": false
+  },
+  {
+   "start": 59.16,
+   "end": 67.45,
+   "text": "When things change, you usually have to report it quickly: a birth, for example, within three days, otherwise you can get a fine [boete].",
+   "bulletStart": false
+  },
+  {
+   "start": 67.45,
+   "end": 79.77,
+   "text": "Changes in your situation also have influence [invloed] on your rights and duties: the amount of your benefit [uitkering] or allowance can change, for example after a divorce or the birth of a child.",
+   "bulletStart": false
+  },
+  {
+   "start": 79.77,
+   "end": 84.98,
+   "text": "You can also officially acknowledge [erkennen] a child at the municipality.",
+   "bulletStart": false
+  },
+  {
+   "start": 84.98,
+   "end": 89.67,
+   "text": "You can do this if you are not the official parent but do take care of the child.",
+   "bulletStart": false
+  },
+  {
+   "start": 89.67,
+   "end": 94.19,
+   "text": "You then get rights and duties for the child, for example paying for the child.",
+   "bulletStart": false
+  },
+  {
+   "start": 94.19,
+   "end": 102.17,
+   "text": "It can be your new partner's child, or your own child if, as a father, you are not married or a registered [geregistreerd] partner.",
+   "bulletStart": false
+  },
+  {
+   "start": 102.17,
+   "end": 104.85,
+   "text": "You get official documents at the municipality:",
+   "bulletStart": false
+  },
+  {
+   "start": 104.85,
+   "end": 107.01,
+   "text": "a driving licence [rijbewijs];",
+   "bulletStart": true
+  },
+  {
+   "start": 107.01,
+   "end": 109.42,
+   "text": "a passport or identity card.",
+   "bulletStart": true
+  },
+  {
+   "start": 109.42,
+   "end": 115.56,
+   "text": "For an adult these are valid for ten years; after that you must apply for [aanvragen] a new one.",
+   "bulletStart": false
+  },
+  {
+   "start": 115.56,
+   "end": 120.29,
+   "text": "You can also get a passport or identity card for a child under twelve.",
+   "bulletStart": false
+  },
+  {
+   "start": 120.29,
+   "end": 133.66,
+   "text": "The municipality can also help you financially: social assistance, a benefit [bijstand], a waiver [kwijtschelding] of municipal taxes with a low income [inkomen], and social housing [sociale huur].",
+   "bulletStart": false
+  },
+  {
+   "start": 133.66,
+   "end": 142.15,
+   "text": "The municipality can help people with debts [schulden] or very poor people when they need to buy expensive items, such as a washing machine.",
+   "bulletStart": false
+  },
+  {
+   "start": 142.15,
+   "end": 158.81,
+   "text": "Under the Social Support Act [Wmo, Wet maatschappelijke ondersteuning], people can also get other help: household [huishoudelijke] help for old or sick people, transport [vervoer], or a wheelchair [rolstoel] for people with a disability [beperking].",
+   "bulletStart": false
+  },
+  {
+   "start": 158.81,
+   "end": 166.23,
+   "text": "You can ask for help at a care desk [zorgloket] of the municipality or at social neighbourhood teams [sociale wijkteams].",
+   "bulletStart": false
+  },
+  {
+   "start": 166.23,
+   "end": 174.32,
+   "text": "The municipality also helps with social problems: help for lonely [eenzame] people, activities in community centres, and youth care [jeugdhulp].",
+   "bulletStart": false
+  }
+ ]
+}

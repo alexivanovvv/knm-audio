@@ -27,6 +27,9 @@ app te installeren.
   terugkeer
 - Afspeelsnelheid (0.75× tot 2×), ±15s spoelen, toetsenbord-shortcuts
   (spatie/pijltjes)
+- Ondertitels/lyrics-modus (CC-knop): meelezen met gesynchroniseerde
+  regels, tik op een regel om te spoelen. Beschikbaar voor 23/36 taken
+  (zie `BACKLOG.md`, T-05); op de rest is de knop uitgeschakeld.
 - Service worker: audiofragmenten worden na eerste keer afspelen offline
   gecachet
 

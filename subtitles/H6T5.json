@@ -1,0 +1,148 @@
+{
+ "lines": [
+  {
+   "start": 0.0,
+   "end": 4.08,
+   "text": "Everyone who lives in the Netherlands must pay tax [belasting].",
+   "bulletStart": false
+  },
+  {
+   "start": 4.08,
+   "end": 14.26,
+   "text": "With that money the government pays for things that are important for everyone: roads, dikes [dijken], the police, schools, benefits and hospitals.",
+   "bulletStart": false
+  },
+  {
+   "start": 14.26,
+   "end": 23.5,
+   "text": "The municipality uses it to pay for, for example, the library, the swimming pool, youth care, social assistance and courses for refugees [vluchtelingen].",
+   "bulletStart": false
+  },
+  {
+   "start": 23.5,
+   "end": 29.03,
+   "text": "Income tax [Inkomstenbelasting]: you pay tax on part of your income.",
+   "bulletStart": false
+  },
+  {
+   "start": 29.03,
+   "end": 36.12,
+   "text": "On your payslip [loonstrook] you see your net income [netto-inkomen] and gross income [bruto-inkomen].",
+   "bulletStart": false
+  },
+  {
+   "start": 36.12,
+   "end": 41.51,
+   "text": "If you do not earn very much, you pay no or very little income tax.",
+   "bulletStart": false
+  },
+  {
+   "start": 41.51,
+   "end": 52.33,
+   "text": "You pay municipal taxes [gemeentelijke belastingen] separately to the municipality, for example property tax [onroerendezaakbelasting (OZB)] for people who own their home.",
+   "bulletStart": false
+  },
+  {
+   "start": 52.33,
+   "end": 60.35,
+   "text": "With a low income you can often get a discount [korting] or a waiver [kwijtschelding] — with a waiver you do not have to pay anything.",
+   "bulletStart": false
+  },
+  {
+   "start": 60.35,
+   "end": 67.17,
+   "text": "You must apply for this first; the municipality then assesses [beoordeelt] how much you have to pay.",
+   "bulletStart": false
+  },
+  {
+   "start": 67.17,
+   "end": 74.97,
+   "text": "Filing a tax return [Aangifte doen bij de Belastingdienst]: if you have an income, you must file a return every year.",
+   "bulletStart": false
+  },
+  {
+   "start": 74.97,
+   "end": 85.77,
+   "text": "For people in salaried employment [loondienst] the Belastingdienst already knows how much they earned; entrepreneurs [ondernemers] must report their income themselves.",
+   "bulletStart": false
+  },
+  {
+   "start": 85.77,
+   "end": 89.4,
+   "text": "You first receive a tax return letter [aangiftebrief].",
+   "bulletStart": false
+  },
+  {
+   "start": 89.4,
+   "end": 96.19,
+   "text": "Then you file your return via internet or an app — logging in with your DigiD on Mijn Belastingdienst.",
+   "bulletStart": false
+  },
+  {
+   "start": 96.19,
+   "end": 106.54,
+   "text": "Sometimes you have to pay extra tax; sometimes you get money back, for example if you paid too much or had extra costs for study [studie], your own home or your children.",
+   "bulletStart": false
+  },
+  {
+   "start": 106.54,
+   "end": 113.23,
+   "text": "Allowances [Toeslagen]: an allowance is money you receive from the Belastingdienst for costs you incur.",
+   "bulletStart": false
+  },
+  {
+   "start": 113.23,
+   "end": 115.15,
+   "text": "There are three allowances:",
+   "bulletStart": false
+  },
+  {
+   "start": 115.15,
+   "end": 119.25,
+   "text": "Rent allowance [Huurtoeslag] — for the rent you pay.",
+   "bulletStart": true
+  },
+  {
+   "start": 119.25,
+   "end": 123.65,
+   "text": "Healthcare allowance [Zorgtoeslag] — for your health insurance.",
+   "bulletStart": true
+  },
+  {
+   "start": 123.65,
+   "end": 132.24,
+   "text": "Childcare allowance [Kinderopvangtoeslag] — for childcare [kinderopvang] (which is not the same as child benefit [kinderbijslag]).",
+   "bulletStart": true
+  },
+  {
+   "start": 132.24,
+   "end": 140.22,
+   "text": "You can apply for an allowance if you have a low income, via Mijn Toeslagen (with DigiD) or the Toeslagen app.",
+   "bulletStart": false
+  },
+  {
+   "start": 140.22,
+   "end": 151.55,
+   "text": "If your situation changes (higher salary, moving, getting married or living together), you must report this — otherwise you may have to pay back [terugbetalen] a lot of money later.",
+   "bulletStart": false
+  },
+  {
+   "start": 151.55,
+   "end": 157.68,
+   "text": "You can get help with your return from someone you know, at the Belastingdienst itself and at many libraries.",
+   "bulletStart": false
+  },
+  {
+   "start": 157.68,
+   "end": 162.32,
+   "text": "If you disagree with the Belastingdienst, you can file an objection [bezwaar].",
+   "bulletStart": false
+  },
+  {
+   "start": 162.32,
+   "end": 167.39,
+   "text": "If you have to pay a lot of money, you can make an arrangement to pay in instalments [termijnen].",
+   "bulletStart": false
+  }
+ ]
+}

@@ -1,0 +1,196 @@
+{
+ "lines": [
+  {
+   "start": 0.0,
+   "end": 3.09,
+   "text": "Almost 20% of the Netherlands is water.",
+   "bulletStart": false
+  },
+  {
+   "start": 3.09,
+   "end": 4.96,
+   "text": "There are many rivers.",
+   "bulletStart": true
+  },
+  {
+   "start": 4.96,
+   "end": 10.35,
+   "text": "The Rhine [Rijn] comes from Germany, the Meuse [Maas] comes from Belgium.",
+   "bulletStart": false
+  },
+  {
+   "start": 10.35,
+   "end": 12.67,
+   "text": "The largest lake is the IJsselmeer.",
+   "bulletStart": true
+  },
+  {
+   "start": 12.67,
+   "end": 13.98,
+   "text": "It used to be a sea.",
+   "bulletStart": false
+  },
+  {
+   "start": 13.98,
+   "end": 20.25,
+   "text": "That sea was closed off with the closure dike [Afsluitdijk], which is thirty kilometers long.",
+   "bulletStart": false
+  },
+  {
+   "start": 20.25,
+   "end": 23.33,
+   "text": "The Netherlands lies on the North Sea [Noordzee].",
+   "bulletStart": true
+  },
+  {
+   "start": 23.33,
+   "end": 28.74,
+   "text": "North of the Afsluitdijk lies the Waddenzee with the Wadden Islands [Waddeneilanden].",
+   "bulletStart": false
+  },
+  {
+   "start": 28.74,
+   "end": 31.78,
+   "text": "The largest Wadden Island is called Texel.",
+   "bulletStart": false
+  },
+  {
+   "start": 31.78,
+   "end": 38.5,
+   "text": "In old cities, such as Amsterdam and Utrecht, there are canals [grachten] with old houses.",
+   "bulletStart": true
+  },
+  {
+   "start": 38.5,
+   "end": 46.09,
+   "text": "\"Nederland\" means \"low land.\" A large part of the west lies below sea level [zeespiegel]: the land is lower than the sea.",
+   "bulletStart": false
+  },
+  {
+   "start": 46.09,
+   "end": 52.5,
+   "text": "The lowest point is close to Rotterdam, as much as seven meters below sea level.",
+   "bulletStart": false
+  },
+  {
+   "start": 52.5,
+   "end": 63.41,
+   "text": "The water has advantages [voordelen]: Rotterdam has the largest port in Europe, there is a lot of transport on the rivers, and there are many experts in building bridges, dikes and ships.",
+   "bulletStart": false
+  },
+  {
+   "start": 63.41,
+   "end": 70.37,
+   "text": "There are also disadvantages [nadelen]: throughout history there have been many floods [overstromingen].",
+   "bulletStart": false
+  },
+  {
+   "start": 70.37,
+   "end": 73.92,
+   "text": "This is how the Netherlands protects itself against the water:",
+   "bulletStart": false
+  },
+  {
+   "start": 73.92,
+   "end": 78.73,
+   "text": "Along the North Sea there are dunes [duinen], made by nature.",
+   "bulletStart": true
+  },
+  {
+   "start": 78.73,
+   "end": 85.59,
+   "text": "Where there are no dunes, the Dutch have built dikes [dijken], for example along the rivers and in Zeeland.",
+   "bulletStart": true
+  },
+  {
+   "start": 85.59,
+   "end": 88.32,
+   "text": "A dike lies between land and water.",
+   "bulletStart": false
+  },
+  {
+   "start": 88.32,
+   "end": 92.6,
+   "text": "There are also dams [dammen], for example in Zeeland.",
+   "bulletStart": true
+  },
+  {
+   "start": 92.6,
+   "end": 95.39,
+   "text": "A dam lies between water and water.",
+   "bulletStart": false
+  },
+  {
+   "start": 95.39,
+   "end": 101.87,
+   "text": "There are many polders: land that used to be water, usually below sea level, with dikes around it.",
+   "bulletStart": true
+  },
+  {
+   "start": 101.87,
+   "end": 105.53,
+   "text": "The province of Flevoland is almost entirely polder.",
+   "bulletStart": false
+  },
+  {
+   "start": 105.53,
+   "end": 108.55,
+   "text": "Many windmills are polder mills [poldermolens].",
+   "bulletStart": true
+  },
+  {
+   "start": 108.55,
+   "end": 113.75,
+   "text": "In the past they were important for pumping [pompen] water away from low land.",
+   "bulletStart": false
+  },
+  {
+   "start": 113.75,
+   "end": 119.52,
+   "text": "Because there is so much water, almost all children learn to swim when they are about five years old.",
+   "bulletStart": true
+  },
+  {
+   "start": 119.52,
+   "end": 123.46,
+   "text": "The Delta Works [De Deltawerken]: in 1953 there was a big flood.",
+   "bulletStart": false
+  },
+  {
+   "start": 123.46,
+   "end": 130.98,
+   "text": "A large part of Zeeland, Zuid-Holland and Noord-Brabant went under water.",
+   "bulletStart": false
+  },
+  {
+   "start": 130.98,
+   "end": 131.7,
+   "text": "More than 1,800 people died.",
+   "bulletStart": false
+  },
+  {
+   "start": 131.7,
+   "end": 136.41,
+   "text": "After that, the government made a plan against the floods: the Deltaplan.",
+   "bulletStart": false
+  },
+  {
+   "start": 136.41,
+   "end": 142.8,
+   "text": "Especially in Zeeland, good dikes and dams were built: the Deltawerken.",
+   "bulletStart": false
+  },
+  {
+   "start": 142.8,
+   "end": 147.54,
+   "text": "The Oosterscheldekering is such a dam in Zeeland.",
+   "bulletStart": false
+  },
+  {
+   "start": 147.54,
+   "end": 152.14,
+   "text": "It usually stands open; it only closes when the water from the sea gets too high.",
+   "bulletStart": false
+  }
+ ]
+}

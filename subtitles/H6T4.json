@@ -1,0 +1,136 @@
+{
+ "lines": [
+  {
+   "start": 0.0,
+   "end": 6.52,
+   "text": "Insurance [verzekering] helps you when you get into trouble, for example if there is a fire in your house.",
+   "bulletStart": false
+  },
+  {
+   "start": 6.52,
+   "end": 14.27,
+   "text": "Health insurance [zorgverzekering] — insurance against healthcare costs [zorgkosten] — is mandatory [verplicht].",
+   "bulletStart": false
+  },
+  {
+   "start": 14.27,
+   "end": 16.71,
+   "text": "You can choose from many insurance companies.",
+   "bulletStart": false
+  },
+  {
+   "start": 16.71,
+   "end": 22.84,
+   "text": "When you take out [afsluit] an insurance, you get a policy [polis] — a kind of contract.",
+   "bulletStart": false
+  },
+  {
+   "start": 22.84,
+   "end": 26.25,
+   "text": "You pay money for an insurance: the premium [premie].",
+   "bulletStart": false
+  },
+  {
+   "start": 26.25,
+   "end": 39.61,
+   "text": "Personal liability insurance [AVP, aansprakelijkheidsverzekering voor particulieren]: if you or your child accidentally [per ongeluk] breaks something belonging to someone else, the AVP pays.",
+   "bulletStart": true
+  },
+  {
+   "start": 39.61,
+   "end": 41.28,
+   "text": "Not for your own belongings.",
+   "bulletStart": false
+  },
+  {
+   "start": 41.28,
+   "end": 49.38,
+   "text": "An AVP is not mandatory [niet verplicht], but without an AVP you have to pay a lot of money if something is broken.",
+   "bulletStart": false
+  },
+  {
+   "start": 49.38,
+   "end": 57.33,
+   "text": "Home contents insurance [inboedelverzekering]: your household contents [inboedel] is everything in and around your house.",
+   "bulletStart": true
+  },
+  {
+   "start": 57.33,
+   "end": 64.57,
+   "text": "You get money for damage [schade] to your belongings caused by fire, water, a small accident, or if things are stolen.",
+   "bulletStart": false
+  },
+  {
+   "start": 64.57,
+   "end": 65.66,
+   "text": "Not mandatory.",
+   "bulletStart": false
+  },
+  {
+   "start": 65.66,
+   "end": 76.08,
+   "text": "Buildings insurance [opstalverzekering, also known as woonhuisverzekering]: required by the bank if you take out a mortgage [hypotheek] on your own home.",
+   "bulletStart": true
+  },
+  {
+   "start": 76.08,
+   "end": 81.86,
+   "text": "It pays if something on your house breaks, for example your roof due to fire, storm or water.",
+   "bulletStart": false
+  },
+  {
+   "start": 81.86,
+   "end": 92.03,
+   "text": "Statutory liability insurance [WA-verzekering, wettelijke aansprakelijkheid] is mandatory for a vehicle [voertuig]: car, motorcycle or moped.",
+   "bulletStart": true
+  },
+  {
+   "start": 92.03,
+   "end": 95.93,
+   "text": "If you cause damage to someone else, this insurance pays.",
+   "bulletStart": false
+  },
+  {
+   "start": 95.93,
+   "end": 100.89,
+   "text": "Insurance for damage to your own vehicle or against theft is not mandatory.",
+   "bulletStart": false
+  },
+  {
+   "start": 100.89,
+   "end": 104.72,
+   "text": "For a motor vehicle you must also pay tax [belasting].",
+   "bulletStart": false
+  },
+  {
+   "start": 104.72,
+   "end": 118.72,
+   "text": "Other, non-mandatory insurances: travel insurance [reisverzekering] — for example your suitcase is stolen — and funeral insurance [uitvaartverzekering] for the costs of a burial [begrafenis] or cremation [crematie].",
+   "bulletStart": true
+  },
+  {
+   "start": 118.72,
+   "end": 125.66,
+   "text": "If you have damage, you must report [melden] it quickly to the insurance company, via internet or telephone.",
+   "bulletStart": false
+  },
+  {
+   "start": 125.66,
+   "end": 126.94,
+   "text": "You fill in a form.",
+   "bulletStart": false
+  },
+  {
+   "start": 126.94,
+   "end": 132.21,
+   "text": "The insurance only pays if something broke by accident, not if it is your own fault.",
+   "bulletStart": false
+  },
+  {
+   "start": 132.21,
+   "end": 136.29,
+   "text": "Sometimes they ask for extra proof, for example a receipt [kassabon].",
+   "bulletStart": false
+  }
+ ]
+}

@@ -1,0 +1,286 @@
+{
+ "lines": [
+  {
+   "start": 0.0,
+   "end": 2.19,
+   "text": "Types of employment contracts.",
+   "bulletStart": false
+  },
+  {
+   "start": 2.19,
+   "end": 12.04,
+   "text": "A temporary contract [tijdelijk contract] is for a fixed period [bepaalde tijd], for example half a year; it contains an end date [einddatum].",
+   "bulletStart": false
+  },
+  {
+   "start": 12.04,
+   "end": 14.81,
+   "text": "A job is almost always temporary at first.",
+   "bulletStart": false
+  },
+  {
+   "start": 14.81,
+   "end": 19.86,
+   "text": "A permanent contract [vast contract] contains no end date.",
+   "bulletStart": false
+  },
+  {
+   "start": 19.86,
+   "end": 27.97,
+   "text": "After a maximum of three temporary contracts (or after three years), the next contract automatically becomes a permanent contract.",
+   "bulletStart": false
+  },
+  {
+   "start": 27.97,
+   "end": 31.8,
+   "text": "A contract through a temp agency is always temporary.",
+   "bulletStart": false
+  },
+  {
+   "start": 31.8,
+   "end": 43.91,
+   "text": "Working without paying tax is called working illegally [zwartwerken] (\"black work\"): that is forbidden [verboden], and then you have no insurance [verzekering] if something happens at work.",
+   "bulletStart": false
+  },
+  {
+   "start": 43.91,
+   "end": 47.3,
+   "text": "If you do pay tax, you have legal (\"white\") work.",
+   "bulletStart": false
+  },
+  {
+   "start": 47.3,
+   "end": 49.7,
+   "text": "What is in an employment contract?",
+   "bulletStart": false
+  },
+  {
+   "start": 49.7,
+   "end": 55.66,
+   "text": "Your rights [rechten] and duties [plichten] as an employee are in the contract.",
+   "bulletStart": false
+  },
+  {
+   "start": 55.66,
+   "end": 60.74,
+   "text": "Rights are the things the employer must do for you; duties are the things you must do.",
+   "bulletStart": false
+  },
+  {
+   "start": 60.74,
+   "end": 84.98,
+   "text": "Agreements about rights and duties are also called employment conditions [arbeidsvoorwaarden]: how many hours you work, when you start (and stop), your salary, whether you work independently or under supervision [begeleiding], agreements about working conditions [arbeidsomstandigheden] (safety, health, noise), how much holiday you get, and whether the employer pays your travel expenses [reiskosten].",
+   "bulletStart": false
+  },
+  {
+   "start": 84.98,
+   "end": 85.27,
+   "text": "The cao.",
+   "bulletStart": false
+  },
+  {
+   "start": 85.27,
+   "end": 90.32,
+   "text": "Cao means: collective labour agreement [collectieve arbeidsovereenkomst].",
+   "bulletStart": false
+  },
+  {
+   "start": 90.32,
+   "end": 97.93,
+   "text": "The cao contains agreements between all employers and employees of one sector (for example construction or hospitality).",
+   "bulletStart": false
+  },
+  {
+   "start": 97.93,
+   "end": 106.93,
+   "text": "Rights are, for example: the right to the minimum wage [minimumloon] (the lowest salary the employer must pay) and the right to salary when you are ill.",
+   "bulletStart": false
+  },
+  {
+   "start": 106.93,
+   "end": 113.35,
+   "text": "Duties are, for example: working the number of hours stated in your contract, and reporting when you are ill.",
+   "bulletStart": false
+  },
+  {
+   "start": 113.35,
+   "end": 115.67,
+   "text": "How does your employer evaluate you?",
+   "bulletStart": false
+  },
+  {
+   "start": 115.67,
+   "end": 120.1,
+   "text": "There is a registration [registratie] to see how much you work.",
+   "bulletStart": false
+  },
+  {
+   "start": 120.1,
+   "end": 127.61,
+   "text": "Sometimes you have a performance review [beoordelingsgesprek]: then your employer evaluates how you perform [functioneert].",
+   "bulletStart": false
+  },
+  {
+   "start": 127.61,
+   "end": 132.37,
+   "text": "You should prepare well for such a meeting; you can also raise topics yourself.",
+   "bulletStart": false
+  },
+  {
+   "start": 132.37,
+   "end": 134.12,
+   "text": "How can you have a say?",
+   "bulletStart": false
+  },
+  {
+   "start": 134.12,
+   "end": 142.26,
+   "text": "A works council [ondernemingsraad, OR] is a group of employees who may participate in decisions about the employer's plans.",
+   "bulletStart": false
+  },
+  {
+   "start": 142.26,
+   "end": 148.79,
+   "text": "In a company with more than fifty employees it is mandatory that employees participate in decision-making.",
+   "bulletStart": false
+  },
+  {
+   "start": 148.79,
+   "end": 157.1,
+   "text": "A participation council [medezeggenschapsraad, MR] is similar to an OR; at schools it also includes parents and teachers.",
+   "bulletStart": false
+  },
+  {
+   "start": 157.1,
+   "end": 167.0,
+   "text": "Employees can also become a member of the staff association [personeelsvereniging, PV]: it organises fun things, for example parties or excursions.",
+   "bulletStart": false
+  },
+  {
+   "start": 167.0,
+   "end": 168.66,
+   "text": "The trade union.",
+   "bulletStart": false
+  },
+  {
+   "start": 168.66,
+   "end": 174.42,
+   "text": "A trade union [vakbond] helps employees, for example in a conflict with an employer.",
+   "bulletStart": false
+  },
+  {
+   "start": 174.42,
+   "end": 178.77,
+   "text": "Trade unions also participate in decisions about the cao.",
+   "bulletStart": false
+  },
+  {
+   "start": 178.77,
+   "end": 182.13,
+   "text": "Examples are the FNV and the CNV.",
+   "bulletStart": false
+  },
+  {
+   "start": 182.13,
+   "end": 185.4,
+   "text": "As a member you pay money to the union every month.",
+   "bulletStart": false
+  },
+  {
+   "start": 185.4,
+   "end": 186.44,
+   "text": "Paying tax.",
+   "bulletStart": false
+  },
+  {
+   "start": 186.44,
+   "end": 195.07,
+   "text": "Your payslip [loonstrook, or salarisstrook] is a document showing your salary; you receive it every month or whenever something changes.",
+   "bulletStart": false
+  },
+  {
+   "start": 195.07,
+   "end": 201.39,
+   "text": "Once a year you receive an annual salary statement [jaaropgave] with your salary for that year.",
+   "bulletStart": false
+  },
+  {
+   "start": 201.39,
+   "end": 206.54,
+   "text": "It shows your gross salary [brutosalaris] and net salary [nettosalaris].",
+   "bulletStart": false
+  },
+  {
+   "start": 206.54,
+   "end": 214.14,
+   "text": "Example: you earn €2000 gross per month, you receive €1600 in the bank (net) and pay €400 in taxes and premiums.",
+   "bulletStart": false
+  },
+  {
+   "start": 214.14,
+   "end": 218.29,
+   "text": "You must keep your payslip for at least five years.",
+   "bulletStart": false
+  },
+  {
+   "start": 218.29,
+   "end": 220.32,
+   "text": "Paying premiums.",
+   "bulletStart": false
+  },
+  {
+   "start": 220.32,
+   "end": 225.84,
+   "text": "Premiums/contributions [premies] are what you pay for insurance.",
+   "bulletStart": false
+  },
+  {
+   "start": 225.84,
+   "end": 250.66,
+   "text": "From your salary you pay, for example: a premium for your pension [pensioen] (money for when you are too old to work; you only build up this work pension if you have worked — in addition, everyone living in the Netherlands receives AOW from the SVB from retirement age), a premium for if you become unemployed [werkloos], and a premium for if you become unfit for work [arbeidsongeschikt].",
+   "bulletStart": false
+  },
+  {
+   "start": 250.66,
+   "end": 253.3,
+   "text": "Your employer also pays premiums for you.",
+   "bulletStart": false
+  },
+  {
+   "start": 253.3,
+   "end": 255.14,
+   "text": "Starting your own business.",
+   "bulletStart": false
+  },
+  {
+   "start": 255.14,
+   "end": 258.98,
+   "text": "If you are an employee, you are in salaried employment [loondienst].",
+   "bulletStart": false
+  },
+  {
+   "start": 258.98,
+   "end": 270.02,
+   "text": "You can also become an independent entrepreneur [ondernemer], with your own staff [personeel], or a self-employed person without staff [zzp'er, zelfstandige zonder personeel].",
+   "bulletStart": false
+  },
+  {
+   "start": 270.02,
+   "end": 274.74,
+   "text": "You must then register with the Chamber of Commerce [Kamer van Koophandel, KvK].",
+   "bulletStart": false
+  },
+  {
+   "start": 274.74,
+   "end": 281.76,
+   "text": "The KvK helps businesses, provides information and courses and can help you with a business plan [ondernemersplan].",
+   "bulletStart": false
+  },
+  {
+   "start": 281.76,
+   "end": 289.66,
+   "text": "Independent entrepreneurs must arrange their own pension [pensioen] and take out disability insurance [arbeidsongeschiktheidsverzekering, AOV].",
+   "bulletStart": false
+  }
+ ]
+}

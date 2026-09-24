@@ -1,0 +1,226 @@
+{
+ "lines": [
+  {
+   "start": 0.0,
+   "end": 7.56,
+   "text": "New in the Netherlands: if you come to the Netherlands because your partner lives here, you usually go to live with your partner.",
+   "bulletStart": false
+  },
+  {
+   "start": 7.56,
+   "end": 14.53,
+   "text": "If you are a vluchteling, you usually first come to an asylum seekers' center [asielzoekerscentrum (AZC)].",
+   "bulletStart": false
+  },
+  {
+   "start": 14.53,
+   "end": 25.04,
+   "text": "If you have a residence permit [verblijfsvergunning] and no partner here, you usually first get a home through the municipality [gemeente]; you then do not have much choice.",
+   "bulletStart": false
+  },
+  {
+   "start": 25.04,
+   "end": 32.42,
+   "text": "Free rental sector [Vrije sector]: if you earn enough money, you can look for a home in the free rental sector.",
+   "bulletStart": false
+  },
+  {
+   "start": 32.42,
+   "end": 34.39,
+   "text": "The rent there is high, though.",
+   "bulletStart": false
+  },
+  {
+   "start": 34.39,
+   "end": 41.98,
+   "text": "You can look for houses through a private individual [particulier]: a real estate agent [makelaar] or a landlord [huisbaas].",
+   "bulletStart": false
+  },
+  {
+   "start": 41.98,
+   "end": 48.33,
+   "text": "A real estate agent helps people buy or sell a house, but sometimes also helps find a rental home.",
+   "bulletStart": false
+  },
+  {
+   "start": 48.33,
+   "end": 59.22,
+   "text": "You can also search through a housing corporation [woningcorporatie]: such an organization takes care of building, renting out [verhuren] and maintaining [onderhouden] homes.",
+   "bulletStart": false
+  },
+  {
+   "start": 59.22,
+   "end": 67.29,
+   "text": "Social housing [Sociale huur]: if you do not earn very much, you can get a social rental home [sociale huurwoning].",
+   "bulletStart": false
+  },
+  {
+   "start": 67.29,
+   "end": 72.9,
+   "text": "The rent is not that high; there is a maximum rent price [maximale huurprijs].",
+   "bulletStart": false
+  },
+  {
+   "start": 72.9,
+   "end": 77.15,
+   "text": "Your first home with a residence permit is usually a social rental home.",
+   "bulletStart": false
+  },
+  {
+   "start": 77.15,
+   "end": 88.35,
+   "text": "If you want to rent on your own, you must quickly register [inschrijven] as a home seeker [woningzoekende] with one or more housing corporations (you usually pay money when registering).",
+   "bulletStart": false
+  },
+  {
+   "start": 88.35,
+   "end": 91.85,
+   "text": "After that, it can take a long time before you get a home.",
+   "bulletStart": false
+  },
+  {
+   "start": 91.85,
+   "end": 97.32,
+   "text": "A large family gets a larger home; with a higher income you can also get a larger home.",
+   "bulletStart": false
+  },
+  {
+   "start": 97.32,
+   "end": 109.65,
+   "text": "If you need a home very quickly (for example just divorced [gescheiden] with young children), you can get an urgency declaration [urgentieverklaring] from the municipality — not many people get one.",
+   "bulletStart": false
+  },
+  {
+   "start": 109.65,
+   "end": 113.41,
+   "text": "How exactly this works differs per municipality.",
+   "bulletStart": false
+  },
+  {
+   "start": 113.41,
+   "end": 118.72,
+   "text": "Rights and obligations: when you rent a house, you get a rental contract [huurcontract].",
+   "bulletStart": false
+  },
+  {
+   "start": 118.72,
+   "end": 136.8,
+   "text": "It contains your obligations to the landlord/lessor [verhuurder] (how much rent and when you pay), but also the rights of the tenant [huurder]: which repairs [reparaties] and which maintenance [onderhoud] the landlord must do, and the rules for terminating [opzeggen] the rental.",
+   "bulletStart": false
+  },
+  {
+   "start": 136.8,
+   "end": 139.67,
+   "text": "The landlord may not simply terminate your rental.",
+   "bulletStart": false
+  },
+  {
+   "start": 139.67,
+   "end": 145.38,
+   "text": "Complaints: do you have a complaint about the landlord (poor maintenance, too much rent)?",
+   "bulletStart": false
+  },
+  {
+   "start": 145.38,
+   "end": 151.15,
+   "text": "Then you must first report [melden] it to the landlord yourself, in an email or letter.",
+   "bulletStart": false
+  },
+  {
+   "start": 151.15,
+   "end": 155.22,
+   "text": "If that does not help, you can contact the rent tribunal [huurcommissie].",
+   "bulletStart": false
+  },
+  {
+   "start": 155.22,
+   "end": 162.24,
+   "text": "Rent allowance [Huurtoeslag]: some people can get part of the rent back from the Tax Administration [Belastingdienst].",
+   "bulletStart": false
+  },
+  {
+   "start": 162.24,
+   "end": 165.89,
+   "text": "This is only possible if you do not earn too much.",
+   "bulletStart": false
+  },
+  {
+   "start": 165.89,
+   "end": 169.25,
+   "text": "The less you earn per month, the more you get back.",
+   "bulletStart": false
+  },
+  {
+   "start": 169.25,
+   "end": 174.14,
+   "text": "Buying a house: you must earn enough, because a house costs a lot of money.",
+   "bulletStart": false
+  },
+  {
+   "start": 174.14,
+   "end": 179.02,
+   "text": "Almost everyone has to borrow money from a bank: the mortgage [hypotheek].",
+   "bulletStart": false
+  },
+  {
+   "start": 179.02,
+   "end": 183.11,
+   "text": "How much mortgage you can get depends on your income [inkomen].",
+   "bulletStart": false
+  },
+  {
+   "start": 183.11,
+   "end": 187.32,
+   "text": "Every month you pay a fixed amount [bedrag] back to the bank.",
+   "bulletStart": false
+  },
+  {
+   "start": 187.32,
+   "end": 189.95,
+   "text": "Most people buy through a real estate agent.",
+   "bulletStart": false
+  },
+  {
+   "start": 189.95,
+   "end": 193.49,
+   "text": "You must make an offer/bid [bod] on the house.",
+   "bulletStart": false
+  },
+  {
+   "start": 193.49,
+   "end": 196.8,
+   "text": "If you have the highest bid, you can usually buy it.",
+   "bulletStart": false
+  },
+  {
+   "start": 196.8,
+   "end": 201.59,
+   "text": "Then you go to the notary [notaris] to sign [tekenen] the contract.",
+   "bulletStart": false
+  },
+  {
+   "start": 201.59,
+   "end": 207.89,
+   "text": "OZB and parking tax: sometimes you also pay tax [belasting] to the municipality.",
+   "bulletStart": false
+  },
+  {
+   "start": 207.89,
+   "end": 217.54,
+   "text": "If you have bought a house, you pay property tax [onroerendezaakbelasting (OZB)]: the more your house is worth [waard], the more OZB.",
+   "bulletStart": false
+  },
+  {
+   "start": 217.54,
+   "end": 223.04,
+   "text": "If you live in a neighborhood with paid parking, you also pay parking tax [parkeerbelasting].",
+   "bulletStart": false
+  },
+  {
+   "start": 223.04,
+   "end": 225.55,
+   "text": "How much you pay differs per municipality.",
+   "bulletStart": false
+  }
+ ]
+}

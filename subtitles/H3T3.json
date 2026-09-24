@@ -1,0 +1,118 @@
+{
+ "lines": [
+  {
+   "start": 0.0,
+   "end": 10.87,
+   "text": "You can travel with your own transport [vervoer] (bicycle, scooter, car) or with public transport [openbaar vervoer]: train, bus, tram or metro.",
+   "bulletStart": false
+  },
+  {
+   "start": 10.87,
+   "end": 19.79,
+   "text": "Sometimes you have to combine [combineren] types of public transport and transfer [overstappen], for example from the train to the metro.",
+   "bulletStart": false
+  },
+  {
+   "start": 19.79,
+   "end": 24.16,
+   "text": "You can plan [plannen] your journey with an app or on the internet.",
+   "bulletStart": false
+  },
+  {
+   "start": 24.16,
+   "end": 30.56,
+   "text": "For example the app of the NS (Nederlandse Spoorwegen) for the train: you fill in two stations.",
+   "bulletStart": false
+  },
+  {
+   "start": 30.56,
+   "end": 32.95,
+   "text": "Or the app of 9292: you fill in two addresses.",
+   "bulletStart": false
+  },
+  {
+   "start": 32.95,
+   "end": 40.04,
+   "text": "You can also enter when you want to depart [vertrekken] or arrive [aankomen].",
+   "bulletStart": false
+  },
+  {
+   "start": 40.04,
+   "end": 45.11,
+   "text": "Then you get suggestions with times and prices, and information about transfers.",
+   "bulletStart": false
+  },
+  {
+   "start": 45.11,
+   "end": 51.18,
+   "text": "Sometimes public transport has a delay [vertraging] — you can also see that in the app.",
+   "bulletStart": false
+  },
+  {
+   "start": 51.18,
+   "end": 54.14,
+   "text": "To travel by public transport, you need a card.",
+   "bulletStart": false
+  },
+  {
+   "start": 54.14,
+   "end": 59.17,
+   "text": "There must always be sufficient balance [voldoende saldo] on your card.",
+   "bulletStart": false
+  },
+  {
+   "start": 59.17,
+   "end": 61.96,
+   "text": "You can also travel with your bank card [bankpas].",
+   "bulletStart": false
+  },
+  {
+   "start": 61.96,
+   "end": 68.7,
+   "text": "Before your journey you must check in [inchecken]: you hold your card against a post [paal].",
+   "bulletStart": false
+  },
+  {
+   "start": 68.7,
+   "end": 71.83,
+   "text": "After your journey you must check out [uitchecken].",
+   "bulletStart": false
+  },
+  {
+   "start": 71.83,
+   "end": 75.45,
+   "text": "The posts are in the bus, at stations or on platforms.",
+   "bulletStart": false
+  },
+  {
+   "start": 75.45,
+   "end": 77.31,
+   "text": "Forget to check out?",
+   "bulletStart": false
+  },
+  {
+   "start": 77.31,
+   "end": 79.6,
+   "text": "Then you pay more than necessary.",
+   "bulletStart": false
+  },
+  {
+   "start": 79.6,
+   "end": 83.17,
+   "text": "If you travel often, you can buy a subscription [abonnement].",
+   "bulletStart": false
+  },
+  {
+   "start": 83.17,
+   "end": 86.35,
+   "text": "Do you usually travel outside rush hour [spits]?",
+   "bulletStart": false
+  },
+  {
+   "start": 86.35,
+   "end": 89.28,
+   "text": "Then you can buy an off-peak card [dalurenkaart].",
+   "bulletStart": false
+  }
+ ]
+}

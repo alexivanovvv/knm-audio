@@ -1,5 +1,6 @@
 const SHELL_CACHE = "nl-audioboek-shell-v4";
 const AUDIO_CACHE = "nl-audioboek-audio-v3";
+const SUBS_CACHE = "nl-audioboek-subs-v1";
 
 const SHELL_ASSETS = [
   "./",
@@ -23,7 +24,7 @@ self.addEventListener("activate", (event) => {
     caches.keys().then((keys) =>
       Promise.all(
         keys
-          .filter((key) => key !== SHELL_CACHE && key !== AUDIO_CACHE)
+          .filter((key) => key !== SHELL_CACHE && key !== AUDIO_CACHE && key !== SUBS_CACHE)
           .map((key) => caches.delete(key))
       )
     )
@@ -39,6 +40,22 @@ self.addEventListener("fetch", (event) => {
   if (url.pathname.includes("/Audio/")) {
     event.respondWith(
       caches.open(AUDIO_CACHE).then((cache) =>
+        cache.match(event.request).then((cached) => {
+          if (cached) return cached;
+          return fetch(event.request).then((response) => {
+            if (response.ok) cache.put(event.request, response.clone());
+            return response;
+          });
+        })
+      )
+    );
+    return;
+  }
+
+  // Subtitles: cache-first, populate on first view (not every task has one yet).
+  if (url.pathname.includes("/subtitles/")) {
+    event.respondWith(
+      caches.open(SUBS_CACHE).then((cache) =>
         cache.match(event.request).then((cached) => {
           if (cached) return cached;
           return fetch(event.request).then((response) => {

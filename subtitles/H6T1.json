@@ -1,0 +1,172 @@
+{
+ "lines": [
+  {
+   "start": 0.0,
+   "end": 7.71,
+   "text": "An institution/agency [instantie] is an organization [organisatie] that can make decisions.",
+   "bulletStart": false
+  },
+  {
+   "start": 7.71,
+   "end": 9.9,
+   "text": "For example the government [overheid].",
+   "bulletStart": false
+  },
+  {
+   "start": 9.9,
+   "end": 17.8,
+   "text": "The municipality, the police, the tax office [Belastingdienst] and the UWV are institutions that belong to the government.",
+   "bulletStart": false
+  },
+  {
+   "start": 17.8,
+   "end": 27.18,
+   "text": "There are also other institutions, for example the Juridisch Loket or an insurance company [verzekeringsmaatschappij], such as your health insurer.",
+   "bulletStart": false
+  },
+  {
+   "start": 27.18,
+   "end": 33.17,
+   "text": "As a citizen [burger] in the Netherlands you have rights and duties [rechten en plichten].",
+   "bulletStart": false
+  },
+  {
+   "start": 33.17,
+   "end": 38.9,
+   "text": "For example, you have the right to a benefit, or the right to information and help with problems.",
+   "bulletStart": false
+  },
+  {
+   "start": 38.9,
+   "end": 42.63,
+   "text": "You also have duties, for example to pay taxes.",
+   "bulletStart": false
+  },
+  {
+   "start": 42.63,
+   "end": 46.74,
+   "text": "The government and other institutions must communicate with people.",
+   "bulletStart": false
+  },
+  {
+   "start": 46.74,
+   "end": 51.74,
+   "text": "You can call the municipality or the Belastingdienst, and they can send you letters.",
+   "bulletStart": false
+  },
+  {
+   "start": 51.74,
+   "end": 60.16,
+   "text": "But usually communication is digital [digitaal]: you look for information on websites, or you make an appointment digitally.",
+   "bulletStart": false
+  },
+  {
+   "start": 60.16,
+   "end": 62.82,
+   "text": "Do you have trouble with digital contact?",
+   "bulletStart": false
+  },
+  {
+   "start": 62.82,
+   "end": 65.92,
+   "text": "Then you can get help, for example at the library.",
+   "bulletStart": false
+  },
+  {
+   "start": 65.92,
+   "end": 71.31,
+   "text": "There is also a digital help line [DigiHulplijn], a phone number you can call.",
+   "bulletStart": false
+  },
+  {
+   "start": 71.31,
+   "end": 78.25,
+   "text": "Everyone who lives in the Netherlands has their own number: the citizen service number [bsn, burgerservicenummer].",
+   "bulletStart": false
+  },
+  {
+   "start": 78.25,
+   "end": 80.6,
+   "text": "It is a number with nine digits.",
+   "bulletStart": false
+  },
+  {
+   "start": 80.6,
+   "end": 85.85,
+   "text": "It appears, for example, in your passport or on papers from the Belastingdienst.",
+   "bulletStart": false
+  },
+  {
+   "start": 85.85,
+   "end": 89.1,
+   "text": "You sometimes have to fill in your bsn on forms.",
+   "bulletStart": false
+  },
+  {
+   "start": 89.1,
+   "end": 94.11,
+   "text": "For digital communication you have to prove who you are at many institutions.",
+   "bulletStart": false
+  },
+  {
+   "start": 94.11,
+   "end": 98.3,
+   "text": "You can do that with your DigiD, a kind of digital passport.",
+   "bulletStart": false
+  },
+  {
+   "start": 98.3,
+   "end": 110.39,
+   "text": "You need your DigiD when you want to log in [inloggen] at the municipality, the Belastingdienst, your health insurance, the education executive agency [DUO, Dienst Uitvoering Onderwijs] and the UWV.",
+   "bulletStart": false
+  },
+  {
+   "start": 110.39,
+   "end": 119.66,
+   "text": "You can log in with an app on your phone (the easiest way) or with a username [gebruikersnaam] and password [wachtwoord].",
+   "bulletStart": false
+  },
+  {
+   "start": 119.66,
+   "end": 124.66,
+   "text": "Everyone in the Netherlands has by law the right to privacy [recht op privacy]:",
+   "bulletStart": false
+  },
+  {
+   "start": 124.66,
+   "end": 129.27,
+   "text": "Do not give your bsn and DigiD to someone else just like that [zomaar].",
+   "bulletStart": true
+  },
+  {
+   "start": 129.27,
+   "end": 141.24,
+   "text": "Also be careful with a copy of your passport or identity card [identiteitskaart] — people can misuse your data [gegevens misbruiken], for example to make a fake [vals] passport.",
+   "bulletStart": false
+  },
+  {
+   "start": 141.24,
+   "end": 142.98,
+   "text": "You only have to give what is needed.",
+   "bulletStart": true
+  },
+  {
+   "start": 142.98,
+   "end": 147.35,
+   "text": "Your school may ask for your bsn, but not your PIN code [pincode].",
+   "bulletStart": false
+  },
+  {
+   "start": 147.35,
+   "end": 151.63,
+   "text": "Institutions must handle your personal information carefully [zorgvuldig].",
+   "bulletStart": true
+  },
+  {
+   "start": 151.63,
+   "end": 158.64,
+   "text": "You always have the right to see what information an institution has about you, for example what is in your file [dossier].",
+   "bulletStart": false
+  }
+ ]
+}

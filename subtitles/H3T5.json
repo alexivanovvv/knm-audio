@@ -1,0 +1,130 @@
+{
+ "lines": [
+  {
+   "start": 0.0,
+   "end": 2.79,
+   "text": "You can separate your waste [afval scheiden].",
+   "bulletStart": false
+  },
+  {
+   "start": 2.79,
+   "end": 10.62,
+   "text": "That is better for the milieu: you help keep the air and water clean, and a lot of waste (such as glass) can be used again.",
+   "bulletStart": false
+  },
+  {
+   "start": 10.62,
+   "end": 19.73,
+   "text": "Anyone who throws waste on the street can get a fine [boete] — also if you, for example, put cardboard [karton] next to the container.",
+   "bulletStart": false
+  },
+  {
+   "start": 19.73,
+   "end": 27.15,
+   "text": "Own containers: in most municipalities, people in a single-family house [eengezinswoning] have different containers:",
+   "bulletStart": false
+  },
+  {
+   "start": 27.15,
+   "end": 30.31,
+   "text": "for gft: vegetable, fruit and garden waste,",
+   "bulletStart": true
+  },
+  {
+   "start": 30.31,
+   "end": 31.0,
+   "text": "for paper,",
+   "bulletStart": true
+  },
+  {
+   "start": 31.0,
+   "end": 33.43,
+   "text": "for plastic and packaging [verpakkingen],",
+   "bulletStart": true
+  },
+  {
+   "start": 33.43,
+   "end": 37.02,
+   "text": "for all other waste: the residual waste [restafval].",
+   "bulletStart": true
+  },
+  {
+   "start": 37.02,
+   "end": 47.15,
+   "text": "The containers have colors, for example green for gft, blue for paper, gray for residual waste and orange for plastic — different per municipality.",
+   "bulletStart": false
+  },
+  {
+   "start": 47.15,
+   "end": 50.59,
+   "text": "The waste is collected on fixed days [vaste dagen].",
+   "bulletStart": false
+  },
+  {
+   "start": 50.59,
+   "end": 58.41,
+   "text": "Only on those days (usually also the evening before) may you put the container out on the street, otherwise you can get a fine.",
+   "bulletStart": false
+  },
+  {
+   "start": 58.41,
+   "end": 64.77,
+   "text": "No own containers: in a flat, you put the residual waste in bags in a container on the street.",
+   "bulletStart": false
+  },
+  {
+   "start": 64.77,
+   "end": 71.88,
+   "text": "Often you can also separate waste there (paper, glass, sometimes plastic and gft), whenever you want.",
+   "bulletStart": false
+  },
+  {
+   "start": 71.88,
+   "end": 75.75,
+   "text": "Old clothing goes into clothing containers [kledingcontainers].",
+   "bulletStart": false
+  },
+  {
+   "start": 75.75,
+   "end": 83.37,
+   "text": "Chemical waste [Chemisch afval], such as batteries, must be brought to special places run by the municipality.",
+   "bulletStart": false
+  },
+  {
+   "start": 83.37,
+   "end": 95.73,
+   "text": "Glass and plastic bottles and cans [blikjes] often have a deposit [statiegeld]: you pay when buying and get the money back when you return [inlevert] the bottle, for example at the supermarket.",
+   "bulletStart": false
+  },
+  {
+   "start": 95.73,
+   "end": 100.68,
+   "text": "If a glass bottle has no deposit, it goes into the glass container [glasbak].",
+   "bulletStart": false
+  },
+  {
+   "start": 100.68,
+   "end": 108.13,
+   "text": "Bulky waste [Groot afval], such as a sofa, can be picked up; you must pay for that and make an appointment.",
+   "bulletStart": false
+  },
+  {
+   "start": 108.13,
+   "end": 115.72,
+   "text": "Tax: for the collection of waste you pay tax to the municipality: the waste collection charge [afvalstoffenheffing].",
+   "bulletStart": false
+  },
+  {
+   "start": 115.72,
+   "end": 123.38,
+   "text": "For the waste water [afvalwater] — water that goes through your sewer [riool] — you pay a sewage charge [rioolheffing].",
+   "bulletStart": false
+  },
+  {
+   "start": 123.38,
+   "end": 130.21,
+   "text": "With a low income you can usually get a discount [korting] or remission [kwijtschelding]; with remission you pay nothing.",
+   "bulletStart": false
+  }
+ ]
+}

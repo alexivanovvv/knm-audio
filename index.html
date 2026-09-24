@@ -223,6 +223,41 @@
   .transition-notice { min-height: 1.15rem; margin: -2px 0 7px; color: var(--ink-soft); font: 500 .68rem/1.2 'JetBrains Mono', monospace; text-align: center; }
   .transition-notice[hidden] { display: none; }
 
+  .ccbtn { position: relative; }
+  .ccbtn.active { color: var(--accent); }
+  .ccbtn[disabled] { opacity: .35; cursor: default; }
+  .ccbtn[disabled]:hover { color: var(--ink-soft); }
+
+  /* ---------- captions drawer ---------- */
+  .captions-drawer {
+    position: fixed; inset: 0; z-index: 15;
+    display: none; flex-direction: column;
+    background: var(--bg);
+  }
+  .captions-drawer.open { display: flex; }
+  .captions-head {
+    display: flex; align-items: center; gap: 12px; flex-shrink: 0;
+    padding: 18px 20px 10px; max-width: 720px; margin: 0 auto; width: 100%; box-sizing: border-box;
+  }
+  .captions-head h2 { margin: 0; font-size: .95rem; font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1; }
+  .captions-close { flex-shrink: 0; }
+  .captions-scroll {
+    flex: 1; overflow-y: auto; padding: 6px 20px 12px;
+    max-width: 720px; margin: 0 auto; width: 100%; box-sizing: border-box;
+    mask-image: linear-gradient(to bottom, transparent 0, black 16px, black calc(100% - 8px), transparent 100%);
+  }
+  .caption-line {
+    padding: 9px 4px; font-size: 1.05rem; line-height: 1.5; color: var(--ink-faint);
+    cursor: pointer; border-radius: 8px; transition: color .15s ease;
+  }
+  .caption-line:hover { background: var(--surface-hover); }
+  .caption-line.past { color: var(--ink-soft); }
+  .caption-line.active { color: var(--ink); font-weight: 700; }
+  .caption-line .nl-term { color: var(--accent); font-weight: 600; }
+  .captions-empty { padding: 30px 20px; text-align: center; color: var(--ink-soft); font-size: .85rem; }
+  @media (min-width: 640px) { .captions-scroll { max-width: 760px; } }
+  @media (min-width: 900px) { .captions-scroll { max-width: 840px; } }
+
   footer { text-align: center; padding: 18px 20px 6px; font-size: .74rem; color: var(--ink-faint); max-width: 720px; margin: 0 auto; }
 
   @media (max-width: 560px) {
@@ -318,9 +353,20 @@
       <button class="ctrlbtn small" id="back15" title="15s terug">⟲15</button>
       <button class="ctrlbtn small" id="fwd15" title="15s vooruit">15⟳</button>
       <button class="ctrlbtn small" id="nextBtn" title="Volgende taak">⏭</button>
+      <button class="ctrlbtn small ccbtn" id="ccBtn" title="Ondertitels" disabled>CC</button>
       <button class="speedbtn" id="speedBtn">1×</button>
     </div>
   </div>
+</div>
+
+<div class="captions-drawer" id="captionsDrawer">
+  <div class="captions-head">
+    <button class="icon-btn captions-close" id="captionsCloseBtn" title="Sluiten">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <h2 id="captionsHeadTitle"></h2>
+  </div>
+  <div class="captions-scroll" id="captionsScroll"></div>
 </div>
 
 <footer>Gegenereerd uit "Welkom in Nederland — Voiceover Script (EN-NL)" · AI-stemmen (ElevenLabs Flash / edge-tts)</footer>
@@ -459,6 +505,11 @@ const continueBarFill = document.getElementById('continueBarFill');
 const continueTime = document.getElementById('continueTime');
 const continuePlayBtn = document.getElementById('continuePlayBtn');
 const transitionNotice = document.getElementById('transitionNotice');
+const ccBtn = document.getElementById('ccBtn');
+const captionsDrawer = document.getElementById('captionsDrawer');
+const captionsScroll = document.getElementById('captionsScroll');
+const captionsCloseBtn = document.getElementById('captionsCloseBtn');
+const captionsHeadTitle = document.getElementById('captionsHeadTitle');
 
 const SPEEDS = [0.8, 1, 1.1, 1.2, 1.5, 2];
 const CHAPTER_BREAK_MS = 3000;
@@ -724,7 +775,111 @@ function loadTrack(index, autoplay, startAt) {
     audio.play().catch(() => {});
   }
   saveProgress();
+  loadCaptions(track);
 }
+
+// ---------- captions / lyrics mode ----------
+const CAPTIONS_OPEN_KEY = 'welkomCaptionsOpen';
+const subtitlesCache = new Map();
+let currentCues = null;
+let activeLineIndex = -1;
+
+function captionsUrl(track) { return `subtitles/${trackId(track)}.json`; }
+
+async function loadCaptions(track) {
+  currentCues = null;
+  activeLineIndex = -1;
+  ccBtn.disabled = true;
+  const key = trackId(track);
+  let cues = subtitlesCache.get(key);
+  if (cues === undefined) {
+    try {
+      const res = await fetch(captionsUrl(track));
+      cues = res.ok ? (await res.json()).lines : null;
+    } catch { cues = null; }
+    subtitlesCache.set(key, cues);
+  }
+  // bail if the user already skipped to a different track while fetching
+  if (currentIndex < 0 || trackId(PLAYLIST[currentIndex]) !== key) return;
+  currentCues = (cues && cues.length) ? cues : null;
+  ccBtn.disabled = !currentCues;
+  if (captionsDrawer.classList.contains('open')) renderCaptions(track);
+  else if (currentCues && localStorage.getItem(CAPTIONS_OPEN_KEY)) openCaptions();
+}
+
+function escapeHtml(s) {
+  return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+function formatCaptionLine(text) {
+  return escapeHtml(text).replace(/\[([^\]]+)\]/g, '<span class="nl-term">$1</span>');
+}
+
+function renderCaptions(track) {
+  captionsHeadTitle.textContent = track ? `${englishTitle(track)} — ${track.title}` : '';
+  if (!currentCues) {
+    captionsScroll.innerHTML = '<div class="captions-empty">Geen ondertitels beschikbaar voor deze taak.</div>';
+    return;
+  }
+  captionsScroll.innerHTML = currentCues.map((c, i) =>
+    `<p class="caption-line" data-index="${i}" data-start="${c.start}">${formatCaptionLine(c.text)}</p>`
+  ).join('');
+  activeLineIndex = -1;
+  syncCaptions();
+}
+
+captionsScroll.addEventListener('click', (e) => {
+  const line = e.target.closest('.caption-line');
+  if (!line) return;
+  audio.currentTime = Number(line.dataset.start);
+  if (audio.paused) audio.play().catch(() => {});
+});
+
+function findCueIndex(cues, t) {
+  let lo = 0, hi = cues.length - 1, ans = -1;
+  while (lo <= hi) {
+    const mid = (lo + hi) >> 1;
+    if (cues[mid].start <= t) { ans = mid; lo = mid + 1; } else { hi = mid - 1; }
+  }
+  return ans;
+}
+
+function syncCaptions() {
+  if (!captionsDrawer.classList.contains('open') || !currentCues) return;
+  const idx = findCueIndex(currentCues, audio.currentTime);
+  if (idx === activeLineIndex) return;
+  const prevEl = captionsScroll.querySelector('.caption-line.active');
+  if (prevEl) prevEl.classList.remove('active');
+  if (activeLineIndex >= 0) {
+    const pastEl = captionsScroll.children[activeLineIndex];
+    if (pastEl) pastEl.classList.toggle('past', idx > activeLineIndex);
+  }
+  activeLineIndex = idx;
+  if (idx >= 0) {
+    const el = captionsScroll.children[idx];
+    if (el) {
+      el.classList.add('active');
+      el.classList.remove('past');
+      el.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    }
+  }
+}
+
+function openCaptions() {
+  if (!currentCues) return;
+  captionsDrawer.classList.add('open');
+  ccBtn.classList.add('active');
+  localStorage.setItem(CAPTIONS_OPEN_KEY, '1');
+  renderCaptions(currentIndex >= 0 ? PLAYLIST[currentIndex] : null);
+}
+function closeCaptions() {
+  captionsDrawer.classList.remove('open');
+  ccBtn.classList.remove('active');
+  localStorage.removeItem(CAPTIONS_OPEN_KEY);
+}
+ccBtn.addEventListener('click', () => {
+  captionsDrawer.classList.contains('open') ? closeCaptions() : openCaptions();
+});
+captionsCloseBtn.addEventListener('click', closeCaptions);
 
 function updatePlayIcon() {
   playBtn.textContent = audio.paused ? '▶' : '❚❚';
@@ -760,6 +915,7 @@ audio.addEventListener('loadedmetadata', () => {
 });
 audio.addEventListener('timeupdate', () => {
   updateActiveRowProgress();
+  syncCaptions();
   if (isSeeking) return;
   seek.value = audio.currentTime;
   setSeekProgress();
@@ -819,6 +975,7 @@ if (saved && PLAYLIST[saved.index]) {
     updateActiveRowProgress();
     audio.removeEventListener('loadedmetadata', once);
   });
+  loadCaptions(track);
 }
 updateContinueCard();
 

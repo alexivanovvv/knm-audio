@@ -1,0 +1,256 @@
+{
+ "lines": [
+  {
+   "start": 0.0,
+   "end": 1.73,
+   "text": "The birth of a baby.",
+   "bulletStart": false
+  },
+  {
+   "start": 1.73,
+   "end": 5.34,
+   "text": "Most women give birth [bevallen] in the hospital.",
+   "bulletStart": false
+  },
+  {
+   "start": 5.34,
+   "end": 8.45,
+   "text": "Were there problems during the pregnancy [zwangerschap]?",
+   "bulletStart": false
+  },
+  {
+   "start": 8.45,
+   "end": 15.41,
+   "text": "Then you are monitored by the gynaecologist [gynaecoloog] in the hospital, who is then also present at the birth.",
+   "bulletStart": false
+  },
+  {
+   "start": 15.41,
+   "end": 16.55,
+   "text": "No problems?",
+   "bulletStart": false
+  },
+  {
+   "start": 16.55,
+   "end": 20.52,
+   "text": "Then you can give birth with the help of a midwife [verloskundige].",
+   "bulletStart": false
+  },
+  {
+   "start": 20.52,
+   "end": 23.54,
+   "text": "That can be in the hospital, but also at home.",
+   "bulletStart": false
+  },
+  {
+   "start": 23.54,
+   "end": 26.04,
+   "text": "You must get all the baby supplies yourself.",
+   "bulletStart": false
+  },
+  {
+   "start": 26.04,
+   "end": 32.33,
+   "text": "If you are pregnant, you must also arrange a maternity home-care nurse [kraamhulp] yourself in time.",
+   "bulletStart": false
+  },
+  {
+   "start": 32.33,
+   "end": 36.92,
+   "text": "The kraamhulp comes to help at your home for about a week after the baby is born.",
+   "bulletStart": false
+  },
+  {
+   "start": 36.92,
+   "end": 45.48,
+   "text": "The health insurance [zorgverzekering] does not always cover all the costs; sometimes there is a personal contribution [eigen bijdrage].",
+   "bulletStart": false
+  },
+  {
+   "start": 45.48,
+   "end": 54.21,
+   "text": "The child health clinic [consultatiebureau] is part of the GGD (Gemeentelijke Gezondheidsdienst) in the municipality where you live.",
+   "bulletStart": false
+  },
+  {
+   "start": 54.21,
+   "end": 57.52,
+   "text": "Doctors and nurses [verpleegkundigen] work there.",
+   "bulletStart": false
+  },
+  {
+   "start": 57.52,
+   "end": 61.07,
+   "text": "You can go there with your child from zero to four years old.",
+   "bulletStart": false
+  },
+  {
+   "start": 61.07,
+   "end": 74.13,
+   "text": "They check whether your child is healthy: they measure [meten] and weigh [wegen] your child, and they look at the development [ontwikkeling] — seeing, hearing, talking, playing, eating, sleeping.",
+   "bulletStart": false
+  },
+  {
+   "start": 74.13,
+   "end": 79.07,
+   "text": "Your child can get vaccinations [vaccinaties] there against diseases.",
+   "bulletStart": false
+  },
+  {
+   "start": 79.07,
+   "end": 81.9,
+   "text": "The consultatiebureau is free [gratis].",
+   "bulletStart": false
+  },
+  {
+   "start": 81.9,
+   "end": 84.4,
+   "text": "Responsible for your child.",
+   "bulletStart": false
+  },
+  {
+   "start": 84.4,
+   "end": 86.51,
+   "text": "Parents are responsible for their children.",
+   "bulletStart": false
+  },
+  {
+   "start": 86.51,
+   "end": 90.87,
+   "text": "If a child does not come to school, the parents can get a fine [boete].",
+   "bulletStart": false
+  },
+  {
+   "start": 90.87,
+   "end": 100.01,
+   "text": "Until a child is sixteen, the parents are also liable [aansprakelijk]: if a child breaks something on the street, the parents must pay for it.",
+   "bulletStart": false
+  },
+  {
+   "start": 100.01,
+   "end": 101.47,
+   "text": "Help with parenting.",
+   "bulletStart": false
+  },
+  {
+   "start": 101.47,
+   "end": 103.22,
+   "text": "Is your child younger than four?",
+   "bulletStart": false
+  },
+  {
+   "start": 103.22,
+   "end": 106.46,
+   "text": "Then you can talk about problems at the consultatiebureau.",
+   "bulletStart": false
+  },
+  {
+   "start": 106.46,
+   "end": 108.27,
+   "text": "Is the child four or older?",
+   "bulletStart": false
+  },
+  {
+   "start": 108.27,
+   "end": 109.72,
+   "text": "Then you can talk at school.",
+   "bulletStart": false
+  },
+  {
+   "start": 109.72,
+   "end": 113.27,
+   "text": "You can also always talk with the family doctor [huisarts].",
+   "bulletStart": false
+  },
+  {
+   "start": 113.27,
+   "end": 115.14,
+   "text": "Do the problems continue?",
+   "bulletStart": false
+  },
+  {
+   "start": 115.14,
+   "end": 120.2,
+   "text": "Then you can get help from the municipality, for example youth care [jeugdzorg].",
+   "bulletStart": false
+  },
+  {
+   "start": 120.2,
+   "end": 124.64,
+   "text": "They do research and give advice, often also in your own language.",
+   "bulletStart": false
+  },
+  {
+   "start": 124.64,
+   "end": 125.91,
+   "text": "Not safe.",
+   "bulletStart": false
+  },
+  {
+   "start": 125.91,
+   "end": 132.55,
+   "text": "Sometimes parents abuse [mishandelen] their child, or they can no longer take care of the child.",
+   "bulletStart": false
+  },
+  {
+   "start": 132.55,
+   "end": 137.76,
+   "text": "Then the Child Protection Board [Raad voor de Kinderbescherming] can do something.",
+   "bulletStart": false
+  },
+  {
+   "start": 137.76,
+   "end": 146.25,
+   "text": "Only if the situation is very serious can the judge [rechter] make a decision, for example that the child no longer lives with the parents.",
+   "bulletStart": false
+  },
+  {
+   "start": 146.25,
+   "end": 150.88,
+   "text": "Are you worried about the safety of a child (including someone else's child)?",
+   "bulletStart": false
+  },
+  {
+   "start": 150.88,
+   "end": 153.92,
+   "text": "Then you can call Veilig Thuis for advice.",
+   "bulletStart": false
+  },
+  {
+   "start": 153.92,
+   "end": 155.35,
+   "text": "Abuse of children.",
+   "bulletStart": false
+  },
+  {
+   "start": 155.35,
+   "end": 159.58,
+   "text": "Children have rights [rechten], for example the right to education.",
+   "bulletStart": false
+  },
+  {
+   "start": 159.58,
+   "end": 161.93,
+   "text": "Abuse is forbidden [verboden].",
+   "bulletStart": false
+  },
+  {
+   "start": 161.93,
+   "end": 166.67,
+   "text": "Hitting children is not allowed: not by teachers and not by parents either.",
+   "bulletStart": false
+  },
+  {
+   "start": 166.67,
+   "end": 171.2,
+   "text": "Circumcision [Besnijdenis] of girls is forbidden in the Netherlands.",
+   "bulletStart": false
+  },
+  {
+   "start": 171.2,
+   "end": 173.46,
+   "text": "Circumcision of boys is not forbidden.",
+   "bulletStart": false
+  }
+ ]
+}
