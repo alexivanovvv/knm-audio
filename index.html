@@ -138,7 +138,11 @@
     padding: 10px 8px; margin-top: 8px; border-radius: 10px; cursor: pointer;
   }
   .track:hover { background: var(--surface-hover); }
-  .track.active { background: var(--accent-tint); }
+  .track.active {
+    --progress: 0%;
+    background: linear-gradient(to right, var(--accent-tint) var(--progress), transparent var(--progress));
+    transition: background .2s linear;
+  }
   .track .marker {
     width: 1.7rem; height: 1.7rem; border-radius: 8px; display: grid; place-items: center;
     font: 600 .78rem 'JetBrains Mono', monospace; color: var(--ink-faint); background: var(--surface);
@@ -645,6 +649,16 @@ function highlightActiveTrack() {
   });
 }
 
+function activeRowEl() {
+  return chaptersEl.querySelector(`.track[data-index="${currentIndex}"]`);
+}
+function updateActiveRowProgress() {
+  const row = activeRowEl();
+  if (!row) return;
+  const pct = audio.duration ? Math.min(100, (audio.currentTime / audio.duration) * 100) : 0;
+  row.style.setProperty('--progress', pct + '%');
+}
+
 function loadTrack(index, autoplay, startAt) {
   if (index < 0 || index >= PLAYLIST.length) return;
   currentIndex = index;
@@ -652,6 +666,7 @@ function loadTrack(index, autoplay, startAt) {
   audio.src = fileUrl(track.file);
   renderNowPlaying(track);
   highlightActiveTrack();
+  updateActiveRowProgress();
   if (startAt) {
     audio.addEventListener('loadedmetadata', function once() {
       audio.currentTime = startAt;
@@ -693,8 +708,10 @@ audio.addEventListener('loadedmetadata', () => {
   seek.max = audio.duration || 0;
   durTimeEl.textContent = fmtTime(audio.duration);
   audio.playbackRate = SPEEDS[speedIdx];
+  updateActiveRowProgress();
 });
 audio.addEventListener('timeupdate', () => {
+  updateActiveRowProgress();
   if (isSeeking) return;
   seek.value = audio.currentTime;
   curTimeEl.textContent = fmtTime(audio.currentTime);
@@ -708,7 +725,12 @@ audio.addEventListener('ended', () => {
 setInterval(saveProgress, 4000);
 window.addEventListener('beforeunload', saveProgress);
 
-seek.addEventListener('input', () => { isSeeking = true; curTimeEl.textContent = fmtTime(Number(seek.value)); });
+seek.addEventListener('input', () => {
+  isSeeking = true;
+  curTimeEl.textContent = fmtTime(Number(seek.value));
+  const row = activeRowEl();
+  if (row && audio.duration) row.style.setProperty('--progress', Math.min(100, (Number(seek.value) / audio.duration) * 100) + '%');
+});
 seek.addEventListener('change', () => { audio.currentTime = Number(seek.value); isSeeking = false; });
 
 document.addEventListener('keydown', (e) => {
@@ -734,6 +756,7 @@ if (saved && PLAYLIST[saved.index]) {
     audio.currentTime = saved.time || 0;
     seek.value = audio.currentTime;
     curTimeEl.textContent = fmtTime(audio.currentTime);
+    updateActiveRowProgress();
     audio.removeEventListener('loadedmetadata', once);
   });
 }
