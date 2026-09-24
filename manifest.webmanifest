@@ -1,7 +1,7 @@
 {
-  "name": "KNM Prep App — Welkom in Nederland",
-  "short_name": "KNM Prep",
-  "description": "Audioboek-app voor de KNM-samenvatting 'Welkom in Nederland' — English first, Dutch inserts in brackets.",
+  "name": "Welkom in Nederland — KNM Audioboek",
+  "short_name": "KNM Audioboek",
+  "description": "Audioboek-app voor de KNM-samenvatting 'Welkom in Nederland': 7 hoofdstukken, 36 taken, Engelse vertelling met Nederlandse kernbegrippen apart uitgesproken.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
@@ -10,6 +10,7 @@
   "theme_color": "#0B0A09",
   "lang": "nl",
   "icons": [
+    { "src": "icons/favicon-32.png", "sizes": "32x32", "type": "image/png" },
     { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
     { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
     { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }

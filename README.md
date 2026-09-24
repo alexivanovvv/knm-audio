@@ -41,9 +41,21 @@ app te installeren.
 index.html               — app shell + speler
 manifest.webmanifest      — PWA-manifest (iconen, naam, kleuren)
 sw.js                     — service worker (offline caching)
-icons/                    — app-iconen (180/192/512, incl. maskable)
+icons/                    — app-iconen (32/180/192/512, incl. maskable)
+social/                   — og-image.png (1200×630, link previews) en
+                            cover-1080.png (vierkant, algemeen gebruik)
 Audio/                    — 36 mp3's, één per Taak
 ```
+
+## Merk / iconografie
+
+Het icoon combineert een sereif "NL"-wordmark met een geluidsgolf in de
+Nederlandse driekleur — leest als "Nederlands, audio" op elk formaat, van
+32px favicon tot 512px app-icoon. Dezelfde compositie komt terug in de
+social-preview-afbeelding (`social/og-image.png`, gebruikt door
+`og:image`/`twitter:image` in `index.html`) en in `social/cover-1080.png`
+voor vierkant gebruik (bijv. delen in chats). Kleuren volgen het bestaande
+oranje accent (`--accent`) uit de app zelf.
 
 ## Herbouwen vanuit de bron
 

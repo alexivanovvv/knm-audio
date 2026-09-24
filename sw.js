@@ -1,4 +1,4 @@
-const SHELL_CACHE = "nl-audioboek-shell-v4";
+const SHELL_CACHE = "nl-audioboek-shell-v5";
 const AUDIO_CACHE = "nl-audioboek-audio-v3";
 const SUBS_CACHE = "nl-audioboek-subs-v1";
 
@@ -6,6 +6,7 @@ const SHELL_ASSETS = [
   "./",
   "./index.html",
   "./manifest.webmanifest",
+  "./icons/favicon-32.png",
   "./icons/icon-180.png",
   "./icons/icon-192.png",
   "./icons/icon-512.png",
