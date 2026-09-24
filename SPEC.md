@@ -109,7 +109,7 @@ to prod" (переиспользует `/__deploy`). При ошибке/офл�
 
 ### Сейчас (в работе, по порядку)
 
-#### T-10 · Аккаунты с логином (PIN, без email) — синк прогресса · сделан (24.09, commit TBD)
+#### T-10 · Аккаунты с логином (PIN, без email) — синк прогресса · сделан (24.09, commit 6a2378e)
 `netlify/functions/progress.js` (Netlify Function v2, путь `/api/progress`) +
 Netlify Blobs как key-value хранилище; ключ — SHA-256("knm-audio:"+PIN),
 считается на клиенте, сырой PIN на сервер не уходит. `GET ?key=` отдаёт
