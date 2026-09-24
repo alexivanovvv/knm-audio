@@ -58,7 +58,7 @@
     color: var(--ink);
     background: var(--bg);
     font-family: var(--font-body);
-    padding-bottom: 132px;
+    padding-bottom: 156px;
     overflow-x: hidden;
   }
   .mono { font-family: 'JetBrains Mono', monospace; }
@@ -189,13 +189,17 @@
   .seekrow .time { font: 500 .72rem 'JetBrains Mono', monospace; color: var(--ink-faint); width: 2.4rem; flex-shrink: 0; }
   .seekrow .time.end { text-align: right; }
   input[type="range"] {
-    -webkit-appearance: none; appearance: none; flex: 1; height: 4px; border-radius: 2px;
-    background: var(--rule); outline: none; cursor: pointer;
+    --seek-progress: 0%;
+    -webkit-appearance: none; appearance: none; flex: 1; height: 8px; border-radius: 999px;
+    background: linear-gradient(to right, var(--accent) 0 var(--seek-progress), var(--rule-strong) var(--seek-progress) 100%);
+    box-shadow: inset 0 0 0 1px var(--rule); outline: none; cursor: pointer;
   }
   input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none; width: 12px; height: 12px; border-radius: 50%; background: var(--accent);
-    cursor: pointer; margin-top: -4px;
+    -webkit-appearance: none; width: 16px; height: 16px; border: 2px solid var(--bg-2); border-radius: 50%; background: var(--accent);
+    box-shadow: 0 1px 5px var(--shadow); cursor: pointer; margin-top: -4px;
   }
+  input[type="range"]::-moz-range-thumb { width: 12px; height: 12px; border: 2px solid var(--bg-2); border-radius: 50%; background: var(--accent); box-shadow: 0 1px 5px var(--shadow); cursor: pointer; }
+  input[type="range"]::-moz-range-progress { height: 8px; border-radius: 999px; background: var(--accent); }
   .controlsrow { display: flex; align-items: center; justify-content: center; gap: 16px; position: relative; min-height: 2.6rem; }
   .ctrlbtn {
     background: none; border: none; color: var(--ink); cursor: pointer; font-family: inherit;
@@ -211,6 +215,8 @@
     font: 500 .72rem 'JetBrains Mono', monospace; border-radius: 999px; padding: 4px 9px; cursor: pointer;
   }
   .speedbtn:hover { border-color: var(--rule-strong); color: var(--ink); }
+  .transition-notice { min-height: 1.15rem; margin: -2px 0 7px; color: var(--ink-soft); font: 500 .68rem/1.2 'JetBrains Mono', monospace; text-align: center; }
+  .transition-notice[hidden] { display: none; }
 
   footer { text-align: center; padding: 18px 20px 6px; font-size: .74rem; color: var(--ink-faint); max-width: 720px; margin: 0 auto; }
 
@@ -287,6 +293,7 @@
       <input type="range" id="seek" min="0" max="100" value="0" step="0.1">
       <span class="time end" id="durTime">0:00</span>
     </div>
+    <div class="transition-notice" id="transitionNotice" role="status" hidden></div>
     <div class="controlsrow">
       <button class="ctrlbtn small" id="prevBtn" title="Vorige taak">⏮</button>
       <button class="ctrlbtn small" id="back15" title="15s terug">⟲15</button>
@@ -428,11 +435,14 @@ const continueTitle = document.getElementById('continueTitle');
 const continueBarFill = document.getElementById('continueBarFill');
 const continueTime = document.getElementById('continueTime');
 const continuePlayBtn = document.getElementById('continuePlayBtn');
+const transitionNotice = document.getElementById('transitionNotice');
 
 const SPEEDS = [0.8, 1, 1.1, 1.2, 1.5, 2];
+const CHAPTER_BREAK_MS = 3000;
 let speedIdx = 1; // 1x
 let currentIndex = -1;
 let isSeeking = false;
+let chapterBreakTimer = null;
 
 const STORAGE_KEY = 'welkomAudiobookProgress';
 const INSTALL_DISMISS_KEY = 'welkomInstallHintDismissed';
@@ -659,8 +669,21 @@ function updateActiveRowProgress() {
   row.style.setProperty('--progress', pct + '%');
 }
 
+function setSeekProgress(time = audio.currentTime, duration = audio.duration) {
+  const pct = duration ? Math.min(100, Math.max(0, (time / duration) * 100)) : 0;
+  seek.style.setProperty('--seek-progress', pct + '%');
+}
+
+function clearChapterBreak() {
+  if (chapterBreakTimer) clearTimeout(chapterBreakTimer);
+  chapterBreakTimer = null;
+  transitionNotice.hidden = true;
+  transitionNotice.textContent = '';
+}
+
 function loadTrack(index, autoplay, startAt) {
   if (index < 0 || index >= PLAYLIST.length) return;
+  clearChapterBreak();
   currentIndex = index;
   const track = PLAYLIST[index];
   audio.src = fileUrl(track.file);
@@ -708,18 +731,29 @@ audio.addEventListener('loadedmetadata', () => {
   seek.max = audio.duration || 0;
   durTimeEl.textContent = fmtTime(audio.duration);
   audio.playbackRate = SPEEDS[speedIdx];
+  setSeekProgress();
   updateActiveRowProgress();
 });
 audio.addEventListener('timeupdate', () => {
   updateActiveRowProgress();
   if (isSeeking) return;
   seek.value = audio.currentTime;
+  setSeekProgress();
   curTimeEl.textContent = fmtTime(audio.currentTime);
 });
 audio.addEventListener('ended', () => {
   markListened(currentIndex);
   if (autoplayToggle.checked && currentIndex < PLAYLIST.length - 1) {
-    loadTrack(currentIndex + 1, true);
+    const nextIndex = currentIndex + 1;
+    const nextTrack = PLAYLIST[nextIndex];
+    const isChapterBreak = nextTrack.ch !== PLAYLIST[currentIndex].ch;
+    if (!isChapterBreak) {
+      loadTrack(nextIndex, true);
+      return;
+    }
+    transitionNotice.textContent = `Volgend hoofdstuk over ${CHAPTER_BREAK_MS / 1000} s`;
+    transitionNotice.hidden = false;
+    chapterBreakTimer = window.setTimeout(() => loadTrack(nextIndex, true), CHAPTER_BREAK_MS);
   }
 });
 setInterval(saveProgress, 4000);
@@ -728,6 +762,7 @@ window.addEventListener('beforeunload', saveProgress);
 seek.addEventListener('input', () => {
   isSeeking = true;
   curTimeEl.textContent = fmtTime(Number(seek.value));
+  setSeekProgress(Number(seek.value));
   const row = activeRowEl();
   if (row && audio.duration) row.style.setProperty('--progress', Math.min(100, (Number(seek.value) / audio.duration) * 100) + '%');
 });
@@ -755,6 +790,7 @@ if (saved && PLAYLIST[saved.index]) {
   audio.addEventListener('loadedmetadata', function once() {
     audio.currentTime = saved.time || 0;
     seek.value = audio.currentTime;
+    setSeekProgress();
     curTimeEl.textContent = fmtTime(audio.currentTime);
     updateActiveRowProgress();
     audio.removeEventListener('loadedmetadata', once);
