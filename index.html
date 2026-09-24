@@ -117,6 +117,7 @@
     background: var(--surface); color: var(--ink-soft); cursor: pointer; display: grid; place-items: center;
   }
   .icon-btn:hover { border-color: var(--rule-strong); color: var(--ink); }
+  .icon-btn.active { color: var(--accent); border-color: var(--rule-strong); }
   .icon-btn svg { width: 1.05rem; height: 1.05rem; }
 
   .topbar-menu {
@@ -223,6 +224,9 @@
   .track.active .ttitle { color: var(--accent); font-weight: 700; }
   .track.listened:not(.active) .ttitle { color: var(--ink-soft); }
   .track .check { font-size: .8rem; color: var(--accent); width: .9rem; text-align: center; flex-shrink: 0; }
+  .track .check svg { width: .95rem; height: .95rem; display: block; }
+  .chapters.edit-mode .track .check { width: 1.15rem; color: var(--ink-faint); }
+  .chapters.edit-mode .track.listened .check { color: var(--accent); }
   .track .dur { font: 500 .74rem 'JetBrains Mono', monospace; color: var(--ink-faint); flex-shrink: 0; min-width: 2.6rem; text-align: right; }
 
   /* ---------- install hint ---------- */
@@ -415,6 +419,9 @@
       <div class="bar"><span id="overallBarFill" style="width:0%"></span></div>
       <span class="overview-label"><b id="listenedCount">0</b>/<span id="overviewTotal">36</span> <span id="overviewSuffix">taken afgerond</span></span>
     </div>
+    <button class="icon-btn" id="editModeBtn" type="button">
+      <span id="editModeIcon"></span>
+    </button>
   </section>
 
   <section class="chapters" id="chapters" aria-label="Hoofdstukken"></section>
@@ -617,6 +624,8 @@ const overviewSuffixEl = document.getElementById('overviewSuffix');
 const overviewTotalEl = document.getElementById('overviewTotal');
 const listenedCountEl = document.getElementById('listenedCount');
 const overallBarFill = document.getElementById('overallBarFill');
+const editModeBtn = document.getElementById('editModeBtn');
+const editModeIcon = document.getElementById('editModeIcon');
 const continueCard = document.getElementById('continueCard');
 const continueCover = document.getElementById('continueCover');
 const continueTitle = document.getElementById('continueTitle');
@@ -680,6 +689,8 @@ const STRINGS = {
   ccModeLabel: { en: 'Subtitles mode', nl: 'Ondertitelmodus' },
   ccModeFull: { en: 'Full', nl: 'Volledig' },
   ccModeMicro: { en: 'Micro', nl: 'Micro' },
+  editModeStart: { en: 'Mark chapters as done', nl: 'Markeer hoofdstukken als voltooid' },
+  editModeStop: { en: 'Done marking', nl: 'Klaar met markeren' },
   refreshLabel: { en: 'Refresh everything', nl: 'Alles vernieuwen' },
   refreshConfirm: { en: 'Fully reload the cache, service worker and app shell?', nl: 'Cache, service worker en de app-shell volledig opnieuw laden?' },
   continueLabel: { en: 'Continue listening', nl: 'Verder luisteren' },
@@ -727,6 +738,10 @@ const CLOCK_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" s
 const CC_MODE_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 10h4M7 14h7"/></svg>';
 const PLAY_ICON = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
 const PAUSE_ICON = '<svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
+const EDIT_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>';
+const DONE_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>';
+const SELECT_ON_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="17" height="17" rx="4" fill="currentColor"/><path d="M8 12.5l2.5 2.5 5.5-6" stroke="var(--surface)"/></svg>';
+const SELECT_OFF_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="17" height="17" rx="4"/></svg>';
 
 const THEME_OPTIONS = ['dark-amber', 'dark-teal', 'dark-violet', 'light-paper', 'light-sky', 'light-mint'];
 const THEME_LABEL_KEYS = {
@@ -925,6 +940,8 @@ function applyLanguage(lang) {
   applyAnnounceUI();
   applyChapterBreakUI();
   applyCcModeUI();
+  editModeIcon.innerHTML = editMode ? DONE_ICON : EDIT_ICON;
+  editModeBtn.title = editMode ? t('editModeStop') : t('editModeStart');
   applyTheme(currentEffectiveTheme());
   if (deployBtnEl) { deployBtnEl.title = t('deployLabel'); deployLabelEl.textContent = t('deployLabel'); }
   if (IS_LOCALHOST) { localBannerTextEl.textContent = t('localBannerText'); localDeployBtnLabel.textContent = t('localBannerDeployBtn'); }
@@ -1070,9 +1087,37 @@ function updateListenedUI() {
     const isListened = track && listened.has(trackId(track));
     el.classList.toggle('listened', isListened);
     const check = el.querySelector('.check');
-    if (check) check.textContent = isListened ? '✓' : '';
+    if (check) check.innerHTML = editMode ? (isListened ? SELECT_ON_ICON : SELECT_OFF_ICON) : (isListened ? '✓' : '');
   });
 }
+
+let editMode = false;
+function setEditMode(on) {
+  editMode = on;
+  chaptersEl.classList.toggle('edit-mode', editMode);
+  editModeBtn.classList.toggle('active', editMode);
+  editModeIcon.innerHTML = editMode ? DONE_ICON : EDIT_ICON;
+  editModeBtn.title = editMode ? t('editModeStop') : t('editModeStart');
+  updateListenedUI();
+}
+function toggleListenedManual(index) {
+  const track = PLAYLIST[index];
+  if (!track) return;
+  const id = trackId(track);
+  if (listened.has(id)) listened.delete(id); else listened.add(id);
+  saveListened();
+  updateListenedUI();
+}
+function toggleChapterListened(ch) {
+  const chapter = BOOK.find(c => c.ch === ch);
+  if (!chapter) return;
+  const ids = chapter.tasks.map(task => `H${ch}T${task.t}`);
+  const allDone = ids.every(id => listened.has(id));
+  ids.forEach(id => allDone ? listened.delete(id) : listened.add(id));
+  saveListened();
+  updateListenedUI();
+}
+editModeBtn.addEventListener('click', () => setEditMode(!editMode));
 
 // ---------- progress ----------
 function saveProgress() {
@@ -1134,7 +1179,10 @@ function renderChapters() {
     head.className = 'chapter-head';
     head.type = 'button';
     head.innerHTML = `<span class="chapter-cover">${chapterArtwork(chapter.ch, 48)}</span><span class="chapter-titles"><span class="chapter-num">${t('chapterWord')} ${chapter.ch}</span><h2>${chapter.chTitleEn}<span class="ch-sub">${chapter.chTitle}</span></h2></span><span class="chapter-meta"><span class="chapter-count mono">0/${chapter.tasks.length}</span><span class="chev">▾</span></span>`;
-    head.addEventListener('click', () => chapterEl.classList.toggle('collapsed'));
+    head.addEventListener('click', () => {
+      if (editMode) toggleChapterListened(chapter.ch);
+      else chapterEl.classList.toggle('collapsed');
+    });
     chapterEl.appendChild(head);
 
     const list = document.createElement('ul');
@@ -1145,7 +1193,10 @@ function renderChapters() {
       li.className = 'track';
       li.dataset.index = idx;
       li.innerHTML = `<span class="marker">${task.t}</span><span class="track-body"><span class="ttitle">${englishTitle({ ch: chapter.ch, t: task.t })}</span><span class="tsub">${task.title}</span></span><span class="check"></span><span class="dur" data-file="${task.file}">--:--</span>`;
-      li.addEventListener('click', () => loadTrack(idx, true));
+      li.addEventListener('click', () => {
+        if (editMode) toggleListenedManual(idx);
+        else loadTrack(idx, true);
+      });
       list.appendChild(li);
     });
     chapterEl.appendChild(list);
