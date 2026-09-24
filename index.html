@@ -592,6 +592,44 @@ document.addEventListener('click', (e) => {
   if (!topbarMenu.contains(e.target) && e.target !== menuBtn) closeMenu();
 });
 
+// ---------- local deploy button (alleen op localhost) ----------
+if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
+  const deployBtn = document.createElement('button');
+  deployBtn.type = 'button';
+  deployBtn.className = 'icon-btn';
+  deployBtn.title = 'Deploy naar Netlify (productie)';
+  deployBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg>';
+  deployBtn.addEventListener('click', async () => {
+    if (deployBtn.disabled) return;
+    if (!window.confirm('Nu deployen naar Netlify productie? Dit kost account-credits.')) return;
+    deployBtn.disabled = true;
+    const prevTitle = deployBtn.title;
+    deployBtn.style.opacity = '.5';
+    deployBtn.title = 'Bezig met deployen…';
+    try {
+      const res = await fetch('/__deploy', { method: 'POST' });
+      const data = await res.json();
+      if (data.ok) {
+        deployBtn.title = 'Gedeployed ✔';
+        console.log('[deploy] ok\n' + data.stdout);
+      } else {
+        deployBtn.title = 'Deploy mislukt — zie console';
+        console.error('[deploy] failed\n' + data.stderr);
+      }
+    } catch (err) {
+      deployBtn.title = 'Deploy mislukt — draait dev-server.py?';
+      console.error('[deploy] error', err);
+    } finally {
+      setTimeout(() => {
+        deployBtn.disabled = false;
+        deployBtn.style.opacity = '';
+        deployBtn.title = prevTitle;
+      }, 4000);
+    }
+  });
+  document.querySelector('.topbar-actions').prepend(deployBtn);
+}
+
 async function hardRefresh() {
   const ok = window.confirm('Cache, service worker en de app-shell volledig opnieuw laden?');
   if (!ok) return;
