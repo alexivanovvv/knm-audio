@@ -3,9 +3,14 @@
 Installeerbare webapp (PWA) die de KNM-samenvatting "Welkom in Nederland" als
 audioboek afspeelt: 7 hoofdstukken, 36 taken. De interface toont Nederlandstalige
 en Engelstalige labels naast elkaar, en Nederlandse kernbegrippen/eigennamen
-worden uitgesproken met een Nederlandse stem (`nl-NL-MaartenNeural`), terwijl de
-rest van de tekst een Engelse stem (`en-US-GuyNeural`) gebruikt — beide gratis
-neurale stemmen via [edge-tts](https://github.com/rany2/edge-tts).
+worden apart uitgesproken van de Engelse tekst.
+
+Momenteel gebruiken 11 van de 36 taken (hoofdstuk 1, hoofdstuk 2 en H5T5)
+ElevenLabs Flash-stemmen; de overige 25 taken zijn nog gegenereerd met de
+gratis neurale stemmen via [edge-tts](https://github.com/rany2/edge-tts)
+(`nl-NL-MaartenNeural` voor Nederlandse termen, `en-US-GuyNeural` voor de
+Engelse tekst). Zie `BACKLOG.md` (T-02) voor de status van het overzetten
+van de resterende taken naar ElevenLabs.
 
 ## Gebruiken
 
