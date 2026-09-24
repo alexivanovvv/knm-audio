@@ -76,7 +76,8 @@
   .continue-cover svg { display: block; width: 64px; height: 64px; border-radius: 10px; }
   .continue-body { min-width: 0; }
   .continue-label { display: block; font: 600 .656rem/1 'JetBrains Mono', monospace; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: 5px; }
-  .continue-body h2 { margin: 0 0 8px; font-size: .98rem; font-weight: 700; line-height: 1.25; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .continue-body h2 { margin: 0 0 8px; font-size: .98rem; font-weight: 700; line-height: 1.25; }
+  .continue-body h2 .continue-sub { display: block; font-size: .78rem; font-weight: 400; color: var(--ink-soft); margin-top: 2px; }
   .continue-progress { display: flex; align-items: center; gap: 8px; }
   .bar { flex: 1; height: 4px; border-radius: 2px; background: var(--rule); overflow: hidden; }
   .bar span { display: block; height: 100%; background: var(--accent); border-radius: 2px; }
@@ -108,7 +109,7 @@
   .chapter-cover svg { display: block; width: 48px; height: 48px; border-radius: 9px; }
   .chapter-num { display: block; font: 600 .625rem/1 'JetBrains Mono', monospace; letter-spacing: .09em; text-transform: uppercase; color: var(--accent); margin-bottom: 4px; }
   .chapter-head h2 { margin: 0; font-size: 1rem; font-weight: 700; line-height: 1.25; letter-spacing: -.005em; }
-  .chapter-head .ch-en { display: block; font-size: .78rem; font-weight: 400; color: var(--ink-soft); margin-top: 2px; }
+  .chapter-head .ch-sub { display: block; font-size: .78rem; font-weight: 400; color: var(--ink-soft); margin-top: 2px; }
   .chapter-meta { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
   .chapter-count { font: 500 .6875rem/1 'JetBrains Mono', monospace; color: var(--ink-faint); }
   .chev { color: var(--ink-faint); transition: transform .18s ease; font-size: .8rem; }
@@ -155,9 +156,15 @@
     padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
   }
   .player-inner { max-width: 720px; margin: 0 auto; }
-  .player .now { font-size: .82rem; color: var(--ink-soft); margin-bottom: 8px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .player .now b { color: var(--ink); font-weight: 700; }
-  .player .now .now-en { color: var(--ink-faint); margin-left: 6px; }
+  .player-main { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+  .player-cover { flex-shrink: 0; line-height: 0; display: none; }
+  .player-cover svg { display: block; width: 40px; height: 40px; border-radius: 9px; }
+  .player .now { min-width: 0; flex: 1; }
+  .player .now-placeholder { font-size: .82rem; color: var(--ink-soft); }
+  .player .now .now-kicker { display: block; font: 600 .656rem/1 'JetBrains Mono', monospace; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin-bottom: 3px; }
+  .player .now .now-title { display: block; font-size: .92rem; font-weight: 700; color: var(--ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .player .now .now-sub { display: block; font-size: .76rem; color: var(--ink-soft); margin-top: 1px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .player-main #playBtn { flex-shrink: 0; }
   .seekrow { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
   .seekrow .time { font: 500 .72rem 'JetBrains Mono', monospace; color: var(--ink-faint); width: 2.4rem; flex-shrink: 0; }
   .seekrow .time.end { text-align: right; }
@@ -249,7 +256,11 @@
 
 <div class="player" id="player">
   <div class="player-inner">
-    <div class="now" id="nowPlaying">Kies een hoofdstuk om te beginnen</div>
+    <div class="player-main">
+      <span class="player-cover" id="playerCover"></span>
+      <div class="now" id="nowPlaying"><span class="now-placeholder">Kies een hoofdstuk om te beginnen</span></div>
+      <button class="ctrlbtn" id="playBtn" title="Afspelen/Pauzeren">▶</button>
+    </div>
     <div class="seekrow">
       <span class="time" id="curTime">0:00</span>
       <input type="range" id="seek" min="0" max="100" value="0" step="0.1">
@@ -258,7 +269,6 @@
     <div class="controlsrow">
       <button class="ctrlbtn small" id="prevBtn" title="Vorige taak">⏮</button>
       <button class="ctrlbtn small" id="back15" title="15s terug">⟲15</button>
-      <button class="ctrlbtn" id="playBtn" title="Afspelen/Pauzeren">▶</button>
       <button class="ctrlbtn small" id="fwd15" title="15s vooruit">15⟳</button>
       <button class="ctrlbtn small" id="nextBtn" title="Volgende taak">⏭</button>
       <button class="speedbtn" id="speedBtn">1×</button>
@@ -375,6 +385,7 @@ function englishTitle(track) { return TASK_LABELS[trackId(track)] || ''; }
 const audio = document.getElementById('audio');
 const chaptersEl = document.getElementById('chapters');
 const nowPlayingEl = document.getElementById('nowPlaying');
+const playerCover = document.getElementById('playerCover');
 const seek = document.getElementById('seek');
 const curTimeEl = document.getElementById('curTime');
 const durTimeEl = document.getElementById('durTime');
@@ -530,7 +541,7 @@ function updateContinueCard() {
   const track = PLAYLIST[saved.index];
   continueCard.style.display = '';
   continueCover.innerHTML = chapterArtwork(track.ch, 64);
-  continueTitle.textContent = track.title;
+  continueTitle.innerHTML = `${englishTitle(track)}<span class="continue-sub">${track.title}</span>`;
   continueTime.textContent = fmtTime(saved.time || 0);
   const durAttr = document.querySelector(`.dur[data-file="${CSS.escape(track.file)}"]`);
   const durText = durAttr ? durAttr.textContent : null;
@@ -554,7 +565,7 @@ function renderChapters() {
     const head = document.createElement('button');
     head.className = 'chapter-head';
     head.type = 'button';
-    head.innerHTML = `<span class="chapter-cover">${chapterArtwork(chapter.ch, 48)}</span><span class="chapter-titles"><span class="chapter-num">Hoofdstuk ${chapter.ch}</span><h2>${chapter.chTitle}<span class="ch-en">${chapter.chTitleEn}</span></h2></span><span class="chapter-meta"><span class="chapter-count mono">0/${chapter.tasks.length}</span><span class="chev">▾</span></span>`;
+    head.innerHTML = `<span class="chapter-cover">${chapterArtwork(chapter.ch, 48)}</span><span class="chapter-titles"><span class="chapter-num">Hoofdstuk ${chapter.ch}</span><h2>${chapter.chTitleEn}<span class="ch-sub">${chapter.chTitle}</span></h2></span><span class="chapter-meta"><span class="chapter-count mono">0/${chapter.tasks.length}</span><span class="chev">▾</span></span>`;
     head.addEventListener('click', () => chapterEl.classList.toggle('collapsed'));
     chapterEl.appendChild(head);
 
@@ -565,7 +576,7 @@ function renderChapters() {
       const li = document.createElement('li');
       li.className = 'track';
       li.dataset.index = idx;
-      li.innerHTML = `<span class="marker">${task.t}</span><span class="track-body"><span class="ttitle">${task.title}</span><span class="tsub">${englishTitle({ ch: chapter.ch, t: task.t })}</span></span><span class="check"></span><span class="dur" data-file="${task.file}">--:--</span>`;
+      li.innerHTML = `<span class="marker">${task.t}</span><span class="track-body"><span class="ttitle">${englishTitle({ ch: chapter.ch, t: task.t })}</span><span class="tsub">${task.title}</span></span><span class="check"></span><span class="dur" data-file="${task.file}">--:--</span>`;
       li.addEventListener('click', () => loadTrack(idx, true));
       list.appendChild(li);
     });
@@ -588,6 +599,12 @@ function loadDurations() {
   });
 }
 
+function renderNowPlaying(track) {
+  playerCover.innerHTML = chapterArtwork(track.ch, 40);
+  playerCover.style.display = 'block';
+  nowPlayingEl.innerHTML = `<span class="now-kicker">Hoofdstuk ${track.ch} · Taak ${track.t}</span><span class="now-title">${englishTitle(track)}</span><span class="now-sub">${track.title}</span>`;
+}
+
 function highlightActiveTrack() {
   document.querySelectorAll('.track').forEach(el => {
     el.classList.toggle('active', Number(el.dataset.index) === currentIndex);
@@ -599,7 +616,7 @@ function loadTrack(index, autoplay, startAt) {
   currentIndex = index;
   const track = PLAYLIST[index];
   audio.src = fileUrl(track.file);
-  nowPlayingEl.innerHTML = `Hoofdstuk ${track.ch} · Taak ${track.t} — <b>${track.title}</b><span class="now-en">${englishTitle(track)}</span>`;
+  renderNowPlaying(track);
   highlightActiveTrack();
   if (startAt) {
     audio.addEventListener('loadedmetadata', function once() {
@@ -677,7 +694,7 @@ if (saved && PLAYLIST[saved.index]) {
   const track = PLAYLIST[saved.index];
   currentIndex = saved.index;
   audio.src = fileUrl(track.file);
-  nowPlayingEl.innerHTML = `Hoofdstuk ${track.ch} · Taak ${track.t} — <b>${track.title}</b><span class="now-en">${englishTitle(track)}</span>`;
+  renderNowPlaying(track);
   highlightActiveTrack();
   audio.addEventListener('loadedmetadata', function once() {
     audio.currentTime = saved.time || 0;
