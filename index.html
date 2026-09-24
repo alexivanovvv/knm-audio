@@ -717,22 +717,27 @@ function playChime() {
         osc.start(now + i * 0.12);
         osc.stop(now + i * 0.12 + 0.4);
       });
-      setTimeout(() => { ctx.close(); resolve(); }, 550);
+      setTimeout(() => { try { ctx.close(); } catch {} resolve(); }, 550);
     } catch { resolve(); }
   });
 }
 function speakText(text) {
   return new Promise((resolve) => {
     if (!('speechSynthesis' in window)) { resolve(); return; }
+    let done = false;
+    const finish = () => { if (done) return; done = true; resolve(); };
     try {
       speechSynthesis.cancel();
       const utter = new SpeechSynthesisUtterance(text);
       utter.lang = 'en-US';
       utter.rate = 0.95;
-      utter.onend = resolve;
-      utter.onerror = resolve;
+      utter.onend = finish;
+      utter.onerror = finish;
       speechSynthesis.speak(utter);
-    } catch { resolve(); }
+      // Safety net: some browsers (backgrounded tab, blocked speech policy)
+      // never fire onend/onerror, which would otherwise hang loadTrack forever.
+      setTimeout(finish, Math.max(4000, text.length * 90));
+    } catch { finish(); }
   });
 }
 function wait(ms) { return new Promise((resolve) => setTimeout(resolve, ms)); }
@@ -1065,6 +1070,14 @@ async function loadTrack(index, autoplay, startAt) {
   loadCaptions(track);
   if (autoplay) {
     if (announceEnabled() && !startAt) {
+      // The chime + spoken title take a few seconds. Some browsers (notably
+      // iOS Safari) only allow audio.play() without a fresh user gesture if
+      // the element has already been "unlocked" by a play() call started
+      // synchronously within this gesture — otherwise the announcement plays
+      // but the real track silently never starts. Unlock it now (muted,
+      // played+paused immediately) before we spend time awaiting the voice.
+      audio.muted = true;
+      audio.play().then(() => audio.pause()).catch(() => {}).finally(() => { audio.muted = false; });
       await announceTrack(track);
       if (currentIndex !== index) return; // user moved on while announcing
     }
