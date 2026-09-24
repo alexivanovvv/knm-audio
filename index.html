@@ -10,7 +10,7 @@
 <meta name="description" content="KNM Audio: English narration with Dutch key terms for Welkom in Nederland.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Onest:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Onest:wght@400;500;600;700;800&family=Unbounded:wght@700;800;900&family=Playfair+Display:ital,wght@1,500;1,600&display=swap" rel="stylesheet">
 
 <!-- iOS home screen / standalone app support -->
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -36,13 +36,28 @@
     --shadow: rgba(60,40,20,.14);
   }
 
+  :root[data-font="old"] {
+    --font-display: 'Onest', 'Segoe UI', sans-serif;
+    --font-body: 'Onest', 'Segoe UI', sans-serif;
+    --font-accent: 'Onest', 'Segoe UI', sans-serif;
+    --font-accent-style: normal;
+    --font-display-tracking: -.02em;
+  }
+  :root[data-font="new"] {
+    --font-display: 'Unbounded', 'Onest', sans-serif;
+    --font-body: 'Onest', 'Segoe UI', sans-serif;
+    --font-accent: 'Playfair Display', Georgia, serif;
+    --font-accent-style: italic;
+    --font-display-tracking: -.01em;
+  }
+
   * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
   html { background: var(--bg); font-size: 110%; }
   html, body { margin: 0; padding: 0; min-height: 100%; }
   body {
     color: var(--ink);
     background: var(--bg);
-    font-family: 'Onest', 'Segoe UI', sans-serif;
+    font-family: var(--font-body);
     padding-bottom: 132px;
     overflow-x: hidden;
   }
@@ -55,8 +70,8 @@
     display: inline-block; font: 600 .6875rem/1 'JetBrains Mono', monospace; letter-spacing: .14em;
     text-transform: uppercase; color: var(--ink-faint); margin-bottom: 10px;
   }
-  .topbar h1 { font-size: clamp(1.7rem, 5vw, 2.1rem); line-height: 1.08; margin: 0 0 6px; font-weight: 800; letter-spacing: -.02em; }
-  .brand-sub { margin: 0; color: var(--ink-soft); font-size: .92rem; max-width: 34rem; }
+  .topbar h1 { font-family: var(--font-display); font-size: clamp(1.7rem, 5vw, 2.1rem); line-height: 1.08; margin: 0 0 6px; font-weight: 800; letter-spacing: var(--font-display-tracking); }
+  .brand-sub { margin: 0; color: var(--ink-soft); font-size: .92rem; max-width: 34rem; font-family: var(--font-accent); font-style: var(--font-accent-style); }
   .topbar-actions { display: flex; gap: 6px; flex-shrink: 0; margin-top: 2px; }
   .icon-btn {
     width: 2.3rem; height: 2.3rem; border-radius: 999px; border: 1px solid var(--rule);
@@ -64,6 +79,7 @@
   }
   .icon-btn:hover { border-color: var(--rule-strong); color: var(--ink); }
   .icon-btn svg { width: 1.05rem; height: 1.05rem; }
+  .font-toggle-btn { font-family: 'Onest', 'Segoe UI', sans-serif; font-size: .82rem; font-weight: 700; }
 
   main { max-width: 720px; margin: 0 auto; padding: 14px 20px 0; }
 
@@ -77,7 +93,7 @@
   .continue-body { min-width: 0; }
   .continue-label { display: block; font: 600 .656rem/1 'JetBrains Mono', monospace; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: 5px; }
   .continue-body h2 { margin: 0 0 8px; font-size: .98rem; font-weight: 700; line-height: 1.25; }
-  .continue-body h2 .continue-sub { display: block; font-size: .78rem; font-weight: 400; color: var(--ink-soft); margin-top: 2px; }
+  .continue-body h2 .continue-sub { display: block; font-size: .78rem; font-weight: 400; color: var(--ink-soft); margin-top: 2px; font-family: var(--font-accent); font-style: var(--font-accent-style); }
   .continue-progress { display: flex; align-items: center; gap: 8px; }
   .bar { flex: 1; height: 4px; border-radius: 2px; background: var(--rule); overflow: hidden; }
   .bar span { display: block; height: 100%; background: var(--accent); border-radius: 2px; }
@@ -108,8 +124,8 @@
   }
   .chapter-cover svg { display: block; width: 48px; height: 48px; border-radius: 9px; }
   .chapter-num { display: block; font: 600 .625rem/1 'JetBrains Mono', monospace; letter-spacing: .09em; text-transform: uppercase; color: var(--accent); margin-bottom: 4px; }
-  .chapter-head h2 { margin: 0; font-size: 1rem; font-weight: 700; line-height: 1.25; letter-spacing: -.005em; }
-  .chapter-head .ch-sub { display: block; font-size: .78rem; font-weight: 400; color: var(--ink-soft); margin-top: 2px; }
+  .chapter-head h2 { font-family: var(--font-display); margin: 0; font-size: 1rem; font-weight: 700; line-height: 1.25; letter-spacing: -.005em; }
+  .chapter-head .ch-sub { display: block; font-size: .78rem; font-weight: 400; color: var(--ink-soft); margin-top: 2px; font-family: var(--font-accent); font-style: var(--font-accent-style); }
   .chapter-meta { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
   .chapter-count { font: 500 .6875rem/1 'JetBrains Mono', monospace; color: var(--ink-faint); }
   .chev { color: var(--ink-faint); transition: transform .18s ease; font-size: .8rem; }
@@ -163,7 +179,7 @@
   .player .now-placeholder { font-size: .82rem; color: var(--ink-soft); }
   .player .now .now-kicker { display: block; font: 600 .656rem/1 'JetBrains Mono', monospace; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin-bottom: 3px; }
   .player .now .now-title { display: block; font-size: .92rem; font-weight: 700; color: var(--ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .player .now .now-sub { display: block; font-size: .76rem; color: var(--ink-soft); margin-top: 1px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .player .now .now-sub { display: block; font-size: .76rem; color: var(--ink-soft); margin-top: 1px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-family: var(--font-accent); font-style: var(--font-accent-style); }
   .player-main #playBtn { flex-shrink: 0; }
   .seekrow { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
   .seekrow .time { font: 500 .72rem 'JetBrains Mono', monospace; color: var(--ink-faint); width: 2.4rem; flex-shrink: 0; }
@@ -217,6 +233,7 @@
     </div>
     <div class="topbar-actions">
       <button class="icon-btn" id="hardRefreshBtn" title="Hard refresh"></button>
+      <button class="icon-btn font-toggle-btn" id="fontToggle" title="Wissel lettertype">Aa</button>
       <button class="icon-btn" id="themeToggle" title="Wissel thema"></button>
     </div>
   </div>
@@ -397,6 +414,7 @@ const autoplayToggle = document.getElementById('autoplayToggle');
 const installHint = document.getElementById('installHint');
 const dismissInstall = document.getElementById('dismissInstall');
 const themeToggle = document.getElementById('themeToggle');
+const fontToggle = document.getElementById('fontToggle');
 const hardRefreshBtn = document.getElementById('hardRefreshBtn');
 const listenedCountEl = document.getElementById('listenedCount');
 const overallBarFill = document.getElementById('overallBarFill');
@@ -415,6 +433,7 @@ let isSeeking = false;
 const STORAGE_KEY = 'welkomAudiobookProgress';
 const INSTALL_DISMISS_KEY = 'welkomInstallHintDismissed';
 const THEME_KEY = 'welkomTheme';
+const FONT_KEY = 'welkomFont';
 const LISTENED_KEY = 'welkomListened';
 
 function trackId(track) { return `H${track.ch}T${track.t}`; }
@@ -447,6 +466,21 @@ themeToggle.addEventListener('click', () => {
   applyTheme(next);
 });
 hardRefreshBtn.innerHTML = REFRESH_ICON;
+
+// ---------- font (old / new design) ----------
+function applyFont(font) {
+  document.documentElement.dataset.font = font;
+  fontToggle.title = font === 'new' ? 'Lettertype: nieuw ontwerp (klik voor oud)' : 'Lettertype: origineel (klik voor nieuw ontwerp)';
+}
+function currentFont() {
+  return localStorage.getItem(FONT_KEY) || 'old';
+}
+applyFont(currentFont());
+fontToggle.addEventListener('click', () => {
+  const next = currentFont() === 'old' ? 'new' : 'old';
+  localStorage.setItem(FONT_KEY, next);
+  applyFont(next);
+});
 async function hardRefresh() {
   const ok = window.confirm('Cache, service worker en de app-shell volledig opnieuw laden?');
   if (!ok) return;
