@@ -403,6 +403,7 @@
         <button type="button" id="announceToggleBtn" class="settings-toggle" role="switch"><span class="menu-icon" id="announceToggleIcon"></span><span class="menu-label" id="announceToggleLabel"></span><span class="ios-switch" id="announceToggleSwitch" aria-hidden="true"><span class="knob"></span></span></button>
         <button type="button" id="chapterBreakBtn"><span class="menu-icon" id="chapterBreakIcon"></span><span id="chapterBreakLabel"></span></button>
         <button type="button" id="ccModeBtn"><span class="menu-icon" id="ccModeIcon"></span><span id="ccModeLabel"></span></button>
+        <button type="button" id="pinSyncBtn"><span class="menu-icon" id="pinSyncIcon"></span><span id="pinSyncLabel"></span></button>
         <button type="button" id="hardRefreshBtn"><span class="menu-icon" id="refreshIcon"></span><span id="refreshLabel">Alles vernieuwen</span></button>
       </div>
     </div>
@@ -626,6 +627,9 @@ const ccModeBtn = document.getElementById('ccModeBtn');
 const ccModeIcon = document.getElementById('ccModeIcon');
 const ccModeLabel = document.getElementById('ccModeLabel');
 const captionsMicro = document.getElementById('captionsMicro');
+const pinSyncBtn = document.getElementById('pinSyncBtn');
+const pinSyncIcon = document.getElementById('pinSyncIcon');
+const pinSyncLabelEl = document.getElementById('pinSyncLabel');
 const refreshIcon = document.getElementById('refreshIcon');
 const refreshLabelEl = document.getElementById('refreshLabel');
 const hardRefreshBtn = document.getElementById('hardRefreshBtn');
@@ -706,6 +710,14 @@ const STRINGS = {
   ccModeMicro: { en: 'Micro', nl: 'Micro' },
   editModeStart: { en: 'Mark chapters as done', nl: 'Markeer hoofdstukken als voltooid' },
   editModeStop: { en: 'Done marking', nl: 'Klaar met markeren' },
+  pinSyncLabel: { en: 'Sync via PIN', nl: 'Synchroniseren via pincode' },
+  pinSyncOn: { en: 'PIN sync: on', nl: 'Pincode-sync: aan' },
+  pinPromptEnter: { en: 'Enter or create a PIN (4-8 digits) to sync your progress across devices:', nl: 'Voer een pincode in (4-8 cijfers) om je voortgang tussen apparaten te synchroniseren:' },
+  pinPromptInvalid: { en: 'PIN must be 4-8 digits.', nl: 'Pincode moet 4-8 cijfers zijn.' },
+  pinSyncError: { en: 'Sync failed — check your connection and try again.', nl: 'Synchroniseren mislukt — controleer je verbinding en probeer opnieuw.' },
+  pinSignOutConfirm: { en: 'Stop syncing on this device? Your local progress stays, it just won’t sync anymore.', nl: 'Stoppen met synchroniseren op dit apparaat? Je lokale voortgang blijft, maar wordt niet meer gesynchroniseerd.' },
+  pinSyncedNew: { en: 'Synced. Your progress is now saved under this PIN.', nl: 'Gesynchroniseerd. Je voortgang is nu opgeslagen onder deze pincode.' },
+  pinSyncedRestored: { en: 'Synced. Progress restored from another device.', nl: 'Gesynchroniseerd. Voortgang hersteld van een ander apparaat.' },
   refreshLabel: { en: 'Refresh everything', nl: 'Alles vernieuwen' },
   refreshConfirm: { en: 'Fully reload the cache, service worker and app shell?', nl: 'Cache, service worker en de app-shell volledig opnieuw laden?' },
   continueLabel: { en: 'Continue listening', nl: 'Verder luisteren' },
@@ -757,6 +769,8 @@ const EDIT_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" st
 const DONE_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>';
 const SELECT_ON_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="17" height="17" rx="4" fill="currentColor"/><path d="M8 12.5l2.5 2.5 5.5-6" stroke="var(--surface)"/></svg>';
 const SELECT_OFF_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="17" height="17" rx="4"/></svg>';
+const PIN_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="15" r="4.5"/><path d="M11.5 11.5 20 3M16.5 6.5l3 3M13.5 9.5l2.3 2.3"/></svg>';
+const PIN_ON_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="15" r="4.5" fill="currentColor"/><path d="M11.5 11.5 20 3M16.5 6.5l3 3M13.5 9.5l2.3 2.3"/></svg>';
 
 const THEME_OPTIONS = ['dark-amber', 'dark-teal', 'dark-violet', 'light-paper', 'light-sky', 'light-mint'];
 const THEME_LABEL_KEYS = {
@@ -787,6 +801,7 @@ themeToggle.addEventListener('click', () => {
   const next = THEME_OPTIONS[(idx + 1) % THEME_OPTIONS.length];
   localStorage.setItem(THEME_KEY, next);
   applyTheme(next);
+  schedulePush();
 });
 refreshIcon.innerHTML = REFRESH_ICON;
 continuePlayBtn.innerHTML = PLAY_ICON;
@@ -813,6 +828,7 @@ function applyAutoplayUI() {
 autoplayToggleBtn.addEventListener('click', () => {
   localStorage.setItem(AUTOPLAY_KEY, autoplayEnabled() ? '0' : '1');
   applyAutoplayUI();
+  schedulePush();
 });
 
 // ---------- chapter/task announcement (chime + spoken number & title) ----------
@@ -829,6 +845,7 @@ function applyAnnounceUI() {
 announceToggleBtn.addEventListener('click', () => {
   localStorage.setItem(ANNOUNCE_KEY, announceEnabled() ? '0' : '1');
   applyAnnounceUI();
+  schedulePush();
 });
 function playChime() {
   return new Promise((resolve) => {
@@ -895,6 +912,7 @@ chapterBreakBtn.addEventListener('click', () => {
   const next = CHAPTER_BREAK_OPTIONS[(idx + 1) % CHAPTER_BREAK_OPTIONS.length];
   localStorage.setItem(CHAPTER_BREAK_KEY, String(next));
   applyChapterBreakUI();
+  schedulePush();
   closeMenu();
 });
 
@@ -913,6 +931,7 @@ ccModeBtn.addEventListener('click', () => {
   localStorage.setItem(CAPTIONS_MODE_KEY, captionsMode() === 'full' ? 'micro' : 'full');
   applyCcModeUI();
   if (wasOpen) openCaptions();
+  schedulePush();
 });
 
 // ---------- header menu ----------
@@ -957,6 +976,7 @@ function applyLanguage(lang) {
   applyCcModeUI();
   editModeIcon.innerHTML = editMode ? DONE_ICON : EDIT_ICON;
   editModeBtn.title = editMode ? t('editModeStop') : t('editModeStart');
+  applyPinSyncUI();
   applyTheme(currentEffectiveTheme());
   if (deployBtnEl) { deployBtnEl.title = t('deployLabel'); deployLabelEl.textContent = t('deployLabel'); }
   if (IS_LOCALHOST) { localBannerTextEl.textContent = t('localBannerText'); localDeployBtnLabel.textContent = t('localBannerDeployBtn'); }
@@ -1077,6 +1097,7 @@ function loadListened() {
 const listened = loadListened();
 function saveListened() {
   localStorage.setItem(LISTENED_KEY, JSON.stringify([...listened]));
+  schedulePush();
 }
 function markListened(index) {
   const track = PLAYLIST[index];
@@ -1133,6 +1154,101 @@ function toggleChapterListened(ch) {
   updateListenedUI();
 }
 editModeBtn.addEventListener('click', () => setEditMode(!editMode));
+
+// ---------- PIN sync (Netlify Function + Blobs backend) ----------
+const PIN_KEY = 'welkomPin';
+const PIN_LAST_SYNC_KEY = 'welkomPinLastSync';
+const SYNC_KEYS = [STORAGE_KEY, LISTENED_KEY, THEME_KEY, AUTOPLAY_KEY, ANNOUNCE_KEY, CHAPTER_BREAK_KEY, CAPTIONS_MODE_KEY, LANG_KEY];
+function currentPin() { return localStorage.getItem(PIN_KEY) || null; }
+function lastSyncAt() { return Number(localStorage.getItem(PIN_LAST_SYNC_KEY) || 0); }
+async function pinHash(pin) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode('knm-audio:' + pin));
+  return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, '0')).join('');
+}
+function collectSyncPayload() {
+  const data = {};
+  SYNC_KEYS.forEach(k => { const v = localStorage.getItem(k); if (v !== null) data[k] = v; });
+  return { updatedAt: Date.now(), data };
+}
+function applySyncPayload(payload) {
+  if (!payload || !payload.data) return;
+  Object.entries(payload.data).forEach(([k, v]) => localStorage.setItem(k, v));
+}
+function applyPinSyncUI() {
+  const pin = currentPin();
+  pinSyncIcon.innerHTML = pin ? PIN_ON_ICON : PIN_ICON;
+  pinSyncLabelEl.textContent = pin ? t('pinSyncOn') : t('pinSyncLabel');
+}
+let pinPushTimer = null;
+function schedulePush() {
+  if (!currentPin()) return;
+  clearTimeout(pinPushTimer);
+  pinPushTimer = setTimeout(pushSync, 700);
+}
+async function pushSync() {
+  const pin = currentPin();
+  if (!pin) return;
+  try {
+    const key = await pinHash(pin);
+    const payload = collectSyncPayload();
+    await fetch('/api/progress', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ key, payload }),
+    });
+    localStorage.setItem(PIN_LAST_SYNC_KEY, String(payload.updatedAt));
+  } catch { /* offline — local data stays source of truth, retries on next change */ }
+}
+async function pullSync(pin) {
+  const key = await pinHash(pin);
+  const res = await fetch(`/api/progress?key=${key}`);
+  if (res.status === 404) return null;
+  if (!res.ok) throw new Error('sync fetch failed');
+  return res.json();
+}
+async function pullAndMergeIfNewer() {
+  const pin = currentPin();
+  if (!pin) return;
+  try {
+    const remote = await pullSync(pin);
+    if (remote && remote.updatedAt > lastSyncAt()) {
+      applySyncPayload(remote);
+      localStorage.setItem(PIN_LAST_SYNC_KEY, String(remote.updatedAt));
+      applyLanguage(currentLang());
+    }
+  } catch { /* offline — silently keep local state, will retry on next launch */ }
+}
+pinSyncBtn.addEventListener('click', async () => {
+  const existing = currentPin();
+  if (existing) {
+    if (window.confirm(t('pinSignOutConfirm'))) {
+      localStorage.removeItem(PIN_KEY);
+      localStorage.removeItem(PIN_LAST_SYNC_KEY);
+      applyPinSyncUI();
+    }
+    return;
+  }
+  const raw = window.prompt(t('pinPromptEnter'));
+  if (raw === null) return;
+  const pin = raw.trim();
+  if (!/^\d{4,8}$/.test(pin)) { window.alert(t('pinPromptInvalid')); return; }
+  try {
+    const remote = await pullSync(pin);
+    localStorage.setItem(PIN_KEY, pin);
+    if (remote) {
+      applySyncPayload(remote);
+      localStorage.setItem(PIN_LAST_SYNC_KEY, String(remote.updatedAt));
+      applyLanguage(currentLang());
+      window.alert(t('pinSyncedRestored'));
+    } else {
+      await pushSync();
+      window.alert(t('pinSyncedNew'));
+    }
+    applyPinSyncUI();
+  } catch {
+    window.alert(t('pinSyncError'));
+  }
+});
 
 // ---------- progress ----------
 function saveProgress() {
@@ -1509,6 +1625,7 @@ document.addEventListener('keydown', (e) => {
 
 applyLanguage(currentLang());
 checkLocalVsProd();
+pullAndMergeIfNewer();
 loadDurations();
 speedBtn.textContent = SPEEDS[speedIdx] + '×';
 

@@ -1,2 +1,9 @@
 # Local Netlify folder
 .netlify
+
+# Local emulation of Netlify Blobs used by dev-server.py's /api/progress
+.local-blobs
+
+# Function dependencies (Netlify installs these on deploy)
+node_modules
+__pycache__
