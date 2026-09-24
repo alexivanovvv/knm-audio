@@ -1,4 +1,4 @@
-# Backlog — welkom-audioboek
+# Backlog — knm-audio
 
 ## T-01 — Редизайн под конвенции аудиокниг
 Текущий UI (dark + JetBrains Mono + study-ring) выглядит как дашборд, не как
