@@ -304,6 +304,23 @@
     font: 500 .72rem 'JetBrains Mono', monospace; border-radius: 999px; padding: 4px 9px; cursor: pointer;
   }
   .speedbtn:hover { border-color: var(--rule-strong); color: var(--ink); }
+  .speedwrap { position: relative; }
+  .speed-popover {
+    position: absolute; right: 0; bottom: calc(100% + 10px); width: 15rem; z-index: 20;
+    background: var(--bg-2); border: 1px solid var(--rule); border-radius: 14px; padding: 12px 14px 12px;
+    box-shadow: 0 10px 30px var(--shadow);
+  }
+  .speed-popover[hidden] { display: none; }
+  .speed-popover .speed-value { font: 700 1.1rem 'JetBrains Mono', monospace; color: var(--ink); text-align: center; margin-bottom: 10px; }
+  .speed-popover input[type="range"] { width: 100%; display: block; }
+  .speed-scale { display: flex; justify-content: space-between; font: 500 .62rem 'JetBrains Mono', monospace; color: var(--ink-faint); margin: 6px 0 10px; }
+  .speed-presets { display: flex; justify-content: space-between; gap: 4px; }
+  .speed-presets button {
+    flex: 1; background: var(--surface); border: 1px solid var(--rule); color: var(--ink-soft); border-radius: 999px;
+    font: 500 .68rem 'JetBrains Mono', monospace; padding: 4px 0; cursor: pointer;
+  }
+  .speed-presets button:hover { border-color: var(--rule-strong); color: var(--ink); }
+  .speed-presets button.active { border-color: var(--accent); color: var(--accent); }
   .transition-notice { min-height: 1.15rem; margin: -2px 0 7px; color: var(--ink-soft); font: 500 .68rem/1.2 'JetBrains Mono', monospace; text-align: center; }
   .transition-notice[hidden] { display: none; }
 
@@ -469,7 +486,17 @@
         <button class="ctrlbtn small" id="nextBtn" title="Volgende taak"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 5l10 7-10 7z"/><rect x="16.4" y="5" width="2.6" height="14" rx="1"/></svg></button>
       </div>
       <div class="controlsrow-side right">
-        <button class="speedbtn" id="speedBtn">1×</button>
+        <div class="speedwrap">
+          <button class="speedbtn" id="speedBtn" aria-haspopup="true" aria-expanded="false">1×</button>
+          <div class="speed-popover" id="speedPopover" hidden>
+            <div class="speed-value" id="speedValue">1×</div>
+            <input type="range" id="speedSlider" min="0.5" max="2.5" step="0.05" value="1" aria-label="Playback speed">
+            <div class="speed-scale"><span>0.5×</span><span>1.5×</span><span>2.5×</span></div>
+            <div class="speed-presets" id="speedPresets">
+              <button data-speed="0.75">0.75</button><button data-speed="1">1</button><button data-speed="1.25">1.25</button><button data-speed="1.5">1.5</button><button data-speed="2">2</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -602,6 +629,10 @@ const playBtn = document.getElementById('playBtn');
 const prevBtn = document.getElementById('prevBtn');
 const nextBtn = document.getElementById('nextBtn');
 const speedBtn = document.getElementById('speedBtn');
+const speedPopover = document.getElementById('speedPopover');
+const speedSlider = document.getElementById('speedSlider');
+const speedValueEl = document.getElementById('speedValue');
+const speedPresets = document.getElementById('speedPresets');
 const back15Btn = document.getElementById('back15');
 const fwd15Btn = document.getElementById('fwd15');
 const installHint = document.getElementById('installHint');
@@ -662,9 +693,9 @@ const localBannerTextEl = document.getElementById('localBannerText');
 const localDeployBtn = document.getElementById('localDeployBtn');
 const localDeployBtnLabel = document.getElementById('localDeployBtnLabel');
 
-const SPEEDS = [0.8, 1, 1.1, 1.2, 1.5, 2];
+const SPEED_MIN = 0.5, SPEED_MAX = 2.5;
 const CHAPTER_BREAK_OPTIONS = [0, 2000, 5000];
-let speedIdx = 1; // 1x
+let playbackSpeed = 1;
 let currentIndex = -1;
 let isSeeking = false;
 let chapterBreakTimer = null;
@@ -680,6 +711,7 @@ const AUTOPLAY_KEY = 'welkomAutoplay';
 const ANNOUNCE_KEY = 'welkomAnnounce';
 const CHAPTER_BREAK_KEY = 'welkomChapterBreak';
 const CAPTIONS_MODE_KEY = 'welkomCaptionsMode';
+const SPEED_KEY = 'welkomSpeed';
 
 function trackId(track) { return `H${track.ch}T${track.t}`; }
 function fileUrl(file) { return 'Audio/' + encodeURIComponent(file); }
@@ -1158,7 +1190,7 @@ editModeBtn.addEventListener('click', () => setEditMode(!editMode));
 // ---------- PIN sync (Netlify Function + Blobs backend) ----------
 const PIN_KEY = 'welkomPin';
 const PIN_LAST_SYNC_KEY = 'welkomPinLastSync';
-const SYNC_KEYS = [STORAGE_KEY, LISTENED_KEY, THEME_KEY, AUTOPLAY_KEY, ANNOUNCE_KEY, CHAPTER_BREAK_KEY, CAPTIONS_MODE_KEY, LANG_KEY];
+const SYNC_KEYS = [STORAGE_KEY, LISTENED_KEY, THEME_KEY, AUTOPLAY_KEY, ANNOUNCE_KEY, CHAPTER_BREAK_KEY, CAPTIONS_MODE_KEY, LANG_KEY, SPEED_KEY];
 function currentPin() { return localStorage.getItem(PIN_KEY) || null; }
 function lastSyncAt() { return Number(localStorage.getItem(PIN_LAST_SYNC_KEY) || 0); }
 async function pinHash(pin) {
@@ -1215,6 +1247,7 @@ async function pullAndMergeIfNewer() {
       applySyncPayload(remote);
       localStorage.setItem(PIN_LAST_SYNC_KEY, String(remote.updatedAt));
       applyLanguage(currentLang());
+      setSpeed(storedSpeed(), false);
     }
   } catch { /* offline — silently keep local state, will retry on next launch */ }
 }
@@ -1239,6 +1272,7 @@ pinSyncBtn.addEventListener('click', async () => {
       applySyncPayload(remote);
       localStorage.setItem(PIN_LAST_SYNC_KEY, String(remote.updatedAt));
       applyLanguage(currentLang());
+      setSpeed(storedSpeed(), false);
       window.alert(t('pinSyncedRestored'));
     } else {
       await pushSync();
@@ -1565,18 +1599,46 @@ nextBtn.addEventListener('click', () => loadTrack(Math.min(PLAYLIST.length - 1, 
 back15Btn.addEventListener('click', () => audio.currentTime = Math.max(0, audio.currentTime - 15));
 fwd15Btn.addEventListener('click', () => audio.currentTime = Math.min(audio.duration || Infinity, audio.currentTime + 15));
 
-speedBtn.addEventListener('click', () => {
-  speedIdx = (speedIdx + 1) % SPEEDS.length;
-  audio.playbackRate = SPEEDS[speedIdx];
-  speedBtn.textContent = SPEEDS[speedIdx] + '×';
+function storedSpeed() {
+  const v = Number(localStorage.getItem(SPEED_KEY));
+  return v >= SPEED_MIN && v <= SPEED_MAX ? v : 1;
+}
+function renderSpeed() {
+  const label = Number(playbackSpeed.toFixed(2)) + '×';
+  speedBtn.textContent = label;
+  speedValueEl.textContent = label;
+  speedSlider.value = playbackSpeed;
+  speedSlider.style.setProperty('--seek-progress', ((playbackSpeed - SPEED_MIN) / (SPEED_MAX - SPEED_MIN)) * 100 + '%');
+  speedPresets.querySelectorAll('button').forEach(b => b.classList.toggle('active', Number(b.dataset.speed) === playbackSpeed));
+}
+function setSpeed(v, persist = true) {
+  playbackSpeed = Math.min(SPEED_MAX, Math.max(SPEED_MIN, Math.round(v * 100) / 100));
+  audio.playbackRate = playbackSpeed;
+  renderSpeed();
+  if (persist) { localStorage.setItem(SPEED_KEY, String(playbackSpeed)); schedulePush(); }
+}
+function toggleSpeedPopover(open = speedPopover.hidden) {
+  speedPopover.hidden = !open;
+  speedBtn.setAttribute('aria-expanded', String(open));
+}
+speedBtn.addEventListener('click', (e) => { e.stopPropagation(); toggleSpeedPopover(); });
+speedSlider.addEventListener('input', () => setSpeed(Number(speedSlider.value), false));
+speedSlider.addEventListener('change', () => setSpeed(Number(speedSlider.value)));
+speedPresets.addEventListener('click', (e) => {
+  const b = e.target.closest('button[data-speed]');
+  if (b) setSpeed(Number(b.dataset.speed));
 });
+document.addEventListener('click', (e) => {
+  if (!speedPopover.hidden && !speedPopover.contains(e.target)) toggleSpeedPopover(false);
+});
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !speedPopover.hidden) toggleSpeedPopover(false); });
 
 audio.addEventListener('play', updatePlayIcon);
 audio.addEventListener('pause', updatePlayIcon);
 audio.addEventListener('loadedmetadata', () => {
   seek.max = audio.duration || 0;
   durTimeEl.textContent = fmtTime(audio.duration);
-  audio.playbackRate = SPEEDS[speedIdx];
+  audio.playbackRate = playbackSpeed;
   setSeekProgress();
   updateActiveRowProgress();
 });
@@ -1627,7 +1689,7 @@ applyLanguage(currentLang());
 checkLocalVsProd();
 pullAndMergeIfNewer();
 loadDurations();
-speedBtn.textContent = SPEEDS[speedIdx] + '×';
+setSpeed(storedSpeed(), false);
 
 // resume exactly where we left off — no extra tap needed, just press play
 const saved = loadProgress();

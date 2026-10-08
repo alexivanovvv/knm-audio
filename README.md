@@ -25,7 +25,7 @@ app te installeren.
 - Doorspelen naar de volgende taak (audioboek-modus)
 - Voortgang wordt onthouden (localStorage) — "Verder luisteren"-kaart bij
   terugkeer
-- Afspeelsnelheid (0.75× tot 2×), ±15s spoelen, toetsenbord-shortcuts
+- Afspeelsnelheid via schuifregelaar (0.5× tot 2.5×, met presets; onthouden), ±15s spoelen, toetsenbord-shortcuts
   (spatie/pijltjes)
 - Ondertitels/lyrics-modus (CC-knop): meelezen met gesynchroniseerde
   regels, tik op een regel om te spoelen, `[NL termen]` gemarkeerd.
