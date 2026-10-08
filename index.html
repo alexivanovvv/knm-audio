@@ -292,11 +292,18 @@
   .bar { flex: 1; height: 4px; border-radius: 2px; background: var(--rule); overflow: hidden; }
   .bar span { display: block; height: 100%; background: var(--accent); border-radius: 2px; }
 
-  /* ---------- overall progress (compact, lives in the header) ---------- */
-  .overview-progress { display: flex; align-items: center; gap: 10px; margin-top: 12px; }
-  .overview-progress .bar { flex: 0 0 72px; height: 3px; }
-  .overview-label { font: 500 .72rem/1 'JetBrains Mono', monospace; color: var(--ink-faint); white-space: nowrap; font-variant-numeric: tabular-nums; }
-  .overview-label b { color: var(--ink-soft); font-weight: 600; }
+  /* ---------- overall progress (ring chip next to the header actions) ---------- */
+  .progress-chip {
+    display: flex; align-items: center; gap: 7px; height: 2.3rem; padding: 0 12px 0 9px; margin-right: 2px;
+    border-radius: 999px; border: 1px solid var(--rule); background: var(--surface); box-sizing: border-box;
+    font: 500 .72rem/1 'JetBrains Mono', monospace; color: var(--ink-faint); white-space: nowrap; font-variant-numeric: tabular-nums;
+  }
+  .progress-chip b { color: var(--ink); font-weight: 600; }
+  .progress-chip svg { width: 1.1rem; height: 1.1rem; transform: rotate(-90deg); flex-shrink: 0; }
+  .progress-chip circle { fill: none; stroke-width: 2.6; }
+  .progress-chip .ring-bg { stroke: var(--rule-strong); }
+  .progress-chip .ring-fill { stroke: var(--accent); stroke-linecap: round; transition: stroke-dashoffset .4s ease; }
+  .progress-chip.complete .ring-fill { stroke-linecap: butt; }
 
   /* ---------- chapters ---------- */
   .chapters { display: flex; flex-direction: column; gap: 10px; }
@@ -434,7 +441,7 @@
   }
   @media (hover: hover) { #playBtn:hover { color: var(--accent-ink); filter: brightness(1.07); } }
   #playBtn:active { transform: scale(.94); }
-  #playBtn svg { width: 1.4rem; height: 1.4rem; }
+  #playBtn svg { width: 1.85rem; height: 1.85rem; }
   .pillbtn {
     background: var(--surface); border: 1px solid var(--rule); color: var(--ink-soft);
     font: 600 .72rem 'JetBrains Mono', monospace; border-radius: 999px; padding: 0; cursor: pointer;
@@ -471,8 +478,8 @@
   .transition-notice[hidden] { display: none; }
 
   .captions-micro {
-    margin: 0 2px 12px; max-width: 38rem; font-size: .88rem; line-height: 1.35; color: var(--ink);
-    text-align: left; height: calc(3 * 1.35em); overflow: hidden;
+    margin: 0 2px 12px; max-width: 38rem; font-size: .95rem; line-height: 1.4; font-weight: 500; color: var(--ink);
+    text-align: left; height: calc(2 * 1.4em); overflow: hidden;
     display: flex; align-items: center; justify-content: flex-start;
   }
   .captions-micro.overflowing { align-items: flex-start; }
@@ -571,12 +578,12 @@
       <span class="brand-kicker">KNM Audioboek</span>
       <h1>Welkom in Nederland</h1>
       <p class="brand-sub" id="brandSub">English narration, met Nederlandse kernbegrippen apart uitgesproken.</p>
-      <div class="overview-progress">
-        <div class="bar"><span id="overallBarFill" style="width:0%"></span></div>
-        <span class="overview-label"><b id="listenedCount">0</b>/<span id="overviewTotal">36</span> <span id="overviewSuffix">taken afgerond</span></span>
-      </div>
     </div>
     <div class="topbar-actions">
+      <div class="progress-chip" id="progressChip" role="img">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><circle class="ring-bg" cx="10" cy="10" r="8"/><circle class="ring-fill" id="overallRing" cx="10" cy="10" r="8" pathLength="100" stroke-dasharray="100" stroke-dashoffset="100"/></svg>
+        <span class="progress-chip-label"><b id="listenedCount">0</b>/<span id="overviewTotal">36</span></span>
+      </div>
       <button class="icon-btn" id="editModeBtn" type="button" aria-pressed="false">
         <span id="editModeIcon"></span>
       </button>
@@ -915,10 +922,10 @@ const menuBtn = document.getElementById('menuBtn');
 const brandSubEl = document.getElementById('brandSub');
 const footerTextEl = document.getElementById('footerText');
 const installHintTextEl = document.getElementById('installHintText');
-const overviewSuffixEl = document.getElementById('overviewSuffix');
+const progressChip = document.getElementById('progressChip');
 const overviewTotalEl = document.getElementById('overviewTotal');
 const listenedCountEl = document.getElementById('listenedCount');
-const overallBarFill = document.getElementById('overallBarFill');
+const overallRing = document.getElementById('overallRing');
 const editModeBtn = document.getElementById('editModeBtn');
 const editModeIcon = document.getElementById('editModeIcon');
 const transitionNotice = document.getElementById('transitionNotice');
@@ -1046,9 +1053,9 @@ const AUTOPLAY_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor
 const ANNOUNCE_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7"/></svg>';
 const CLOCK_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l3 2"/><path d="M9 2h6"/></svg>';
 const CC_MODE_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 10h4M7 14h7"/></svg>';
-const PLAY_ICON = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
+const PLAY_ICON = '<svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M8.5 5.2v13.6L19.2 12z"/></svg>';
 const PAUSE_ICON = '<svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
-const EDIT_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>';
+const EDIT_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 6.5 2 2 3.5-3.5"/><path d="m3.5 15.5 2 2 3.5-3.5"/><path d="M13 7h8"/><path d="M13 16h8"/></svg>';
 const CHEVRON_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>';
 const DONE_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>';
 const SELECT_ON_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="17" height="17" rx="4" fill="currentColor"/><path d="M8 12.5l2.5 2.5 5.5-6" stroke="var(--bg-2)"/></svg>';
@@ -1371,8 +1378,8 @@ function applyLanguage(lang) {
   captionsCloseBtn.title = t('captionsCloseTitle');
   footerTextEl.textContent = t('footerText');
   installHintTextEl.textContent = t('installHint');
-  overviewSuffixEl.textContent = t('tasksCompleted');
   overviewTotalEl.textContent = PLAYLIST.length;
+  updateListenedUI();
   applyAutoplayUI();
   applyAnnounceUI();
   applyChapterBreakUI();
@@ -1511,7 +1518,10 @@ function markListened(index) {
 function updateListenedUI() {
   const done = listened.size;
   listenedCountEl.textContent = done;
-  overallBarFill.style.width = Math.round((done / PLAYLIST.length) * 100) + '%';
+  overallRing.setAttribute('stroke-dashoffset', 100 - (done / PLAYLIST.length) * 100);
+  progressChip.classList.toggle('complete', done >= PLAYLIST.length);
+  progressChip.setAttribute('aria-label', `${done}/${PLAYLIST.length} ${t('tasksCompleted')}`);
+  progressChip.title = `${done}/${PLAYLIST.length} ${t('tasksCompleted')}`;
   document.querySelectorAll('.chapter').forEach(chEl => {
     const ch = Number(chEl.dataset.ch);
     const chapter = BOOK.find(c => c.ch === ch);
@@ -1956,7 +1966,7 @@ function syncCaptions() {
     scrollMicroCaption();
   }
 }
-// Long cues don't fit the fixed 3-line box: glide the text up as the cue plays.
+// Long cues don't fit the fixed 2-line box: glide the text up as the cue plays.
 let microOverflow = 0;
 function scrollMicroCaption() {
   if (!microOverflow || activeLineIndex < 0 || !currentCues) return;
