@@ -292,12 +292,11 @@
   .bar { flex: 1; height: 4px; border-radius: 2px; background: var(--rule); overflow: hidden; }
   .bar span { display: block; height: 100%; background: var(--accent); border-radius: 2px; }
 
-  /* ---------- overview ---------- */
-  .overview { display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; margin: 10px 0 18px; }
-  .overview-progress { display: flex; align-items: center; gap: 10px; flex: 1; min-width: 180px; }
-  .overview-progress .bar { max-width: 180px; }
-  .overview-label { font-size: .8rem; color: var(--ink-soft); white-space: nowrap; }
-  .overview-label b { color: var(--ink); font-weight: 700; }
+  /* ---------- overall progress (compact, lives in the header) ---------- */
+  .overview-progress { display: flex; align-items: center; gap: 10px; margin-top: 12px; }
+  .overview-progress .bar { flex: 0 0 72px; height: 3px; }
+  .overview-label { font: 500 .72rem/1 'JetBrains Mono', monospace; color: var(--ink-faint); white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .overview-label b { color: var(--ink-soft); font-weight: 600; }
 
   /* ---------- chapters ---------- */
   .chapters { display: flex; flex-direction: column; gap: 10px; }
@@ -514,7 +513,6 @@
     main { padding: 12px 16px 0; }
     .chapter-head { padding: 12px; gap: 10px; }
     .chapter-cover svg { width: 40px; height: 40px; }
-    .overview { gap: 10px; }
     .player { padding: 9px 12px calc(9px + env(safe-area-inset-bottom)); }
     .controlsrow-main { gap: 4px; }
     .player-cover svg, .player-cover .cover-ph { width: 48px; height: 48px; }
@@ -554,8 +552,15 @@
       <span class="brand-kicker">KNM Audioboek</span>
       <h1>Welkom in Nederland</h1>
       <p class="brand-sub" id="brandSub">English narration, met Nederlandse kernbegrippen apart uitgesproken.</p>
+      <div class="overview-progress">
+        <div class="bar"><span id="overallBarFill" style="width:0%"></span></div>
+        <span class="overview-label"><b id="listenedCount">0</b>/<span id="overviewTotal">36</span> <span id="overviewSuffix">taken afgerond</span></span>
+      </div>
     </div>
     <div class="topbar-actions">
+      <button class="icon-btn" id="editModeBtn" type="button" aria-pressed="false">
+        <span id="editModeIcon"></span>
+      </button>
       <button class="icon-btn" id="menuBtn" title="Instellingen" aria-haspopup="dialog" aria-expanded="false" aria-controls="settingsDialog">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h9M19 7h1M4 17h3M13 17h7"/><circle cx="16" cy="7" r="2.5"/><circle cx="10" cy="17" r="2.5"/></svg>
       </button>
@@ -615,16 +620,6 @@
 </dialog>
 
 <main>
-  <section class="overview">
-    <div class="overview-progress">
-      <div class="bar"><span id="overallBarFill" style="width:0%"></span></div>
-      <span class="overview-label"><b id="listenedCount">0</b>/<span id="overviewTotal">36</span> <span id="overviewSuffix">taken afgerond</span></span>
-    </div>
-    <button class="icon-btn" id="editModeBtn" type="button">
-      <span id="editModeIcon"></span>
-    </button>
-  </section>
-
   <section class="chapters" id="chapters" aria-label="Hoofdstukken"></section>
 </main>
 
@@ -1520,6 +1515,7 @@ function setEditMode(on) {
   editMode = on;
   chaptersEl.classList.toggle('edit-mode', editMode);
   editModeBtn.classList.toggle('active', editMode);
+  editModeBtn.setAttribute('aria-pressed', String(editMode));
   editModeIcon.innerHTML = editMode ? DONE_ICON : EDIT_ICON;
   editModeBtn.title = editMode ? t('editModeStop') : t('editModeStart');
   updateListenedUI();
