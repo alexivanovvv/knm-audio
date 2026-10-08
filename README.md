@@ -13,6 +13,10 @@ consistent zijn door het hele boek heen. Eerder gebruikten 25 van de 36 taken
 de gratis neurale stemmen via edge-tts — zie `BACKLOG.md` (T-02) voor de
 geschiedenis van die overzetting.
 
+De optionele aankondiging vóór elke taak ("Chapter 1, task 1. Public holidays.")
+gebruikt dezelfde stem: korte clips in `Audio/announce/`, gegenereerd met
+`python3 tools/make_announcements.py` (titels uit `TASK_LABELS` in `index.html`).
+
 ## Gebruiken
 
 Open `index.html` in de browser (lokaal of via GitHub Pages). Op iOS: open de

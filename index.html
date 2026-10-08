@@ -1113,7 +1113,7 @@ autoplayToggleBtn.addEventListener('click', () => {
   schedulePush();
 });
 
-// ---------- chapter/task announcement (chime + spoken number & title) ----------
+// ---------- chapter/task announcement (chime + number & title in the narrator's voice) ----------
 function announceEnabled() {
   return localStorage.getItem(ANNOUNCE_KEY) === '1';
 }
@@ -1151,30 +1151,49 @@ function playChime() {
     } catch { resolve(); }
   });
 }
-function speakText(text) {
+// Pre-rendered clips in the book's own voice (ElevenLabs "George", same model as
+// the tracks) — tools/make_announcements.py, Audio/announce/H{ch}T{t}.mp3.
+const announceAudio = new Audio();
+announceAudio.preload = 'auto';
+function announceUrl(track) { return `Audio/announce/${trackId(track)}.mp3`; }
+// Called synchronously inside the user's tap, so iOS lets this element play
+// later (after the chime) without a fresh gesture. Muted play+pause = unlock.
+function primeAnnouncement(track) {
+  announceAudio.src = announceUrl(track);
+  announceAudio.muted = true;
+  announceAudio.play().then(() => { if (announceAudio.muted) announceAudio.pause(); }).catch(() => {});
+}
+function stopAnnouncement() {
+  if (!announceAudio.paused) announceAudio.pause();
+}
+function playAnnouncementClip(track) {
   return new Promise((resolve) => {
-    if (!('speechSynthesis' in window)) { resolve(); return; }
     let done = false;
-    const finish = () => { if (done) return; done = true; resolve(); };
-    try {
-      speechSynthesis.cancel();
-      const utter = new SpeechSynthesisUtterance(text);
-      utter.lang = 'en-US';
-      utter.rate = 0.95;
-      utter.onend = finish;
-      utter.onerror = finish;
-      speechSynthesis.speak(utter);
-      // Safety net: some browsers (backgrounded tab, blocked speech policy)
-      // never fire onend/onerror, which would otherwise hang loadTrack forever.
-      setTimeout(finish, Math.max(4000, text.length * 90));
-    } catch { finish(); }
+    const finish = () => {
+      if (done) return;
+      done = true;
+      announceAudio.removeEventListener('ended', finish);
+      announceAudio.removeEventListener('error', finish);
+      announceAudio.removeEventListener('pause', finish);
+      resolve();
+    };
+    const url = announceUrl(track);
+    if (!announceAudio.src.endsWith(url)) announceAudio.src = url;
+    announceAudio.muted = false;
+    announceAudio.playbackRate = 1;
+    announceAudio.currentTime = 0;
+    announceAudio.addEventListener('ended', finish);
+    announceAudio.addEventListener('error', finish);
+    announceAudio.play().then(() => announceAudio.addEventListener('pause', finish)).catch(finish);
+    // safety net: never let a stuck clip hold up the actual track
+    setTimeout(finish, 9000);
   });
 }
 function wait(ms) { return new Promise((resolve) => setTimeout(resolve, ms)); }
 async function announceTrack(track) {
   await playChime();
-  await speakText(`${track.ch}.${track.t}. ${englishTitle(track)}`);
-  await wait(500);
+  await playAnnouncementClip(track);
+  await wait(400);
 }
 
 // ---------- pause between chapters ----------
@@ -1761,6 +1780,7 @@ function clearChapterBreak() {
 async function loadTrack(index, autoplay, startAt) {
   if (index < 0 || index >= PLAYLIST.length) return;
   clearChapterBreak();
+  stopAnnouncement();
   currentIndex = index;
   const track = PLAYLIST[index];
   audio.src = fileUrl(track.file);
@@ -1785,6 +1805,7 @@ async function loadTrack(index, autoplay, startAt) {
       // played+paused immediately) before we spend time awaiting the voice.
       audio.muted = true;
       audio.play().then(() => audio.pause()).catch(() => {}).finally(() => { audio.muted = false; });
+      primeAnnouncement(track);
       await announceTrack(track);
       if (currentIndex !== index) return; // user moved on while announcing
     }
