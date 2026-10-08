@@ -234,7 +234,7 @@
     transition: background .15s ease, color .15s ease, box-shadow .15s ease;
   }
   @media (hover: hover) { .seg button:hover { color: var(--ink); } }
-  .seg button[aria-checked="true"] { color: var(--ink); font-weight: 700; }
+  .seg button[aria-checked="true"] { color: var(--ink); }
   @media (prefers-reduced-motion: reduce) { .seg-thumb { transition: none; } }
 
   .swatches { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
@@ -414,7 +414,7 @@
   .ctrlbtn.skipbtn { position: relative; }
   .ctrlbtn.skipbtn .skip-n {
     position: absolute; top: 54%; left: 50%; transform: translate(-50%,-50%);
-    font: 700 .56rem/1 var(--font-body); letter-spacing: -.02em; pointer-events: none;
+    font: 700 .5rem 'JetBrains Mono', monospace; pointer-events: none;
   }
   #playBtn {
     width: 3.3rem; height: 3.3rem; border-radius: 50%; background: var(--accent); color: var(--accent-ink);
@@ -1680,7 +1680,7 @@ function chapterArtwork(ch, size) {
     <rect width="64" height="64" rx="10" fill="${a}"/>
     <circle cx="49" cy="15" r="8" fill="none" stroke="${b}" stroke-width="2" opacity=".8"/>
     <path d="M-4 46 C10 34 20 52 32 42 S52 33 68 47 V66 H-4Z" fill="${b}" opacity=".9"/>
-    <text x="32" y="38" fill="#fff" font-size="22" font-weight="800" font-family="Onest, sans-serif" text-anchor="middle">${ch}</text>
+    <text x="32" y="38" fill="#fff" font-size="22" font-family="Georgia, serif" text-anchor="middle">${ch}</text>
   </svg>`;
 }
 
