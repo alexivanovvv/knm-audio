@@ -207,7 +207,7 @@ SW: `index.html` network-first — обновления доходят до ус
 `prompt/alert`), App (обновить всё — двойной тап вместо `confirm`; деплой —
 только на localhost). Ключи localStorage и `schedulePush()` прежние.
 
-#### T-21 · Анонс главы/задачи голосом книги · сделан (08.10, commit {T21})
+#### T-21 · Анонс главы/задачи голосом книги · сделан (08.10, commit 719f329)
 Вместо speechSynthesis — заранее сгенерированные клипы ElevenLabs (George,
 `eleven_flash_v2_5`, как треки): «Chapter 1, task 1. Public holidays.»,
 `Audio/announce/H{ch}T{t}.mp3`, генератор `tools/make_announcements.py`
