@@ -105,7 +105,11 @@
     --font-accent: 'Onest', 'Segoe UI', sans-serif;
     --font-accent-style: normal;
     --font-display-tracking: -.02em;
+    --raised: rgba(255,255,255,.13);
   }
+  :root[data-theme^="light"] { --raised: #fff; }
+  :focus:not(:focus-visible) { outline: none; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
   * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
   html { background: var(--bg); font-size: 110%; }
@@ -180,7 +184,9 @@
   .settings-dialog.shown .sheet-scrim { opacity: 1; }
   .settings-dialog.shown .sheet { transform: none; }
   .sheet.dragging { transition: none; }
-  .sheet-top { touch-action: none; flex-shrink: 0; }
+  .sheet:focus { outline: none; }
+  .sheet-top { touch-action: none; flex-shrink: 0; position: relative; z-index: 1; transition: box-shadow .15s ease; }
+  .sheet-top.scrolled { box-shadow: 0 1px 0 var(--rule); }
   .sheet-grab { display: grid; place-items: center; padding-top: 8px; cursor: grab; }
   .sheet-grab span { width: 36px; height: 5px; border-radius: 999px; background: var(--rule-strong); }
   .sheet-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 6px 14px 10px 20px; }
@@ -189,7 +195,10 @@
   .sheet-body {
     overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch;
     padding: 4px 16px calc(22px + env(safe-area-inset-bottom)); display: flex; flex-direction: column; gap: 20px;
+    -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 36px), transparent);
+    mask-image: linear-gradient(to bottom, #000 calc(100% - 36px), transparent);
   }
+  .sheet-body.at-end { -webkit-mask-image: none; mask-image: none; }
   .set-group h3 {
     margin: 0 0 8px 4px; font: 600 .66rem/1 'JetBrains Mono', monospace; letter-spacing: .14em;
     text-transform: uppercase; color: var(--ink-faint);
@@ -201,38 +210,45 @@
   }
   .set-row + .set-row { border-top: 1px solid var(--rule); }
   button.set-row { cursor: pointer; -webkit-tap-highlight-color: transparent; transition: background .12s ease, color .12s ease; }
-  @media (hover: hover) { button.set-row:hover { background: var(--surface-hover); } }
-  button.set-row:active { background: var(--surface-hover); }
+  @media (hover: hover) { button.set-row:hover { background: var(--surface); } }
+  button.set-row:active { background: var(--surface); }
   .set-icon { display: grid; place-items: center; flex-shrink: 0; color: var(--ink-soft); }
   .set-icon svg { width: 1.15rem; height: 1.15rem; }
-  .set-label { flex: 1; min-width: 7.5rem; display: flex; flex-direction: column; gap: 2px; }
+  .set-label { flex: 1; min-width: 6rem; display: flex; flex-direction: column; gap: 2px; }
   .set-sub { font-size: .76rem; color: var(--ink-soft); }
   .set-row.armed, .set-row.armed .set-icon { color: var(--accent); }
-  /* label on top, full-width segmented control underneath, aligned with the label text */
-  .set-row.stack { row-gap: 8px; padding-bottom: 12px; }
-  .set-row.stack .seg { flex: 1 0 calc(100% - 1.15rem - 12px); margin-left: calc(1.15rem + 12px); }
+  .set-row .seg button { min-width: 2.9rem; padding: 0 10px; }
 
-  .seg { display: flex; gap: 2px; padding: 3px; border-radius: 12px; background: var(--surface); border: 1px solid var(--rule); margin-left: auto; }
+  .seg { position: relative; display: flex; gap: 2px; padding: 3px; border-radius: 12px; background: var(--surface); border: 1px solid var(--rule); margin-left: auto; }
+  .seg-thumb {
+    position: absolute; top: 3px; bottom: 3px; left: 3px; border-radius: 9px; background: var(--raised);
+    width: calc((100% - 6px - (var(--n, 2) - 1) * 2px) / var(--n, 2));
+    transform: translateX(calc(var(--i, 0) * (100% + 2px)));
+    box-shadow: 0 1px 3px var(--shadow); transition: transform .22s cubic-bezier(.3,.7,.2,1);
+  }
+  .seg.no-anim .seg-thumb { transition: none; }
   .seg-full { width: 100%; margin-left: 0; }
   .seg button {
-    flex: 1; min-height: 2.5rem; min-width: 3.4rem; padding: 0 12px; border: 0; border-radius: 9px; background: none;
+    position: relative; flex: 1; min-height: 2.5rem; min-width: 3.4rem; padding: 0 12px; border: 0; border-radius: 9px; background: none;
     color: var(--ink-soft); font: 600 .84rem var(--font-body); cursor: pointer; -webkit-tap-highlight-color: transparent;
     transition: background .15s ease, color .15s ease, box-shadow .15s ease;
   }
   @media (hover: hover) { .seg button:hover { color: var(--ink); } }
-  .seg button[aria-checked="true"] { background: var(--accent-tint); color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+  .seg button[aria-checked="true"] { color: var(--ink); font-weight: 700; }
+  @media (prefers-reduced-motion: reduce) { .seg-thumb { transition: none; } }
 
   .swatches { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
   .swatch {
-    position: relative; display: flex; flex-direction: column; justify-content: space-between; gap: 14px;
-    min-height: 4.75rem; padding: 10px 12px; border-radius: 14px; border: 1px solid var(--rule);
+    position: relative; display: flex; align-items: center; gap: 10px;
+    min-height: 3.5rem; padding: 8px 10px; border-radius: 14px; border: 1px solid var(--rule);
     background: var(--sw-bg); color: var(--sw-ink); font: 600 .82rem/1.2 var(--font-body); text-align: left;
-    cursor: pointer; -webkit-tap-highlight-color: transparent; transition: box-shadow .15s ease;
+    cursor: pointer; -webkit-tap-highlight-color: transparent; transition: box-shadow .15s ease, filter .15s ease;
   }
+  :root:not([data-theme^="light"]) .swatch[data-value^="light"] { filter: brightness(.82) saturate(.9); }
   .swatch small { display: block; font-weight: 500; font-size: .66rem; opacity: .6; }
-  .sw-dot { width: 1.25rem; height: 1.25rem; border-radius: 50%; background: var(--sw-accent); }
-  .sw-check { position: absolute; top: 9px; right: 9px; width: 1.1rem; height: 1.1rem; color: var(--sw-accent); opacity: 0; transition: opacity .15s ease; }
-  .swatch[aria-checked="true"] { border-color: transparent; box-shadow: 0 0 0 2px var(--bg-2), 0 0 0 4px var(--accent); }
+  .sw-dot { width: 1.1rem; height: 1.1rem; border-radius: 50%; background: var(--sw-accent); flex-shrink: 0; }
+  .sw-check { position: absolute; top: 7px; right: 7px; width: .95rem; height: 1.1rem; color: var(--sw-accent); opacity: 0; transition: opacity .15s ease; }
+  .swatch[aria-checked="true"] { border-color: var(--sw-accent); box-shadow: inset 0 0 0 1px var(--sw-accent); }
   .swatch[aria-checked="true"] .sw-check { opacity: 1; }
 
   .pin-form { display: flex; gap: 8px; padding: 0 14px 12px; }
@@ -391,7 +407,7 @@
   input[type="range"]:hover::-webkit-slider-thumb, input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.2); }
   input[type="range"]::-moz-range-thumb { width: 10px; height: 10px; border: 2px solid var(--bg-2); border-radius: 50%; background: var(--accent); box-shadow: 0 1px 5px var(--shadow); cursor: pointer; }
   input[type="range"]::-moz-range-progress { height: 4px; border-radius: 999px; background: var(--accent); }
-  .controlsrow { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 3.2rem; }
+  .controlsrow { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 3.2rem; max-width: 36rem; margin: 0 auto; }
   .controlsrow-side { display: flex; align-items: center; flex: 0 0 3.2rem; }
   .controlsrow-side.right { justify-content: flex-end; }
   .controlsrow-main { display: flex; align-items: center; justify-content: center; gap: 12px; flex: 1; }
@@ -404,16 +420,19 @@
   .ctrlbtn:active { transform: scale(.92); }
   .ctrlbtn svg { width: 1.15rem; height: 1.15rem; display: block; }
   .ctrlbtn.small { font-size: .95rem; color: var(--ink-soft); width: 2.5rem; height: 2.5rem; }
-  .ctrlbtn.small svg { width: 1.25rem; height: 1.25rem; }
+  .ctrlbtn.small svg { width: 1.3rem; height: 1.3rem; }
+  .ctrlbtn.skipbtn svg { width: 1.6rem; height: 1.6rem; }
   .ctrlbtn.skipbtn { position: relative; }
   .ctrlbtn.skipbtn .skip-n {
     position: absolute; top: 54%; left: 50%; transform: translate(-50%,-50%);
-    font: 700 .5rem 'JetBrains Mono', monospace; pointer-events: none;
+    font: 700 .56rem/1 var(--font-body); letter-spacing: -.02em; pointer-events: none;
   }
   #playBtn {
     width: 3.3rem; height: 3.3rem; border-radius: 50%; background: var(--accent); color: var(--accent-ink);
-    box-shadow: 0 6px 18px var(--shadow);
+    box-shadow: 0 6px 20px color-mix(in srgb, var(--accent) 38%, transparent), 0 2px 6px var(--shadow);
+    transition: transform .12s ease, filter .12s ease;
   }
+  @media (hover: hover) { #playBtn:hover { color: var(--accent-ink); filter: brightness(1.07); } }
   #playBtn:active { transform: scale(.94); }
   #playBtn svg { width: 1.4rem; height: 1.4rem; }
   .pillbtn {
@@ -452,15 +471,15 @@
   .transition-notice[hidden] { display: none; }
 
   .captions-micro {
-    margin: 0 2px 8px; font-size: .88rem; line-height: 1.35; color: var(--ink);
-    text-align: center; height: calc(3 * 1.35em); overflow: hidden;
-    display: flex; align-items: center; justify-content: center;
+    margin: 0 2px 8px; max-width: 38rem; font-size: .88rem; line-height: 1.35; color: var(--ink);
+    text-align: left; height: calc(3 * 1.35em); overflow: hidden;
+    display: flex; align-items: center; justify-content: flex-start;
   }
   .captions-micro.overflowing { align-items: flex-start; }
   .captions-micro .cm-text { display: block; will-change: transform; transition: transform .25s linear; }
   .captions-micro[hidden] { display: none; }
   .captions-micro .nl-term { color: var(--accent); font-weight: 600; }
-  .ccbtn.active { color: var(--accent); border-color: var(--accent); background: var(--accent-tint); }
+  .ccbtn.active { color: var(--accent); border-color: transparent; background: var(--accent-tint); }
   .ccbtn[disabled] { opacity: .35; cursor: default; }
   @media (hover: hover) { .ccbtn[disabled]:hover { color: var(--ink-soft); border-color: var(--rule); } }
 
@@ -513,6 +532,16 @@
     .player-cover svg, .player-cover .cover-ph { width: 48px; height: 48px; }
   }
 
+  /* narrow phones: the transport row must fit 360px without overflowing */
+  @media (max-width: 400px) {
+    .controlsrow { gap: 4px; }
+    .controlsrow-side { flex-basis: 2.75rem; }
+    .pillbtn { width: 2.75rem; }
+    .controlsrow-main { gap: 2px; }
+    .ctrlbtn.small { width: 2.35rem; }
+    #playBtn { width: 3.1rem; height: 3.1rem; }
+  }
+
   /* tablet and up: a bit more breathing room, same single-column layout */
   @media (min-width: 640px) {
     .topbar, main, footer, .player-inner { max-width: 760px; }
@@ -548,7 +577,7 @@
 
 <dialog class="settings-dialog" id="settingsDialog" aria-labelledby="settingsTitle">
   <div class="sheet-scrim" data-close></div>
-  <div class="sheet" id="settingsSheet">
+  <div class="sheet" id="settingsSheet" tabindex="-1" autofocus>
     <div class="sheet-top" id="sheetTop">
       <div class="sheet-grab" aria-hidden="true"><span></span></div>
       <div class="sheet-head">
@@ -572,8 +601,8 @@
         <div class="set-card">
           <button type="button" id="autoplayToggleBtn" class="set-row" role="switch"><span class="set-icon" id="autoplayToggleIcon"></span><span class="set-label" id="autoplayToggleLabel"></span><span class="ios-switch" id="autoplayToggleSwitch" aria-hidden="true"><span class="knob"></span></span></button>
           <button type="button" id="announceToggleBtn" class="set-row" role="switch"><span class="set-icon" id="announceToggleIcon"></span><span class="set-label" id="announceToggleLabel"></span><span class="ios-switch" id="announceToggleSwitch" aria-hidden="true"><span class="knob"></span></span></button>
-          <div class="set-row stack"><span class="set-icon" id="chapterBreakIcon"></span><span class="set-label" id="chapterBreakLabel"></span><div class="seg" id="chapterBreakSeg" role="radiogroup" aria-labelledby="chapterBreakLabel"></div></div>
-          <div class="set-row stack"><span class="set-icon" id="ccModeIcon"></span><span class="set-label" id="ccModeLabel"></span><div class="seg" id="ccModeSeg" role="radiogroup" aria-labelledby="ccModeLabel"></div></div>
+          <div class="set-row"><span class="set-icon" id="chapterBreakIcon"></span><span class="set-label" id="chapterBreakLabel"></span><div class="seg" id="chapterBreakSeg" role="radiogroup" aria-labelledby="chapterBreakLabel"></div></div>
+          <div class="set-row"><span class="set-icon" id="ccModeIcon"></span><span class="set-label" id="ccModeLabel"></span><div class="seg" id="ccModeSeg" role="radiogroup" aria-labelledby="ccModeLabel"></div></div>
         </div>
       </section>
       <section class="set-group">
@@ -649,11 +678,11 @@
         <button class="pillbtn ccbtn" id="ccBtn" title="Ondertitels" disabled>CC</button>
       </div>
       <div class="controlsrow-main">
-        <button class="ctrlbtn small" id="prevBtn" title="Vorige taak"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="5" y="5" width="2.6" height="14" rx="1"/><path d="M18 5 8 12l10 7z"/></svg></button>
-        <button class="ctrlbtn small skipbtn" id="back15" title="15s terug"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 12a8.5 8.5 0 1 0 2.3-5.8"/><path d="M3.5 3v5.2h5.2"/></svg><span class="skip-n">15</span></button>
+        <button class="ctrlbtn small" id="prevBtn" title="Vorige taak"><svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M6 5.5v13" fill="none"/><path d="M18 6.5 9.5 12l8.5 5.5z"/></svg></button>
+        <button class="ctrlbtn small skipbtn" id="back15" title="15s terug"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 12a8.5 8.5 0 1 0 2.3-5.8"/><path d="M3.5 3v5.2h5.2"/></svg><span class="skip-n">15</span></button>
         <button class="ctrlbtn" id="playBtn" title="Afspelen/Pauzeren"></button>
-        <button class="ctrlbtn small skipbtn" id="fwd15" title="15s vooruit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 12a8.5 8.5 0 1 1-2.3-5.8"/><path d="M20.5 3v5.2h-5.2"/></svg><span class="skip-n">15</span></button>
-        <button class="ctrlbtn small" id="nextBtn" title="Volgende taak"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 5l10 7-10 7z"/><rect x="16.4" y="5" width="2.6" height="14" rx="1"/></svg></button>
+        <button class="ctrlbtn small skipbtn" id="fwd15" title="15s vooruit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 12a8.5 8.5 0 1 1-2.3-5.8"/><path d="M20.5 3v5.2h-5.2"/></svg><span class="skip-n">15</span></button>
+        <button class="ctrlbtn small" id="nextBtn" title="Volgende taak"><svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M6 6.5 14.5 12 6 17.5z"/><path d="M18 5.5v13" fill="none"/></svg></button>
       </div>
       <div class="controlsrow-side right">
         <div class="speedwrap">
@@ -850,6 +879,14 @@ const dismissInstall = document.getElementById('dismissInstall');
 const settingsDialog = document.getElementById('settingsDialog');
 const settingsSheet = document.getElementById('settingsSheet');
 const sheetTop = document.getElementById('sheetTop');
+const sheetBody = document.querySelector('#settingsSheet .sheet-body');
+// header divider once scrolled; bottom fade only while more content is below
+function updateSheetScrollEdges() {
+  sheetTop.classList.toggle('scrolled', sheetBody.scrollTop > 2);
+  sheetBody.classList.toggle('at-end', sheetBody.scrollTop + sheetBody.clientHeight >= sheetBody.scrollHeight - 2);
+}
+sheetBody.addEventListener('scroll', updateSheetScrollEdges, { passive: true });
+window.addEventListener('resize', () => { if (settingsDialog.open) updateSheetScrollEdges(); });
 const settingsTitleEl = document.getElementById('settingsTitle');
 const settingsCloseBtn = document.getElementById('settingsCloseBtn');
 const langSeg = document.getElementById('langSeg');
@@ -1084,8 +1121,18 @@ continuePlayBtn.innerHTML = PLAY_ICON;
 // ---------- language ----------
 // segmented control: options = [[value, label], …]; buttons are radios inside a radiogroup
 function renderSeg(el, options, current) {
-  el.innerHTML = options.map(([value, label]) =>
-    `<button type="button" role="radio" data-value="${value}" aria-checked="${String(value) === String(current)}">${label}</button>`).join('');
+  const sig = options.map(([v, l]) => `${v}=${l}`).join('|');
+  if (el.dataset.sig !== sig) {
+    el.dataset.sig = sig;
+    el.classList.add('no-anim');
+    el.innerHTML = '<span class="seg-thumb" aria-hidden="true"></span>' + options.map(([value, label]) =>
+      `<button type="button" role="radio" data-value="${value}">${label}</button>`).join('');
+    requestAnimationFrame(() => requestAnimationFrame(() => el.classList.remove('no-anim')));
+  }
+  const idx = Math.max(0, options.findIndex(([v]) => String(v) === String(current)));
+  el.querySelectorAll('button[data-value]').forEach((b, i) => b.setAttribute('aria-checked', String(i === idx)));
+  el.style.setProperty('--n', options.length);
+  el.style.setProperty('--i', idx);
 }
 function bindSeg(el, onPick) {
   el.addEventListener('click', (e) => {
@@ -1250,6 +1297,8 @@ function openSettings() {
   document.documentElement.classList.add('modal-open');
   menuBtn.setAttribute('aria-expanded', 'true');
   requestAnimationFrame(() => requestAnimationFrame(() => settingsDialog.classList.add('shown')));
+  sheetBody.scrollTop = 0;
+  updateSheetScrollEdges();
 }
 function closeSettings() {
   if (!settingsDialog.open) return;
@@ -1667,7 +1716,7 @@ function chapterArtwork(ch, size) {
     <rect width="64" height="64" rx="10" fill="${a}"/>
     <circle cx="49" cy="15" r="8" fill="none" stroke="${b}" stroke-width="2" opacity=".8"/>
     <path d="M-4 46 C10 34 20 52 32 42 S52 33 68 47 V66 H-4Z" fill="${b}" opacity=".9"/>
-    <text x="32" y="38" fill="#fff" font-size="22" font-family="Georgia, serif" text-anchor="middle">${ch}</text>
+    <text x="32" y="38" fill="#fff" font-size="22" font-weight="800" font-family="Onest, sans-serif" text-anchor="middle">${ch}</text>
   </svg>`;
 }
 
