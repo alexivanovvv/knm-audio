@@ -1,4 +1,4 @@
-const SHELL_CACHE = "nl-audioboek-shell-v6";
+const SHELL_CACHE = "nl-audioboek-shell-v7";
 const AUDIO_CACHE = "nl-audioboek-audio-v3";
 const SUBS_CACHE = "nl-audioboek-subs-v1";
 
