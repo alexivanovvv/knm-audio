@@ -293,13 +293,28 @@
   .bar span { display: block; height: 100%; background: var(--accent); border-radius: 2px; }
 
   /* ---------- overall progress (ring chip next to the header actions) ---------- */
+  /* one control: shows overall progress and toggles "mark as done" mode */
   .progress-chip {
-    display: flex; align-items: center; gap: 7px; height: 2.3rem; padding: 0 12px 0 9px; margin-right: 2px;
-    border-radius: 999px; border: 1px solid var(--rule); background: var(--surface); box-sizing: border-box;
+    display: flex; align-items: center; gap: 7px; height: 2.3rem; padding: 0 8px 0 9px;
+    border-radius: 999px; border: 1px solid var(--rule); background: var(--surface); box-sizing: border-box; cursor: pointer;
     font: 500 .72rem/1 'JetBrains Mono', monospace; color: var(--ink-faint); white-space: nowrap; font-variant-numeric: tabular-nums;
+    transition: border-color .12s ease, background-color .15s ease, color .12s ease;
   }
   .progress-chip b { color: var(--ink); font-weight: 600; }
-  .progress-chip svg { width: 1.1rem; height: 1.1rem; transform: rotate(-90deg); flex-shrink: 0; }
+  .progress-chip svg.ring { width: 1.1rem; height: 1.1rem; transform: rotate(-90deg); flex-shrink: 0; }
+  .progress-chip-mode {
+    display: flex; align-items: center; gap: 4px; height: 1.6rem; padding: 0 2px 0 8px; margin-left: 1px;
+    border-left: 1px solid var(--rule); color: var(--ink-soft);
+    font: 600 .72rem/1 var(--font-body); letter-spacing: 0;
+  }
+  .progress-chip-mode svg { width: .95rem; height: .95rem; }
+  @media (hover: hover) {
+    .progress-chip:hover { border-color: var(--rule-strong); }
+    .progress-chip:hover .progress-chip-mode { color: var(--ink); }
+  }
+  .progress-chip:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .progress-chip.active { background: var(--accent-tint); border-color: var(--accent); }
+  .progress-chip.active .progress-chip-mode { color: var(--accent); border-left-color: color-mix(in srgb, var(--accent) 35%, transparent); }
   .progress-chip circle { fill: none; stroke-width: 2.6; }
   .progress-chip .ring-bg { stroke: var(--rule-strong); }
   .progress-chip .ring-fill { stroke: var(--accent); stroke-linecap: round; transition: stroke-dashoffset .4s ease; }
@@ -580,12 +595,10 @@
       <p class="brand-sub" id="brandSub">English narration, met Nederlandse kernbegrippen apart uitgesproken.</p>
     </div>
     <div class="topbar-actions">
-      <div class="progress-chip" id="progressChip" role="img">
-        <svg viewBox="0 0 20 20" aria-hidden="true"><circle class="ring-bg" cx="10" cy="10" r="8"/><circle class="ring-fill" id="overallRing" cx="10" cy="10" r="8" pathLength="100" stroke-dasharray="100" stroke-dashoffset="100"/></svg>
-        <span class="progress-chip-label"><b id="listenedCount">0</b>/<span id="overviewTotal">36</span></span>
-      </div>
-      <button class="icon-btn" id="editModeBtn" type="button" aria-pressed="false">
-        <span id="editModeIcon"></span>
+      <button class="progress-chip" id="editModeBtn" type="button" aria-pressed="false">
+        <svg class="ring" viewBox="0 0 20 20" aria-hidden="true"><circle class="ring-bg" cx="10" cy="10" r="8"/><circle class="ring-fill" id="overallRing" cx="10" cy="10" r="8" pathLength="100" stroke-dasharray="100" stroke-dashoffset="100"/></svg>
+        <span class="progress-chip-label" aria-hidden="true"><b id="listenedCount">0</b>/<span id="overviewTotal">36</span></span>
+        <span class="progress-chip-mode" id="editModeIcon" aria-hidden="true"></span>
       </button>
       <button class="icon-btn" id="menuBtn" title="Instellingen" aria-haspopup="dialog" aria-expanded="false" aria-controls="settingsDialog">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h9M19 7h1M4 17h3M13 17h7"/><circle cx="16" cy="7" r="2.5"/><circle cx="10" cy="17" r="2.5"/></svg>
@@ -922,7 +935,6 @@ const menuBtn = document.getElementById('menuBtn');
 const brandSubEl = document.getElementById('brandSub');
 const footerTextEl = document.getElementById('footerText');
 const installHintTextEl = document.getElementById('installHintText');
-const progressChip = document.getElementById('progressChip');
 const overviewTotalEl = document.getElementById('overviewTotal');
 const listenedCountEl = document.getElementById('listenedCount');
 const overallRing = document.getElementById('overallRing');
@@ -993,6 +1005,7 @@ const STRINGS = {
   ccModeMicro: { en: 'Micro', nl: 'Micro' },
   editModeStart: { en: 'Mark chapters as done', nl: 'Markeer hoofdstukken als voltooid' },
   editModeStop: { en: 'Done marking', nl: 'Klaar met markeren' },
+  editModeDone: { en: 'Done', nl: 'Klaar' },
   pinSyncLabel: { en: 'Sync via PIN', nl: 'Synchroniseren via pincode' },
   pinSyncOn: { en: 'PIN sync: on', nl: 'Pincode-sync: aan' },
   pinPromptInvalid: { en: 'PIN must be 4-8 digits.', nl: 'Pincode moet 4-8 cijfers zijn.' },
@@ -1384,8 +1397,7 @@ function applyLanguage(lang) {
   applyAnnounceUI();
   applyChapterBreakUI();
   applyCcModeUI();
-  editModeIcon.innerHTML = editMode ? DONE_ICON : EDIT_ICON;
-  editModeBtn.title = editMode ? t('editModeStop') : t('editModeStart');
+  applyEditModeLabel();
   applyPinSyncUI();
   applyTheme(currentEffectiveTheme());
   if (deployBtnEl) { deployBtnEl.title = t('deployLabel'); deployLabelEl.textContent = t('deployLabel'); }
@@ -1519,9 +1531,8 @@ function updateListenedUI() {
   const done = listened.size;
   listenedCountEl.textContent = done;
   overallRing.setAttribute('stroke-dashoffset', 100 - (done / PLAYLIST.length) * 100);
-  progressChip.classList.toggle('complete', done >= PLAYLIST.length);
-  progressChip.setAttribute('aria-label', `${done}/${PLAYLIST.length} ${t('tasksCompleted')}`);
-  progressChip.title = `${done}/${PLAYLIST.length} ${t('tasksCompleted')}`;
+  editModeBtn.classList.toggle('complete', done >= PLAYLIST.length);
+  applyEditModeLabel();
   document.querySelectorAll('.chapter').forEach(chEl => {
     const ch = Number(chEl.dataset.ch);
     const chapter = BOOK.find(c => c.ch === ch);
@@ -1545,9 +1556,14 @@ function setEditMode(on) {
   chaptersEl.classList.toggle('edit-mode', editMode);
   editModeBtn.classList.toggle('active', editMode);
   editModeBtn.setAttribute('aria-pressed', String(editMode));
-  editModeIcon.innerHTML = editMode ? DONE_ICON : EDIT_ICON;
-  editModeBtn.title = editMode ? t('editModeStop') : t('editModeStart');
   updateListenedUI();
+}
+function applyEditModeLabel() {
+  const summary = `${listened.size}/${PLAYLIST.length} ${t('tasksCompleted')}`;
+  const action = editMode ? t('editModeStop') : t('editModeStart');
+  editModeIcon.innerHTML = editMode ? `${DONE_ICON}<span>${t('editModeDone')}</span>` : EDIT_ICON;
+  editModeBtn.title = `${summary} · ${action}`;
+  editModeBtn.setAttribute('aria-label', `${summary}. ${action}`);
 }
 function toggleListenedManual(index) {
   const track = PLAYLIST[index];
