@@ -288,29 +288,12 @@
 
   main { max-width: 720px; margin: 0 auto; padding: 14px 20px 0; }
 
-  /* ---------- continue listening ---------- */
-  .continue-card {
-    display: grid; grid-template-columns: 64px 1fr auto; gap: 14px; align-items: center;
-    padding: 14px; margin: 10px 0 18px; border: 1px solid var(--rule); border-radius: 16px;
-    background: linear-gradient(135deg, var(--accent-tint), transparent 60%), var(--bg-2);
-  }
-  .continue-cover svg { display: block; width: 64px; height: 64px; border-radius: 10px; }
-  .continue-body { min-width: 0; }
-  .continue-label { display: block; font: 600 .656rem/1 'JetBrains Mono', monospace; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: 5px; }
-  .continue-body h2 { margin: 0 0 8px; font-size: 1.1rem; font-weight: 700; line-height: 1.25; }
-  .continue-body h2 .continue-sub { display: block; font-size: .78rem; font-weight: 400; color: var(--ink-soft); margin-top: 2px; font-family: var(--font-accent); font-style: var(--font-accent-style); }
-  .continue-progress { display: flex; align-items: center; gap: 8px; }
+  /* ---------- progress bar ---------- */
   .bar { flex: 1; height: 4px; border-radius: 2px; background: var(--rule); overflow: hidden; }
   .bar span { display: block; height: 100%; background: var(--accent); border-radius: 2px; }
-  .continue-time { font: 500 .6875rem/1 'JetBrains Mono', monospace; color: var(--ink-faint); flex-shrink: 0; }
-  .continue-play svg { width: 1.15rem; height: 1.15rem; display: block; }
-  .continue-play {
-    width: 2.6rem; height: 2.6rem; border-radius: 50%; border: none; background: var(--accent); color: var(--accent-ink);
-    font-size: 1rem; cursor: pointer; display: grid; place-items: center; flex-shrink: 0;
-  }
 
   /* ---------- overview ---------- */
-  .overview { display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; margin-bottom: 18px; }
+  .overview { display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; margin: 10px 0 18px; }
   .overview-progress { display: flex; align-items: center; gap: 10px; flex: 1; min-width: 180px; }
   .overview-progress .bar { max-width: 180px; }
   .overview-label { font-size: .8rem; color: var(--ink-soft); white-space: nowrap; }
@@ -383,9 +366,16 @@
   .player-inner { max-width: 720px; margin: 0 auto; }
   .player-main { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
   .player-cover { flex-shrink: 0; line-height: 0; }
+  .now-link { display: flex; align-items: center; gap: 14px; min-width: 0; flex: 1; padding: 0; border: 0; background: none; color: inherit; font: inherit; text-align: left; cursor: pointer; border-radius: 14px; }
+  .now-link:disabled { cursor: default; }
+  .now-link:not(:disabled):hover .now-title { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; text-decoration-color: var(--ink-faint); }
+  .now-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+  .track.reveal { animation: reveal-pulse 1.4s ease-out; }
+  @keyframes reveal-pulse { 0%, 30% { background: var(--accent-tint); } 100% { background: transparent; } }
+  @media (prefers-reduced-motion: reduce) { .track.reveal { animation: none; } }
   .player-cover .cover-ph { display: block; width: 60px; height: 60px; border-radius: 13px; background: var(--surface); border: 1px solid var(--rule); }
   .player-cover svg { display: block; width: 60px; height: 60px; border-radius: 13px; box-shadow: 0 5px 16px var(--shadow); }
-  .player .now { min-width: 0; flex: 1; }
+  .player .now { display: block; min-width: 0; flex: 1; }
   .player .now .now-title.now-placeholder { color: var(--ink-soft); font-weight: 700; }
   .player .now .now-kicker { display: block; font: 600 .656rem/1 'JetBrains Mono', monospace; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: 4px; }
   .player .now .now-title { display: block; font-size: 1.14rem; font-weight: 800; letter-spacing: -.01em; color: var(--ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -522,8 +512,6 @@
   @media (max-width: 560px) {
     .topbar { padding: 16px 16px 4px; }
     main { padding: 12px 16px 0; }
-    .continue-card { grid-template-columns: 52px 1fr auto; padding: 12px; }
-    .continue-cover svg { width: 52px; height: 52px; }
     .chapter-head { padding: 12px; gap: 10px; }
     .chapter-cover svg { width: 40px; height: 40px; }
     .overview { gap: 10px; }
@@ -627,19 +615,6 @@
 </dialog>
 
 <main>
-  <section class="continue-card" id="continueCard" style="display:none">
-    <div class="continue-cover" id="continueCover"></div>
-    <div class="continue-body">
-      <span class="continue-label" id="continueLabelText">Verder luisteren</span>
-      <h2 id="continueTitle"></h2>
-      <div class="continue-progress">
-        <div class="bar"><span id="continueBarFill" style="width:0%"></span></div>
-        <span class="continue-time" id="continueTime"></span>
-      </div>
-    </div>
-    <button class="continue-play" id="continuePlayBtn" title="Afspelen"></button>
-  </section>
-
   <section class="overview">
     <div class="overview-progress">
       <div class="bar"><span id="overallBarFill" style="width:0%"></span></div>
@@ -663,8 +638,10 @@
 <div class="player" id="player">
   <div class="player-inner">
     <div class="player-main">
+      <button type="button" class="now-link" id="nowLink" disabled>
       <span class="player-cover" id="playerCover"><span class="cover-ph"></span></span>
-      <div class="now" id="nowPlaying"><span class="now-kicker">&nbsp;</span><span class="now-title now-placeholder">Kies een hoofdstuk om te beginnen</span><span class="now-sub">&nbsp;</span></div>
+      <span class="now" id="nowPlaying"><span class="now-kicker">&nbsp;</span><span class="now-title now-placeholder">Kies een hoofdstuk om te beginnen</span><span class="now-sub">&nbsp;</span></span>
+      </button>
     </div>
     <div class="captions-micro" id="captionsMicro" hidden></div>
     <div class="seekrow">
@@ -861,6 +838,7 @@ const audio = document.getElementById('audio');
 const chaptersEl = document.getElementById('chapters');
 const nowPlayingEl = document.getElementById('nowPlaying');
 const playerCover = document.getElementById('playerCover');
+const nowLink = document.getElementById('nowLink');
 const seek = document.getElementById('seek');
 const curTimeEl = document.getElementById('curTime');
 const durTimeEl = document.getElementById('durTime');
@@ -921,7 +899,6 @@ const refreshLabelEl = document.getElementById('refreshLabel');
 const hardRefreshBtn = document.getElementById('hardRefreshBtn');
 const menuBtn = document.getElementById('menuBtn');
 const brandSubEl = document.getElementById('brandSub');
-const continueLabelEl = document.getElementById('continueLabelText');
 const footerTextEl = document.getElementById('footerText');
 const installHintTextEl = document.getElementById('installHintText');
 const overviewSuffixEl = document.getElementById('overviewSuffix');
@@ -930,12 +907,6 @@ const listenedCountEl = document.getElementById('listenedCount');
 const overallBarFill = document.getElementById('overallBarFill');
 const editModeBtn = document.getElementById('editModeBtn');
 const editModeIcon = document.getElementById('editModeIcon');
-const continueCard = document.getElementById('continueCard');
-const continueCover = document.getElementById('continueCover');
-const continueTitle = document.getElementById('continueTitle');
-const continueBarFill = document.getElementById('continueBarFill');
-const continueTime = document.getElementById('continueTime');
-const continuePlayBtn = document.getElementById('continuePlayBtn');
 const transitionNotice = document.getElementById('transitionNotice');
 const ccBtn = document.getElementById('ccBtn');
 const captionsDrawer = document.getElementById('captionsDrawer');
@@ -1018,8 +989,8 @@ const STRINGS = {
   refreshLabel: { en: 'Refresh everything', nl: 'Alles vernieuwen' },
   refreshSub: { en: 'Clear cache and reload the app.', nl: 'Cache wissen en de app opnieuw laden.' },
   refreshArm: { en: 'Tap again to refresh', nl: 'Tik nogmaals om te vernieuwen' },
-  continueLabel: { en: 'Continue listening', nl: 'Verder luisteren' },
   playTitle: { en: 'Play', nl: 'Afspelen' },
+  showInList: { en: 'Show in list', nl: 'Toon in lijst' },
   chaptersLabel: { en: 'Chapters', nl: 'Hoofdstukken' },
   nowPlaceholder: { en: 'Choose a chapter to start', nl: 'Kies een hoofdstuk om te beginnen' },
   playPauseTitle: { en: 'Play/Pause', nl: 'Afspelen/Pauzeren' },
@@ -1116,7 +1087,6 @@ themeSwatches.addEventListener('click', (e) => {
   schedulePush();
 });
 refreshIcon.innerHTML = REFRESH_ICON;
-continuePlayBtn.innerHTML = PLAY_ICON;
 
 // ---------- language ----------
 // segmented control: options = [[value, label], …]; buttons are radios inside a radiogroup
@@ -1377,8 +1347,6 @@ function applyLanguage(lang) {
   disarmAll();
   refreshLabelEl.textContent = t('refreshLabel');
   refreshSubEl.textContent = t('refreshSub');
-  continueLabelEl.textContent = t('continueLabel');
-  continuePlayBtn.title = t('playTitle');
   chaptersEl.setAttribute('aria-label', t('chaptersLabel'));
   playBtn.title = t('playPauseTitle');
   prevBtn.title = t('prevTitle');
@@ -1402,6 +1370,7 @@ function applyLanguage(lang) {
   if (deployBtnEl) { deployBtnEl.title = t('deployLabel'); deployLabelEl.textContent = t('deployLabel'); }
   if (IS_LOCALHOST) { localBannerTextEl.textContent = t('localBannerText'); localDeployBtnLabel.textContent = t('localBannerDeployBtn'); }
   renderChapters();
+  collapseFinishedChapters();
   if (currentIndex >= 0) {
     renderNowPlaying(PLAYLIST[currentIndex]);
     highlightActiveTrack();
@@ -1698,7 +1667,6 @@ function saveProgress() {
     index: currentIndex,
     time: audio.currentTime || 0,
   }));
-  updateContinueCard();
 }
 function loadProgress() {
   try {
@@ -1720,27 +1688,31 @@ function chapterArtwork(ch, size) {
   </svg>`;
 }
 
-let continueCardVisible = null; // decided on first call, then fixed for the session
-function updateContinueCard() {
-  const saved = loadProgress();
-  if (continueCardVisible === null) continueCardVisible = !!(saved && PLAYLIST[saved.index]);
-  continueCard.style.display = continueCardVisible ? '' : 'none';
-  if (!continueCardVisible || !saved || !PLAYLIST[saved.index]) return;
-  const track = PLAYLIST[saved.index];
-  continueCover.innerHTML = chapterArtwork(track.ch, 64);
-  continueTitle.innerHTML = `${englishTitle(track)}<span class="continue-sub">${track.title}</span>`;
-  continueTime.textContent = fmtTime(saved.time || 0);
-  const durAttr = document.querySelector(`.dur[data-file="${CSS.escape(track.file)}"]`);
-  const durText = durAttr ? durAttr.textContent : null;
-  const pct = (durAttr && durAttr.dataset.seconds) ? Math.min(100, ((saved.time || 0) / Number(durAttr.dataset.seconds)) * 100) : 0;
-  continueBarFill.style.width = pct + '%';
+// Open the list where the listener is: fold chapters that are fully listened,
+// except the one holding the current track. Runs once on load; manual toggles win after that.
+function collapseFinishedChapters() {
+  const current = PLAYLIST[currentIndex];
+  BOOK.forEach(chapter => {
+    const chEl = document.getElementById(`chapter-${chapter.ch}`);
+    if (!chEl) return;
+    const finished = chapter.tasks.every(task => listened.has(`H${chapter.ch}T${task.t}`));
+    chEl.classList.toggle('collapsed', finished && !(current && current.ch === chapter.ch));
+  });
 }
-continuePlayBtn.addEventListener('click', () => {
-  const saved = loadProgress();
-  if (!saved || !PLAYLIST[saved.index]) return;
-  loadTrack(saved.index, true, saved.time || 0);
-});
 
+// Tapping the cover/title in the player reveals the track in the chapter list
+function revealActiveTrack() {
+  const row = activeRowEl();
+  if (!row) return;
+  const chEl = row.closest('.chapter');
+  if (chEl) chEl.classList.remove('collapsed');
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  row.scrollIntoView({ block: 'center', behavior: reduce ? 'auto' : 'smooth' });
+  row.classList.remove('reveal');
+  void row.offsetWidth;
+  row.classList.add('reveal');
+}
+nowLink.addEventListener('click', revealActiveTrack);
 function renderChapters() {
   chaptersEl.innerHTML = '';
   BOOK.forEach(chapter => {
@@ -1788,12 +1760,13 @@ function loadDurations() {
     probe.addEventListener('loadedmetadata', () => {
       el.textContent = fmtTime(probe.duration);
       el.dataset.seconds = probe.duration;
-      updateContinueCard();
     });
   });
 }
 
 function renderNowPlaying(track) {
+  nowLink.disabled = false;
+  nowLink.title = t('showInList');
   playerCover.innerHTML = chapterArtwork(track.ch, 52);
   nowPlayingEl.innerHTML = `<span class="now-kicker">${t('chapterWord')} ${track.ch} · ${t('taskWord')} ${track.t}</span><span class="now-title">${englishTitle(track)}</span><span class="now-sub">${track.title}</span>`;
 }
@@ -2152,7 +2125,7 @@ if (saved && PLAYLIST[saved.index]) {
   });
   loadCaptions(track);
 }
-updateContinueCard();
+collapseFinishedChapters();
 
 // iOS "add to home screen" hint (only in Safari, not already installed, not dismissed)
 const isIos = /iphone|ipad|ipod/i.test(navigator.userAgent);
