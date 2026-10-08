@@ -5,6 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Welkom in Nederland — KNM Audioboek</title>
 
+<script>
+  // Apply stored theme/lang before first paint (the main script runs at the end of <body>).
+  (function () {
+    try {
+      var th = localStorage.getItem('welkomTheme');
+      if (th === 'dark') th = 'dark-amber'; else if (th === 'light') th = 'light-paper';
+      if (!th) th = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark-amber' : 'light-paper';
+      document.documentElement.dataset.theme = th;
+      document.documentElement.lang = localStorage.getItem('welkomLang') || 'en';
+    } catch (e) { document.documentElement.dataset.theme = 'dark-amber'; }
+  })();
+</script>
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#0B0A09">
 <meta name="description" content="KNM-audioboek 'Welkom in Nederland': 7 hoofdstukken, 36 taken, Engelse vertelling met Nederlandse kernbegrippen apart uitgesproken. Installeerbaar, werkt offline.">
@@ -25,9 +37,9 @@
 <meta name="twitter:description" content="7 hoofdstukken, 36 taken. Engelse vertelling met Nederlandse kernbegrippen apart uitgesproken.">
 <meta name="twitter:image" content="https://knm-audio.netlify.app/social/og-image.png">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Onest:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- Self-hosted fonts (latin + latin-ext), cached by sw.js: no layout shift on load, works offline -->
+<link rel="preload" href="fonts/Onest-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/JetBrainsMono-latin.woff2" as="font" type="font/woff2" crossorigin>
 
 <!-- iOS home screen / standalone app support -->
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -39,6 +51,11 @@
 <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
 
 <style>
+  @font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 400 700; font-display: block; src: url(fonts/JetBrainsMono-latin-ext.woff2) format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+  @font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 400 700; font-display: block; src: url(fonts/JetBrainsMono-latin.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+  @font-face { font-family: 'Onest'; font-style: normal; font-weight: 400 800; font-display: block; src: url(fonts/Onest-latin-ext.woff2) format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+  @font-face { font-family: 'Onest'; font-style: normal; font-weight: 400 800; font-display: block; src: url(fonts/Onest-latin.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
   :root[data-theme="dark-amber"] {
     --bg: #0B0A09; --bg-2: #131110; --surface: rgba(255,255,255,.045); --surface-hover: rgba(255,255,255,.075);
     --ink: #F3F0EB; --ink-soft: #9A948A; --ink-faint: #615C54;
@@ -116,7 +133,7 @@
     width: 2.3rem; height: 2.3rem; border-radius: 999px; border: 1px solid var(--rule);
     background: var(--surface); color: var(--ink-soft); cursor: pointer; display: grid; place-items: center;
   }
-  .icon-btn:hover { border-color: var(--rule-strong); color: var(--ink); }
+  @media (hover: hover) { .icon-btn:hover { border-color: var(--rule-strong); color: var(--ink); } }
   .icon-btn.active { color: var(--accent); border-color: var(--rule-strong); }
   .icon-btn svg { width: 1.05rem; height: 1.05rem; }
 
@@ -130,7 +147,7 @@
     display: flex; align-items: center; gap: 10px; width: 100%; text-align: left; padding: 8px 10px;
     background: none; border: none; border-radius: 8px; color: var(--ink); font: inherit; font-size: .85rem; cursor: pointer;
   }
-  .topbar-menu button:hover { background: var(--surface-hover); }
+  @media (hover: hover) { .topbar-menu button:hover { background: var(--surface-hover); } }
   .topbar-menu button svg { width: 1.05rem; height: 1.05rem; flex-shrink: 0; color: var(--ink-soft); }
   .local-banner {
     position: sticky; top: 0; z-index: 25; display: flex; align-items: center; justify-content: center;
@@ -173,6 +190,7 @@
   .bar { flex: 1; height: 4px; border-radius: 2px; background: var(--rule); overflow: hidden; }
   .bar span { display: block; height: 100%; background: var(--accent); border-radius: 2px; }
   .continue-time { font: 500 .6875rem/1 'JetBrains Mono', monospace; color: var(--ink-faint); flex-shrink: 0; }
+  .continue-play svg { width: 1.15rem; height: 1.15rem; display: block; }
   .continue-play {
     width: 2.6rem; height: 2.6rem; border-radius: 50%; border: none; background: var(--accent); color: var(--accent-ink);
     font-size: 1rem; cursor: pointer; display: grid; place-items: center; flex-shrink: 0;
@@ -198,7 +216,8 @@
   .chapter-head .ch-sub { display: block; font-size: .78rem; font-weight: 400; color: var(--ink-soft); margin-top: 2px; font-family: var(--font-accent); font-style: var(--font-accent-style); }
   .chapter-meta { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
   .chapter-count { font: 500 .6875rem/1 'JetBrains Mono', monospace; color: var(--ink-faint); }
-  .chev { color: var(--ink-faint); transition: transform .18s ease; font-size: .8rem; }
+  .chev { color: var(--ink-faint); transition: transform .18s ease; display: block; line-height: 0; }
+  .chev svg { width: 1.05rem; height: 1.05rem; display: block; }
   .chapter.collapsed .chev { transform: rotate(-90deg); }
   .chapter.collapsed .tracklist { display: none; }
 
@@ -207,7 +226,7 @@
     display: grid; grid-template-columns: 1.7rem minmax(0,1fr) auto auto; gap: 10px; align-items: center;
     padding: 10px 8px; margin-top: 8px; border-radius: 10px; cursor: pointer;
   }
-  .track:hover { background: var(--surface-hover); }
+  @media (hover: hover) { .track:hover { background: var(--surface-hover); } }
   .track.active {
     --progress: 0%;
     background: linear-gradient(to right, var(--accent-tint) var(--progress), transparent var(--progress));
@@ -223,9 +242,9 @@
   .track .tsub { font-size: .75rem; color: var(--ink-soft); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .track.active .ttitle { color: var(--accent); font-weight: 700; }
   .track.listened:not(.active) .ttitle { color: var(--ink-soft); }
-  .track .check { font-size: .8rem; color: var(--accent); width: .9rem; text-align: center; flex-shrink: 0; }
+  .track .check { font-size: .8rem; color: var(--accent); width: 1.15rem; text-align: center; flex-shrink: 0; }
   .track .check svg { width: .95rem; height: .95rem; display: block; }
-  .chapters.edit-mode .track .check { width: 1.15rem; color: var(--ink-faint); }
+  .chapters.edit-mode .track .check { color: var(--ink-faint); }
   .chapters.edit-mode .track.listened .check { color: var(--accent); }
   .track .dur { font: 500 .74rem 'JetBrains Mono', monospace; color: var(--ink-faint); flex-shrink: 0; min-width: 2.6rem; text-align: right; }
 
@@ -250,10 +269,11 @@
   }
   .player-inner { max-width: 720px; margin: 0 auto; }
   .player-main { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
-  .player-cover { flex-shrink: 0; line-height: 0; display: none; }
+  .player-cover { flex-shrink: 0; line-height: 0; }
+  .player-cover .cover-ph { display: block; width: 60px; height: 60px; border-radius: 13px; background: var(--surface); border: 1px solid var(--rule); }
   .player-cover svg { display: block; width: 60px; height: 60px; border-radius: 13px; box-shadow: 0 5px 16px var(--shadow); }
   .player .now { min-width: 0; flex: 1; }
-  .player .now-placeholder { font-size: .82rem; color: var(--ink-soft); }
+  .player .now .now-title.now-placeholder { color: var(--ink-soft); font-weight: 700; }
   .player .now .now-kicker { display: block; font: 600 .656rem/1 'JetBrains Mono', monospace; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: 4px; }
   .player .now .now-title { display: block; font-size: 1.14rem; font-weight: 800; letter-spacing: -.01em; color: var(--ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .player .now .now-sub { display: block; font-size: .78rem; color: var(--ink-soft); margin-top: 2px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-family: var(--font-accent); font-style: var(--font-accent-style); }
@@ -275,18 +295,18 @@
   input[type="range"]::-moz-range-thumb { width: 10px; height: 10px; border: 2px solid var(--bg-2); border-radius: 50%; background: var(--accent); box-shadow: 0 1px 5px var(--shadow); cursor: pointer; }
   input[type="range"]::-moz-range-progress { height: 4px; border-radius: 999px; background: var(--accent); }
   .controlsrow { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 3.2rem; }
-  .controlsrow-side { display: flex; align-items: center; flex: 0 0 auto; min-width: 2.6rem; }
+  .controlsrow-side { display: flex; align-items: center; flex: 0 0 3.2rem; }
   .controlsrow-side.right { justify-content: flex-end; }
-  .controlsrow-main { display: flex; align-items: center; justify-content: center; gap: 18px; flex: 1; }
+  .controlsrow-main { display: flex; align-items: center; justify-content: center; gap: 12px; flex: 1; }
   .ctrlbtn {
     background: none; border: none; color: var(--ink); cursor: pointer; font-family: inherit;
     font-size: 1.2rem; line-height: 1; padding: .3rem; display: flex; align-items: center; justify-content: center;
     transition: color .12s ease, transform .12s ease;
   }
-  .ctrlbtn:hover { color: var(--accent); }
+  @media (hover: hover) { .ctrlbtn:hover { color: var(--accent); } }
   .ctrlbtn:active { transform: scale(.92); }
   .ctrlbtn svg { width: 1.15rem; height: 1.15rem; display: block; }
-  .ctrlbtn.small { font-size: .95rem; color: var(--ink-soft); }
+  .ctrlbtn.small { font-size: .95rem; color: var(--ink-soft); width: 2.5rem; height: 2.5rem; }
   .ctrlbtn.small svg { width: 1.25rem; height: 1.25rem; }
   .ctrlbtn.skipbtn { position: relative; }
   .ctrlbtn.skipbtn .skip-n {
@@ -299,15 +319,19 @@
   }
   #playBtn:active { transform: scale(.94); }
   #playBtn svg { width: 1.4rem; height: 1.4rem; }
-  .speedbtn {
+  .pillbtn {
     background: var(--surface); border: 1px solid var(--rule); color: var(--ink-soft);
-    font: 500 .72rem 'JetBrains Mono', monospace; border-radius: 999px; padding: 4px 9px; cursor: pointer;
+    font: 600 .72rem 'JetBrains Mono', monospace; border-radius: 999px; padding: 0; cursor: pointer;
+    width: 3.2rem; height: 2rem; text-align: center; font-variant-numeric: tabular-nums;
+    position: relative; transition: color .12s ease, border-color .12s ease;
   }
-  .speedbtn:hover { border-color: var(--rule-strong); color: var(--ink); }
+  .pillbtn::after { content: ''; position: absolute; inset: -6px; } /* 44px+ touch target */
+  @media (hover: hover) { .pillbtn:hover { border-color: var(--rule-strong); color: var(--ink); } }
+  .pillbtn[aria-expanded="true"] { border-color: var(--accent); color: var(--accent); }
   .speedwrap { position: relative; }
   .speed-popover {
     position: absolute; right: 0; bottom: calc(100% + 10px); width: 15rem; z-index: 20;
-    background: var(--bg-2); border: 1px solid var(--rule); border-radius: 14px; padding: 12px 14px 12px;
+    background: var(--bg-2); border: 1px solid var(--rule); border-radius: 12px; padding: 12px 14px;
     box-shadow: 0 10px 30px var(--shadow);
   }
   .speed-popover[hidden] { display: none; }
@@ -319,21 +343,29 @@
     flex: 1; background: var(--surface); border: 1px solid var(--rule); color: var(--ink-soft); border-radius: 999px;
     font: 500 .68rem 'JetBrains Mono', monospace; padding: 4px 0; cursor: pointer;
   }
-  .speed-presets button:hover { border-color: var(--rule-strong); color: var(--ink); }
+  @media (hover: hover) { .speed-presets button:hover { border-color: var(--rule-strong); color: var(--ink); } }
   .speed-presets button.active { border-color: var(--accent); color: var(--accent); }
-  .transition-notice { min-height: 1.15rem; margin: -2px 0 7px; color: var(--ink-soft); font: 500 .68rem/1.2 'JetBrains Mono', monospace; text-align: center; }
+  .player-inner { position: relative; }
+  .transition-notice {
+    position: absolute; left: 50%; bottom: calc(100% + 20px); transform: translateX(-50%);
+    padding: 6px 14px; border: 1px solid var(--rule); border-radius: 999px; background: var(--bg-2);
+    box-shadow: 0 6px 18px var(--shadow); white-space: nowrap; pointer-events: none;
+    color: var(--ink-soft); font: 500 .68rem/1.2 'JetBrains Mono', monospace; text-align: center;
+  }
   .transition-notice[hidden] { display: none; }
 
   .captions-micro {
-    padding: 0 2px 7px; font-size: .88rem; line-height: 1.35; color: var(--ink);
-    text-align: center; min-height: 1.2em;
+    margin: 0 2px 8px; font-size: .88rem; line-height: 1.35; color: var(--ink);
+    text-align: center; height: calc(3 * 1.35em); overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
   }
-  .captions-micro:empty, .captions-micro[hidden] { display: none; }
+  .captions-micro.overflowing { align-items: flex-start; }
+  .captions-micro .cm-text { display: block; will-change: transform; transition: transform .25s linear; }
+  .captions-micro[hidden] { display: none; }
   .captions-micro .nl-term { color: var(--accent); font-weight: 600; }
-  .ccbtn { position: relative; }
-  .ccbtn.active { color: var(--accent); }
+  .ccbtn.active { color: var(--accent); border-color: var(--accent); background: var(--accent-tint); }
   .ccbtn[disabled] { opacity: .35; cursor: default; }
-  .ccbtn[disabled]:hover { color: var(--ink-soft); }
+  @media (hover: hover) { .ccbtn[disabled]:hover { color: var(--ink-soft); border-color: var(--rule); } }
 
   /* ---------- captions drawer ---------- */
   .captions-drawer {
@@ -357,7 +389,7 @@
     padding: 9px 4px; font-size: 1.05rem; line-height: 1.5; color: var(--ink-faint);
     cursor: pointer; border-radius: 8px; transition: color .15s ease;
   }
-  .caption-line:hover { background: var(--surface-hover); }
+  @media (hover: hover) { .caption-line:hover { background: var(--surface-hover); } }
   .caption-line.past { color: var(--ink-soft); }
   .caption-line.active { color: var(--ink); font-weight: 700; }
   .caption-line .nl-term { color: var(--accent); font-weight: 600; }
@@ -380,8 +412,8 @@
     .chapter-cover svg { width: 40px; height: 40px; }
     .overview { gap: 10px; }
     .player { padding: 9px 12px calc(9px + env(safe-area-inset-bottom)); }
-    .controlsrow-main { gap: 10px; }
-    .player-cover svg { width: 48px; height: 48px; }
+    .controlsrow-main { gap: 4px; }
+    .player-cover svg, .player-cover .cover-ph { width: 48px; height: 48px; }
   }
 
   /* tablet and up: a bit more breathing room, same single-column layout */
@@ -438,7 +470,7 @@
         <span class="continue-time" id="continueTime"></span>
       </div>
     </div>
-    <button class="continue-play" id="continuePlayBtn" title="Afspelen">▶</button>
+    <button class="continue-play" id="continuePlayBtn" title="Afspelen"></button>
   </section>
 
   <section class="overview">
@@ -464,8 +496,8 @@
 <div class="player" id="player">
   <div class="player-inner">
     <div class="player-main">
-      <span class="player-cover" id="playerCover"></span>
-      <div class="now" id="nowPlaying"><span class="now-placeholder">Kies een hoofdstuk om te beginnen</span></div>
+      <span class="player-cover" id="playerCover"><span class="cover-ph"></span></span>
+      <div class="now" id="nowPlaying"><span class="now-kicker">&nbsp;</span><span class="now-title now-placeholder">Kies een hoofdstuk om te beginnen</span><span class="now-sub">&nbsp;</span></div>
     </div>
     <div class="captions-micro" id="captionsMicro" hidden></div>
     <div class="seekrow">
@@ -476,7 +508,7 @@
     <div class="transition-notice" id="transitionNotice" role="status" hidden></div>
     <div class="controlsrow">
       <div class="controlsrow-side left">
-        <button class="ctrlbtn small ccbtn" id="ccBtn" title="Ondertitels" disabled>CC</button>
+        <button class="pillbtn ccbtn" id="ccBtn" title="Ondertitels" disabled>CC</button>
       </div>
       <div class="controlsrow-main">
         <button class="ctrlbtn small" id="prevBtn" title="Vorige taak"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="5" y="5" width="2.6" height="14" rx="1"/><path d="M18 5 8 12l10 7z"/></svg></button>
@@ -487,7 +519,7 @@
       </div>
       <div class="controlsrow-side right">
         <div class="speedwrap">
-          <button class="speedbtn" id="speedBtn" aria-haspopup="true" aria-expanded="false">1×</button>
+          <button class="pillbtn speedbtn" id="speedBtn" aria-haspopup="true" aria-expanded="false">1×</button>
           <div class="speed-popover" id="speedPopover" hidden>
             <div class="speed-value" id="speedValue">1×</div>
             <input type="range" id="speedSlider" min="0.5" max="2.5" step="0.05" value="1" aria-label="Playback speed">
@@ -571,6 +603,46 @@ const BOOK = [
 ];
 
 // flat playlist in book order
+// Track lengths in seconds (ffprobe of Audio/*.mp3) — regenerate if audio changes.
+// Baked in so the list renders with final widths instantly, without 36 metadata requests.
+const DURATIONS = {
+  "Welkom in Nederland - H1 T1 Feestdagen.mp3": 256.6,
+  "Welkom in Nederland - H1 T2 Familiedagen.mp3": 158.8,
+  "Welkom in Nederland - H1 T3 Afspraken maken.mp3": 100.3,
+  "Welkom in Nederland - H1 T4 Contacten.mp3": 69.2,
+  "Welkom in Nederland - H1 T5 Relaties.mp3": 175.0,
+  "Welkom in Nederland - H1 T6 Organisaties en verenigingen.mp3": 94.5,
+  "Welkom in Nederland - H2 T1 De huisarts en de tandarts.mp3": 227.8,
+  "Welkom in Nederland - H2 T2 Snel hulp nodig.mp3": 120.8,
+  "Welkom in Nederland - H2 T3 Zelf beslissen over je lichaam.mp3": 178.3,
+  "Welkom in Nederland - H2 T4 De zorgverzekering.mp3": 232.1,
+  "Welkom in Nederland - H3 T1 Het land Nederland.mp3": 143.8,
+  "Welkom in Nederland - H3 T2 Wonen in een land met veel water.mp3": 152.4,
+  "Welkom in Nederland - H3 T3 Het openbaar vervoer (OV).mp3": 89.5,
+  "Welkom in Nederland - H3 T4 Een woning zoeken.mp3": 225.7,
+  "Welkom in Nederland - H3 T5 Het afval.mp3": 130.5,
+  "Welkom in Nederland - H3 T6 Wat je nog meer nodig hebt.mp3": 173.4,
+  "Welkom in Nederland - H4 T1 Zorgen voor je kinderen.mp3": 173.7,
+  "Welkom in Nederland - H4 T2 Het onderwijs in Nederland.mp3": 246.7,
+  "Welkom in Nederland - H4 T3 Wat moet en wat mag in het onderwijs.mp3": 121.4,
+  "Welkom in Nederland - H4 T4 Opleidingen en cursussen voor volwassenen.mp3": 112.1,
+  "Welkom in Nederland - H4 T5 Wat betaal je voor het onderwijs.mp3": 162.8,
+  "Welkom in Nederland - H5 T1 Werk vinden.mp3": 195.3,
+  "Welkom in Nederland - H5 T2 Welk werk past bij je.mp3": 126.0,
+  "Welkom in Nederland - H5 T3 Wat moet en wat mag als je werk hebt.mp3": 291.0,
+  "Welkom in Nederland - H5 T4 Als je niet genoeg geld hebt om van te leven.mp3": 146.3,
+  "Welkom in Nederland - H5 T5 Discriminatie op je werk.mp3": 51.6,
+  "Welkom in Nederland - H6 T1 Contact met instanties.mp3": 158.8,
+  "Welkom in Nederland - H6 T2 De gemeente.mp3": 175.4,
+  "Welkom in Nederland - H6 T3 De politie.mp3": 124.6,
+  "Welkom in Nederland - H6 T4 Verzekeringen.mp3": 136.5,
+  "Welkom in Nederland - H6 T5 De Belastingdienst.mp3": 167.6,
+  "Welkom in Nederland - H6 T6 Verblijfsvergunningen en de Nederlandse nationaliteit.mp3": 165.1,
+  "Welkom in Nederland - H6 T7 Andere organisaties die je kunnen helpen.mp3": 168.8,
+  "Welkom in Nederland - H7 T1 De geschiedenis van Nederland.mp3": 355.5,
+  "Welkom in Nederland - H7 T2 Het bestuur van Nederland.mp3": 375.2,
+  "Welkom in Nederland - H7 T3 Nederland als rechtsstaat.mp3": 216.0
+};
 const PLAYLIST = [];
 BOOK.forEach(chapter => {
   chapter.tasks.forEach(task => {
@@ -788,18 +860,19 @@ function t(key) {
 
 // ---------- theme ----------
 const SUN_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.22 4.22l1.7 1.7M18.08 18.08l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.22 19.78l1.7-1.7M18.08 5.92l1.7-1.7"/></svg>';
-const MOON_ICON = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.6 15.06A9 9 0 1 1 8.94 3.4a7.2 7.2 0 0 0 11.66 11.66Z"/></svg>';
+const MOON_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 15.06A9 9 0 1 1 8.94 3.4a7.2 7.2 0 0 0 11.66 11.66Z"/></svg>';
 const REFRESH_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.34-5.66"/><path d="M20 4v6h-6"/></svg>';
 const GLOBE_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>';
-const AUTOPLAY_ICON = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 5l8 7-8 7z"/><path d="M13 5l8 7-8 7z"/></svg>';
+const AUTOPLAY_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l7 6-7 6z"/><path d="M13 6l7 6-7 6z"/></svg>';
 const ANNOUNCE_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7"/></svg>';
 const CLOCK_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l3 2"/><path d="M9 2h6"/></svg>';
 const CC_MODE_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 10h4M7 14h7"/></svg>';
 const PLAY_ICON = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
 const PAUSE_ICON = '<svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
 const EDIT_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>';
+const CHEVRON_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>';
 const DONE_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>';
-const SELECT_ON_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="17" height="17" rx="4" fill="currentColor"/><path d="M8 12.5l2.5 2.5 5.5-6" stroke="var(--surface)"/></svg>';
+const SELECT_ON_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="17" height="17" rx="4" fill="currentColor"/><path d="M8 12.5l2.5 2.5 5.5-6" stroke="var(--bg-2)"/></svg>';
 const SELECT_OFF_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="17" height="17" rx="4"/></svg>';
 const PIN_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="15" r="4.5"/><path d="M11.5 11.5 20 3M16.5 6.5l3 3M13.5 9.5l2.3 2.3"/></svg>';
 const PIN_ON_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="15" r="4.5" fill="currentColor"/><path d="M11.5 11.5 20 3M16.5 6.5l3 3M13.5 9.5l2.3 2.3"/></svg>';
@@ -1019,7 +1092,7 @@ function applyLanguage(lang) {
     updateActiveRowProgress();
     if (currentCues !== null || captionsDrawer.classList.contains('open')) renderCaptions(PLAYLIST[currentIndex]);
   } else {
-    nowPlayingEl.innerHTML = `<span class="now-placeholder">${t('nowPlaceholder')}</span>`;
+    nowPlayingEl.innerHTML = `<span class="now-kicker">&nbsp;</span><span class="now-title now-placeholder">${t('nowPlaceholder')}</span><span class="now-sub">&nbsp;</span>`;
   }
 }
 
@@ -1155,7 +1228,7 @@ function updateListenedUI() {
     const isListened = track && listened.has(trackId(track));
     el.classList.toggle('listened', isListened);
     const check = el.querySelector('.check');
-    if (check) check.innerHTML = editMode ? (isListened ? SELECT_ON_ICON : SELECT_OFF_ICON) : (isListened ? '✓' : '');
+    if (check) check.innerHTML = editMode ? (isListened ? SELECT_ON_ICON : SELECT_OFF_ICON) : (isListened ? DONE_ICON : '');
   });
 }
 
@@ -1313,11 +1386,13 @@ function chapterArtwork(ch, size) {
   </svg>`;
 }
 
+let continueCardVisible = null; // decided on first call, then fixed for the session
 function updateContinueCard() {
   const saved = loadProgress();
-  if (!saved || !PLAYLIST[saved.index]) { continueCard.style.display = 'none'; return; }
+  if (continueCardVisible === null) continueCardVisible = !!(saved && PLAYLIST[saved.index]);
+  continueCard.style.display = continueCardVisible ? '' : 'none';
+  if (!continueCardVisible || !saved || !PLAYLIST[saved.index]) return;
   const track = PLAYLIST[saved.index];
-  continueCard.style.display = '';
   continueCover.innerHTML = chapterArtwork(track.ch, 64);
   continueTitle.innerHTML = `${englishTitle(track)}<span class="continue-sub">${track.title}</span>`;
   continueTime.textContent = fmtTime(saved.time || 0);
@@ -1343,7 +1418,7 @@ function renderChapters() {
     const head = document.createElement('button');
     head.className = 'chapter-head';
     head.type = 'button';
-    head.innerHTML = `<span class="chapter-cover">${chapterArtwork(chapter.ch, 48)}</span><span class="chapter-titles"><span class="chapter-num">${t('chapterWord')} ${chapter.ch}</span><h2>${chapter.chTitleEn}<span class="ch-sub">${chapter.chTitle}</span></h2></span><span class="chapter-meta"><span class="chapter-count mono">0/${chapter.tasks.length}</span><span class="chev">▾</span></span>`;
+    head.innerHTML = `<span class="chapter-cover">${chapterArtwork(chapter.ch, 48)}</span><span class="chapter-titles"><span class="chapter-num">${t('chapterWord')} ${chapter.ch}</span><h2>${chapter.chTitleEn}<span class="ch-sub">${chapter.chTitle}</span></h2></span><span class="chapter-meta"><span class="chapter-count mono">0/${chapter.tasks.length}</span><span class="chev">${CHEVRON_ICON}</span></span>`;
     head.addEventListener('click', () => {
       if (editMode) toggleChapterListened(chapter.ch);
       else chapterEl.classList.toggle('collapsed');
@@ -1357,7 +1432,7 @@ function renderChapters() {
       const li = document.createElement('li');
       li.className = 'track';
       li.dataset.index = idx;
-      li.innerHTML = `<span class="marker">${task.t}</span><span class="track-body"><span class="ttitle">${englishTitle({ ch: chapter.ch, t: task.t })}</span><span class="tsub">${task.title}</span></span><span class="check"></span><span class="dur" data-file="${task.file}">--:--</span>`;
+      li.innerHTML = `<span class="marker">${task.t}</span><span class="track-body"><span class="ttitle">${englishTitle({ ch: chapter.ch, t: task.t })}</span><span class="tsub">${task.title}</span></span><span class="check"></span><span class="dur" data-file="${task.file}" data-seconds="${DURATIONS[task.file] || ''}">${DURATIONS[task.file] ? fmtTime(DURATIONS[task.file]) : '--:--'}</span>`;
       li.addEventListener('click', () => {
         if (editMode) toggleListenedManual(idx);
         else loadTrack(idx, true);
@@ -1372,6 +1447,7 @@ function renderChapters() {
 
 function loadDurations() {
   document.querySelectorAll('.dur').forEach(el => {
+    if (el.dataset.seconds) return;
     const probe = new Audio();
     probe.preload = 'metadata';
     probe.src = fileUrl(el.dataset.file);
@@ -1385,7 +1461,6 @@ function loadDurations() {
 
 function renderNowPlaying(track) {
   playerCover.innerHTML = chapterArtwork(track.ch, 52);
-  playerCover.style.display = 'block';
   nowPlayingEl.innerHTML = `<span class="now-kicker">${t('chapterWord')} ${track.ch} · ${t('taskWord')} ${track.t}</span><span class="now-title">${englishTitle(track)}</span><span class="now-sub">${track.title}</span>`;
 }
 
@@ -1529,7 +1604,7 @@ function syncCaptions() {
   const openMicro = !captionsMicro.hidden;
   if (!openFull && !openMicro) return;
   const idx = findCueIndex(currentCues, audio.currentTime);
-  if (idx === activeLineIndex) return;
+  if (idx === activeLineIndex) { if (openMicro) scrollMicroCaption(); return; }
   if (openFull) {
     const prevEl = captionsScroll.querySelector('.caption-line.active');
     if (prevEl) prevEl.classList.remove('active');
@@ -1550,8 +1625,22 @@ function syncCaptions() {
     }
   }
   if (openMicro) {
-    captionsMicro.innerHTML = idx >= 0 ? formatCaptionLine(currentCues[idx].text) : '';
+    captionsMicro.innerHTML = idx >= 0 ? `<span class="cm-text">${formatCaptionLine(currentCues[idx].text)}</span>` : '';
+    const inner = captionsMicro.firstElementChild;
+    microOverflow = inner ? Math.max(0, inner.offsetHeight - captionsMicro.clientHeight) : 0;
+    captionsMicro.classList.toggle('overflowing', microOverflow > 0);
+    scrollMicroCaption();
   }
+}
+// Long cues don't fit the fixed 3-line box: glide the text up as the cue plays.
+let microOverflow = 0;
+function scrollMicroCaption() {
+  if (!microOverflow || activeLineIndex < 0 || !currentCues) return;
+  const cue = currentCues[activeLineIndex];
+  const end = cue.end ?? (currentCues[activeLineIndex + 1]?.start ?? cue.start + 5);
+  const frac = Math.min(1, Math.max(0, ((audio.currentTime - cue.start) / Math.max(0.1, end - cue.start) - 0.15) / 0.7));
+  const inner = captionsMicro.firstElementChild;
+  if (inner) inner.style.transform = `translateY(${-Math.round(microOverflow * frac)}px)`;
 }
 
 function openCaptions() {
@@ -1635,6 +1724,14 @@ document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !speedPo
 
 audio.addEventListener('play', updatePlayIcon);
 audio.addEventListener('pause', updatePlayIcon);
+let progressRaf = 0;
+function progressFrame() {
+  progressRaf = 0;
+  if (audio.paused) return;
+  if (!isSeeking) { seek.value = audio.currentTime; setSeekProgress(); }
+  progressRaf = requestAnimationFrame(progressFrame);
+}
+audio.addEventListener('playing', () => { if (!progressRaf) progressRaf = requestAnimationFrame(progressFrame); });
 audio.addEventListener('loadedmetadata', () => {
   seek.max = audio.duration || 0;
   durTimeEl.textContent = fmtTime(audio.duration);
@@ -1699,6 +1796,16 @@ if (saved && PLAYLIST[saved.index]) {
   audio.src = fileUrl(track.file);
   renderNowPlaying(track);
   highlightActiveTrack();
+  const knownDur = DURATIONS[track.file];
+  if (knownDur) {
+    seek.max = knownDur;
+    seek.value = saved.time || 0;
+    setSeekProgress(saved.time || 0, knownDur);
+    curTimeEl.textContent = fmtTime(saved.time || 0);
+    durTimeEl.textContent = fmtTime(knownDur);
+    const row = activeRowEl();
+    if (row) row.style.setProperty('--progress', Math.min(100, ((saved.time || 0) / knownDur) * 100) + '%');
+  }
   audio.addEventListener('loadedmetadata', function once() {
     audio.currentTime = saved.time || 0;
     seek.value = audio.currentTime;

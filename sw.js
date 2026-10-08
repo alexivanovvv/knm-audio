@@ -1,4 +1,4 @@
-const SHELL_CACHE = "nl-audioboek-shell-v5";
+const SHELL_CACHE = "nl-audioboek-shell-v6";
 const AUDIO_CACHE = "nl-audioboek-audio-v3";
 const SUBS_CACHE = "nl-audioboek-subs-v1";
 
@@ -11,6 +11,10 @@ const SHELL_ASSETS = [
   "./icons/icon-192.png",
   "./icons/icon-512.png",
   "./icons/icon-maskable-512.png",
+  "./fonts/Onest-latin.woff2",
+  "./fonts/Onest-latin-ext.woff2",
+  "./fonts/JetBrainsMono-latin.woff2",
+  "./fonts/JetBrainsMono-latin-ext.woff2",
 ];
 
 self.addEventListener("install", (event) => {
@@ -69,7 +73,26 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  // App shell: cache-first, falling back to network.
+  // The page itself: network-first so new deploys show up on the next launch,
+  // cached copy only when offline. (Cache-first here froze installed apps on
+  // whatever version they first saw.)
+  const isPage = event.request.mode === "navigate" || url.pathname.endsWith("/index.html");
+  if (isPage && url.origin === self.location.origin) {
+    event.respondWith(
+      fetch(event.request)
+        .then((response) => {
+          if (response.ok) {
+            const copy = response.clone();
+            caches.open(SHELL_CACHE).then((cache) => cache.put("./index.html", copy));
+          }
+          return response;
+        })
+        .catch(() => caches.match("./index.html").then((cached) => cached || caches.match("./")))
+    );
+    return;
+  }
+
+  // Other shell assets (icons, fonts, manifest): cache-first, falling back to network.
   event.respondWith(
     caches.match(event.request).then((cached) => cached || fetch(event.request))
   );
